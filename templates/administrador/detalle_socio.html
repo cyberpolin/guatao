@@ -1,0 +1,99 @@
+{% extends "administrador/base.html" %}
+
+{% load staticfiles %}
+
+{% block extrahead %}
+<script type="text/javascript">
+function borrar(id, socio_id){
+
+	if (confirm("¿Seguro que desea eliminar el espacio?")) {
+              // Respuesta afirmativa...
+              window.location.href = '/borrar_espacio/'+id +' and '+ socio_id;;
+          }
+      }
+
+function activar(id, socio_id){
+
+    if (confirm("¿Seguro que desea activar el espacio?")) {
+              // Respuesta afirmativa...
+              window.location.href = '/activar_espacio/'+id +' and '+ socio_id;;
+          }
+      }
+</script>
+
+{% endblock extrahead %}
+
+{% block maincontent %}
+
+	<div class="row-fluid">
+                    <div class="span12">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Espacios de {{socio.nombre}} {{socio.apellido_paterno}} {{socio.apellido_materno}}</div>
+                                <div class="pull-right"><span class="badge badge-info">{{agentes.count}}</span>
+
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Foto</th>
+                                            <th>RFC</th>
+                                            <th>Nombre del Establecimiento</th> 
+                                            <th>Direccion<th>
+                                            <th>Agente de Ventas</th>
+                                           	<th>Status</th>
+                                            
+                                            <th>Borrar</th>
+                                            <th>Activar<th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if list_espacios %}
+                                        {% for p in list_espacios %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>
+                                            	{% for foto in p.cat_imagenes_set.all%}
+                                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 80px; height: 50px;" src="{{ MEDIA_URL }}{{foto}}" alt="image">
+                                                {% endfor %}
+                                            </td>
+                                            <td>{{p.rfc}}</td>
+                                            <td>{{p.nombre}} </td>                                            
+                                            <td>{{p.direccion.localidad}}-<br>Colonia {{p.direccion.colonia}} Num° {{p.direccion.numero}}</td>
+                                            <td></td>
+                                            <td>{{p.usuario}}</td>
+                                            <td>{% if p.status.status == "A" %} <span class="label label-success">Activo</span> {% elif p.status.status == "I" %} <span class="label label-important">Desactivo</span> {% endif %}</td>
+                                            
+                                           
+                                            <td>{% if p.status.status == "A" %}<a onclick="borrar({{p.id}}, {{socio.id}})" href="#"><i class="icon-remove"></i></a>{% endif %}</td>
+                                            <td>{% if p.status.status == "I" %}<a onclick="activar({{p.id}}, {{socio.id}})" href="#"><i class="icon-ok"></i></a>{% endif %}</td>
+                                             
+                                        </tr>
+                                        {% endfor %}
+                                        {% else %}
+                                        <tr>
+                                            <td><h3>Sin Espacios</h3></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                    
+                </div>
+
+{% endblock maincontent %}

@@ -1,0 +1,167 @@
+{% extends "web/base_web.html" %}
+
+
+{% block contenido %}
+
+
+
+<article id="post-7" class="post-7 page type-page status-publish hentry">
+
+    <header class="entry-header">
+        
+        <h1 class="entry-title">
+            <a href="http://preview.ait-themes.com/directory/wp1/" title="Permalink to Home" rel="bookmark">Bienvenido</a>
+        </h1>
+
+    </header>
+    
+
+   <div class="entry-content">
+        <p>Guatao.mx es un conglomerado de servicios, productos y empresas, actualmente contamos con <em><b>{{ total_espacios }}</b></em> socios los cuales, han registrado un incremento sustancial en sus ventas y presencia en internet.</p>
+
+    </div>
+    
+        <h2 class="subcategories-title">Categorias</h2>
+        <div class="category-subcategories clearfix">
+            <ul class="subcategories">
+                {% for categorias in categorias %}
+                    <li class="category">
+                        <div class="category-wrap-table">
+                            <div class="category-wrap-row">
+                                <div style="display: inline-block;float: left;">
+                                <img style="margin: -10px 5px;padding: 0px;" src="{{ MEDIA_URL }}{{ categorias.icono }} ">
+                                </div>
+                                    <h3><a href="/categoria/{{ categorias.id }}">{{ categorias.categoria | title  }}</a></h3>
+                                    <ul style="padding: 0 45px;">
+                                        {% for espacios in categorias.espacio_set.all %}
+                                            {% if forloop.counter >= 1  and forloop.counter <= 5 %}
+                                                {% if espacios.status.status == 'A' %}
+                                                    <li><a href="/detalle/{{ espacios.direccion.localidad.nombre }}/{{ categorias.categoria }}/{{ espacios.id }}/">{{ espacios.nombre | title  }} </a></li>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        <li><a href="#"></a></li>
+                                    </ul>
+
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <h2 class="subcategories-title">Colonias cercanas</h2>
+        <div class="category-subcategories clearfix">
+            <ul class="subcategories">
+                <li class="category">
+                    <div class="category-wrap-table">
+                        <div class="category-wrap-row">
+                            <div class="descripcion icon-colonias">
+                                <h3><a href="#"><div id="colonia"></div></a></h3>
+                                <!--<ul>
+                                    <li><a href="#">Mecanicos</a></li>
+                                    <li><a href="#">Micelaneas</a></li>
+                                    <li><a href="#">Computadoras</a></li>
+                                </ul>-->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--
+                <li class="category">
+                    <div class="category-wrap-table">
+                        <div class="category-wrap-row">
+                            <div class="descripcion icon-colonias">
+                                <h3><a href="#">Guayabal</a></h3>
+                                <ul>
+                                    <li><a href="#">Mecanicos</a></li>
+                                    <li><a href="#">Micelaneas</a></li>
+                                    <li><a href="#">Computadoras</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="category">
+                    <div class="category-wrap-table">
+                        <div class="category-wrap-row">
+                            <div class="descripcion icon-colonias">
+                                <h3><a href="#">Guayabal</a></h3>
+                                <ul>
+                                    <li><a href="#">Mecanicos</a></li>
+                                    <li><a href="#">Micelaneas</a></li>
+                                    <li><a href="#">Computadoras</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                -->
+            </ul>
+        </div>
+
+
+    <div class="alternative-content">
+        <a href="#">
+            <div class="register-company">
+                <h3>¿Quieres ver tu negocio aqui? <span>$ 500 pesos al año</span></h3>
+                <p>Puedes ser parte de este directorio de empresas y servicios de manera inmediata, obten resultados al instante y vuelvete socio de Guatao. </p>
+            </div>
+        </a>
+    </div>
+</article><!-- /#post-7 -->
+
+{% endblock contenido %}
+{% block scripts %}
+    <script type="text/javascript">
+    (function(){
+	var content = document.getElementById("geolocation-test");
+
+	if (navigator.geolocation)
+	{
+		navigator.geolocation.getCurrentPosition(function(objPosition)
+		{
+			var lon = objPosition.coords.longitude;
+			var lat = objPosition.coords.latitude;
+            $.post(
+             "/colonias_cercanas/",
+             {latitud:lat,longitud:lon },
+             function(data){
+                var valores = JSON.parse(data);
+                var colonia = "";
+                for(var i=0;i<valores.length;i++){
+                    var obj = valores[i];
+                    for(var key in obj){
+                        colonia += '<li>'+obj[key]+'</li>';
+                    }
+                }
+                $('#colonia').html(colonia);
+        });
+
+		}, function(objPositionError)
+		{
+			switch (objPositionError.code)
+			{
+				case objPositionError.PERMISSION_DENIED:
+					content.innerHTML = "No se ha permitido el acceso a la posición del usuario.";
+				break;
+				case objPositionError.POSITION_UNAVAILABLE:
+					content.innerHTML = "No se ha podido acceder a la información de su posición.";
+				break;
+				case objPositionError.TIMEOUT:
+					content.innerHTML = "El servicio ha tardado demasiado tiempo en responder.";
+				break;
+				default:
+					content.innerHTML = "Error desconocido.";
+			}
+		}, {
+			maximumAge: 75000,
+			timeout: 15000
+		});
+	}
+	else
+	{
+		alert("Su navegador no soporta la API de geolocalización.");
+	}
+})();
+    </script>
+{% endblock scripts %}

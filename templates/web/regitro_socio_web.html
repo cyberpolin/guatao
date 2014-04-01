@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        {% load staticfiles %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Guatao.mx .:. El que busca encuentra...</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        {% block staticos %}
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static "web/css/normalize.min.css"%}">
+        <link rel="stylesheet" href="{% static "web/css/main.css"%}">
+
+
+
+        <link id="ait-style" rel="stylesheet" type="text/css" media="all" href="{% static "web/css/style.css" %}" />
+        <link rel='stylesheet' id='ait-jquery-fancybox-css'  href='{% static "web/css/fancybox/jquery.fancybox-1.3.4.css"%}' type='text/css' media='all' />
+        <link rel='stylesheet' id='jquery-ui-css-css'  href='{% static "web/css/jquery-ui-1.10.1.custom.min.css"%}' type='text/css' media='all' />
+
+
+        <script src="{% static "web/js/modernizr-2.6.2.min.js"%}"></script>
+
+        {% endblock staticos %}
+
+    </head>
+    <body>
+{% block busqueda %}
+
+
+            <div id="directory-search" data-interactive="yes">
+                <div class="defaultContentWidth clearfix">
+                    <form action=""  id="dir-search-form" method="POST" class="dir-searchform">
+                        <div style="float: left;padding: 20px 25px;">
+                            <div id="dir-holder" style="align-content: center">
+                                <img src="{% static "web/img/logo.png"%}" alt="logo" align="middle"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+{% endblock busqueda %}
+
+{% if messages %}
+    <div class="alert alert-success">
+        {% for message in messages %}
+        <button class="close" data-dismiss="alert">&times;</button>
+        <div{% if message.tags %}  class=" {{ message.tags }}"{% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+<div id="main" class="defaultContentWidth">
+    <div id="wrapper-row">
+        <div id="primary" class="">
+            <div id="content" role="main">
+                <div class="container-fluid">
+
+                    <form id="stepy" method="POST" enctype="multipart/form-data" class=" form-horizontal left-align form-well">
+                       {% csrf_token %}
+
+                       {{ formulario.non_field_errors }}
+                        {{ formulario_user.non_field_errors }}
+
+                        <fieldset title="Paso 2">
+                            <legend><center>Registro del Socio</center></legend>
+                            <div class="control-group">
+                                <label class="control-label">{{formulario.imagen.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.imagen}}
+                                </div>
+                                {{formulario.imagen.errors}}
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">{{formulario.nombre.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.nombre}}
+                                    </div>
+                                {{formulario.nombre.errors}}
+                                </div>
+
+                            <div class="control-group">
+                                <label class="control-label">{{formulario.apellido_paterno.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.apellido_paterno}}
+                                    </div>
+                                {{formulario.apellido_paterno.errors}}
+                                </div>
+
+                                <div class="control-group">
+                                <label class="control-label">{{formulario.apellido_materno.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.apellido_materno}}
+                                    </div>
+                                {{formulario.apellido_materno.errors}}
+                                </div>
+
+                                <div class="control-group">
+                                <label class="control-label">{{formulario.fecha_nacimiento.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.fecha_nacimiento}}
+                                    </div>
+                                {{formulario.fecha_nacimiento.errors}}
+                                </div>
+
+                                <div class="control-group">
+                                <label class="control-label">{{formulario.correo.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.correo}}
+                                    </div>
+                                {{formulario.correo.errors}}
+                                </div>
+
+                                <div class="control-group">
+                                <label class="control-label">{{formulario.telefono.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.telefono}}
+                                    </div>
+                                {{formulario.telefono.errors}}
+                                </div>
+
+                                <div class="control-group">
+                                <label class="control-label">{{formulario.celular.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.celular}}
+                                    </div>
+                                {{formulario.celular.errors}}
+                                </div>
+
+                                <div class="control-group">
+                                <label class="control-label">{{formulario.red_social.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.red_social}}
+                                    </div>
+                                {{formulario.red_social.errors}}
+                                </div>
+
+                                <div class="control-group">
+                                <label class="control-label">{{formulario.usuario_red_social.label_tag}}</label>
+                                <div class="controls">
+                                    {{formulario.usuario_red_social}}
+                                    </div>
+                                {{formulario.usuario_red_social.errors}}
+                                </div>
+
+                                <div class="control-group">
+                                <!-- <label class="control-label">{{formulario.tipo_usuario.label_tag}}</label> -->
+                                <div class="controls">
+                                    {{formulario.tipo_usuario}}
+                                    </div>
+                                {{formulario.tipo_usuario.errors}}
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">{{formulario_user.username.label_tag}}</label>
+                                    <div class="controls">
+                                       {{formulario_user.username}}
+                                    </div>
+                                    <div id="results" style="position:relative;top:-90px;left:10px;"></div>
+
+                                    <span id="spinner" style="display:none;position:relative;top:-30px;left:260px;"><img src="{% static "administrador/images/loader.gif" %}"></span>
+
+                                    {{formulario_user.username.errors}}
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">{{formulario_user.password1.label_tag}}</label>
+                                    <div class="controls">
+                                       {{formulario_user.password1}}
+                                    </div>
+                                    {{formulario_user.password1.errors}}
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">{{formulario_user.password2.label_tag}}</label>
+                                    <div class="controls">
+                                       {{formulario_user.password2}}
+                                    </div>
+                                    {{formulario_user.password2.errors}}
+                                </div>
+
+                                </fieldset>
+                                <input type="submit" name="user-submit" style="background: -webkit-linear-gradient(top, rgb(115, 172, 75), rgb(108, 161, 70));float:right;margin-right: 200px;margin-top: -20px;" value="Registrarme" class="user-submit" tabindex="103" />
+                            </form>
+
+            </div><!-- /#content -->
+        </div><!-- /#primary -->
+    </div>
+
+</div> <!-- /#main -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <link rel="stylesheet" href="{% static "web/autocompletable/jquery-ui.css" media=" %}" screen">
+        <script src="{% static "web/autocompletable/jquery.min.js" %}"></script>
+        <script src="{% static "web/autocompletable/jquery-ui.min.js" %}"></script>
+
+        <script type="text/javascript" src="{% static "web/fancy/source/jquery.fancybox.js" %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static "web/fancy/source/jquery.fancybox.css" %}" media="screen" />
+
+        <link href="{% static "administrador/bootstrap/css/bootstrap.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "administrador/bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet" media="screen">
+
+        <script src="{% static "administrador/vendors/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+        <script src="{% static "administrador/validate/jquery-1.10.2.min.js" %}"></script>
+        <script src="{% static "administrador/wizard/js/jquery.validate.js" %}"></script>
+        <script src="{% static "administrador/wizard/js/stepy.jquery.js" %}"></script>
+        <link href="{% static "administrador/vendors/datepicker.css" %}" rel="stylesheet" media="screen">
+        <script src="{% static "administrador/vendors/bootstrap-datepicker.js" %}"></script>
+
+         <script type="text/javascript">
+        $().ready(function(){
+            $('#stepy').validate({
+            rules : {
+
+              nombre : {
+                required : true
+              },
+              apellido_paterno : {
+                required : true
+              },
+              apellido_materno : {
+                required : true
+              },
+              fecha_nacimiento : {
+                required : true
+              },
+              correo : {
+                required : true,
+                email    : true
+              },
+              telefono : {
+                required : true,
+                number : true
+              },
+              celular :{
+                required : true,
+                number : true
+              },
+              'username': {
+                required : true,
+              },
+            'password1': {
+                            required:true,
+                            minlength: 5
+                          },
+            'password2': {
+                            required:true,
+                            minlength: 5,
+                            equalTo: "#id_password1"
+                         },
+            },
+            messages : {
+
+              nombre : {
+                required : "<label style='color:red;width: 250px;'>El nombre del socio es requerido!</label>"
+              },
+              apellido_paterno : {
+                required : "<label style='color:red;width: 250px;'>El apellido paterno es requerido!</label>"
+              },
+              apellido_materno : {
+                required : "<label style='color:red;width: 250px;'>El apellido materno es requerido!</label>"
+              },
+              fecha_nacimiento : {
+                required : "<label style='color:red;width: 250px;'>La fecha de nacimiento es requerida!</label>"
+              },
+              correo : {
+                required : "<label style='color:red;width: 250px;'>El correo es requerido!</label>",
+                email    : "<label style='color:red;width: 250px;'>Debe ingresar un correo valido</label>"
+              },
+              telefono : {
+                required : "<label style='color:red;width: 250px;'>El telefono es requerido!</label>",
+                number: "<label style='color:red;width: 250px;'>Debe ingresar solo digitos</label>"
+              },
+              celular : {
+                required : "<label style='color:red;width: 250px;'>El celular es requiredo!</label>",
+                number: "<label style='color:red;width: 250px;'>Debe ingresar solo digitos</label>"
+              },
+              username: {
+                            required: "<label style='color:red;width: 250px;'>El usuario es requerido!</label>"
+
+                        },
+                password1: {
+                    required: "<label style='color:red;width: 250px;'>La contraseña es requerida!</label>",
+                    minlength: "<label style='color:red;width: 250px;'>La contraseña debe tener al menos 5 caracteres</label>"
+                },
+                password2: {
+                    required: "<label style='color:red;width: 250px;'>La contraseña es requerida!</label>",
+                    minlength: "<label style='color:red;width: 250px;'>La contraseña debe tener al menos 5 caracteres</label>",
+                    equalTo: "<label style='color:red;width: 250px;'>Por favor, introduzca la misma contraseña que el anterior</label>"
+                },
+
+            },
+          });
+          });
+        </script>
+         <script type="text/javascript">
+
+        $(function(){
+          $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+
+          });
+              });
+        </script>
+        <script>
+            $(document).ready(function() {
+
+          $("#id_username").blur(function(event){
+           r=$('#id_username').val();
+           if(r !=0){
+            $.post(
+             "/validar_usuario/",
+             {q:$('#id_username').val()},
+             function(data) {
+              $('#results').html(data);
+            }
+
+            );
+          }else{
+            $('#disp').css('display','none');
+          }
+        });
+
+
+          $( document ).ajaxStart( function() {
+            $( '#spinner' ).show();
+          }).ajaxStop( function() {
+            $( '#spinner' ).hide();
+          });
+
+          });
+        </script>
+
+
+    </body>
+</html>

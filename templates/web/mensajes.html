@@ -1,0 +1,117 @@
+{% extends "web/base_web.html" %}
+
+{% load staticfiles %}
+{% block contenido %}
+
+
+
+                <article id="post-item-category">
+                    <header class="entry-header">
+                        <h1 class="entry-title">
+                            <span>Mensajes</span>
+                        </h1>
+                        <div class="category-breadcrumb clearfix">
+                            <span class="here">You are here:</span>
+                            <span class="home"><a href="/">Inicio</a>&nbsp;&nbsp;&gt;</span>
+                            <span class="name"><a href="#">Mensajes</a></span>
+                        </div>
+                    </header>
+
+                    <div class="entry-content">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+	                </div>
+
+
+                    <hr />
+
+                    <div class="category-items clearfix">
+                        <div class="dir-sorting clearfix">
+                            <div class="label">
+                                Mostrando 10 de 10 Mensajes
+                            </div>
+                            <form>
+                                <div class="count">
+                                    <label for="pagination">Count:</label>
+                                    <select name="pagination" id="sorting-pagination">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+                        <script>
+                        jQuery(document).ready(function($) {
+
+                            var sorting = $('.dir-sorting'),
+                                form = sorting.find('form'),
+                                count = sorting.find('#sorting-pagination'),
+                                sortby = sorting.find('#sorting-sortby'),
+                                sort = sorting.find('#sorting-sort');
+
+                            var firstPageLink = "http://preview.ait-themes.com/directory/wp1/cat/automotive/";
+
+                            var values = { };
+                                values.count = 10;
+                                values.sortby = "post_date";
+                                values.sort = "DESC";
+
+                            // if select don't have value
+                            if (count.find("option[value='"+values.count+"']").length == 0) {
+                                count.prepend('<option value="'+values.count+'">'+values.count+'</option>');
+                            }
+                            count.val(values.count);
+                            sortby.val(values.sortby);
+                            sort.val(values.sort);
+
+                            count.change(function(event) {
+                                form.attr("action",firstPageLink);
+                                form.submit();
+                            });
+                            sortby.change(function(event) {
+                                form.removeAttr('action');
+                                form.submit();
+                            });
+                            sort.change(function(event) {
+                                form.removeAttr('action');
+                                form.submit();
+                            });
+
+                        });
+                        </script>
+
+
+                        {% for mensaje in mensajes %}
+                        <ul class="items">
+                                <li class="item clear administrator">
+                                    <div class="thumbnail">
+                                        {% if mensaje.leido == True %}
+                                            <img src="{% static "web/img/item-icon-open_hours.png"%}" alt="logo" />
+                                        {% else %}
+                                            <img src="{% static "web/img/item-icon-adress.png"%}" alt="logo" />
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="description">
+                                        <h3>
+                                            <a href="/detalle_mensaje/{{ mensaje.id }}">{{ mensaje.asunto }}</a>
+                                        </h3>
+                                        {% if mensaje.leido == True %}
+                                            <p >{{ mensaje.nombre | title }} <label style="float: right;">{{ mensaje.fecha_mensaje }}</label></p>
+                                        {% else %}
+                                            <p style="background-color: #B3D4FC "><strong>{{ mensaje.nombre | title }} </strong><strong style="float: right;">{{ mensaje.fecha_mensaje }}</strong></p>
+                                        {% endif %}
+
+                                    </div>
+                                </li>
+                        </ul>
+                        {% endfor %}
+
+                    </div>
+                </article><!-- /#post-item-category -->
+
+{% endblock contenido %}

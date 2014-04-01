@@ -1,0 +1,357 @@
+{% extends "web/base_web.html" %}
+
+
+
+{% block contenido %}
+
+
+
+    <article id="post-7821" class="post-7821 ait-dir-item type-ait-dir-item status-publish hentry">
+        <header class="entry-header">
+            <h1 class="entry-title">
+                <a href="#" title="Servicio Ramirez" rel="bookmark">{{ espacio_.nombre | upper }}</a>
+            </h1>
+
+            <div class="category-breadcrumb clearfix">
+                <span class="here">You are here</span>
+                <span class="home"><a href="/">Inicio</a>&nbsp;&nbsp;&gt;</span>
+                <span class="ancestors">
+                    <a href="#">Villahermosa</a>&nbsp;&nbsp;&gt;
+                </span>
+                <span class="ancestors">
+                    <a href="#">Mecanicos</a>&nbsp;&nbsp;&gt;
+                </span>
+                <span class="name"><a href="#">Atasta</a></span>
+                <span class="title"> &gt;&nbsp;&nbsp;{{ espacio_.nombre | title }}</span>
+            </div>
+        </header>
+
+        <div class="entry-content clearfix">
+            <div class="item-image">
+                {% for imagen in espacio_.cat_imagenes_set.all %}
+                <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" style="height:200px;width: 140px; " alt="Item image">
+                {% endfor %}
+                <a id="contact-owner-button" class="contact-owner button" data-fancybox-type="iframe" href="/contactar_socio/{{ espacio_.id }}">Contactanos</a>
+            </div>
+            <p>{{ espacio_.descripcion_larga }}</p>
+        </div>
+
+        <div class="item-share">
+            <!-- facebook -->
+            <div class="social-item fb">
+                <div class="fb-like" data-href="guatao.com.mx" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+            </div>
+        <!-- twitter -->
+            <div class="social-item">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-via="Guataomx" data-lang="es">Twittear</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+        <!-- google plus -->
+        <!-- Place this tag where you want the +1 button to render. -->
+            <div class="social-item">
+                <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 106px; height: 24px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 106px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1390656504869" name="I0_1390656504869" src="https://apis.google.com/u/0/_/+1/fastbutton?usegapi=1&amp;bsv=o&amp;origin=http%3A%2F%2Fpreview.ait-themes.com&amp;url=http%3A%2F%2Fpreview.ait-themes.com%2Fdirectory%2Fwp1%2Fitem%2Fviktors-cars%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.bw-VUKSHBfs.O%2Fm%3D__features__%2Fam%3DIQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAItRSTOuSPmu894WW4NMT8J2ZDhFQK3ENg#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1390656504869&amp;parent=http%3A%2F%2Fpreview.ait-themes.com&amp;pfname=&amp;rpctoken=19674422" data-gapiattached="true" title="+1"></iframe></div>
+                <!-- Place this tag after the last +1 button tag. -->
+                <script type="text/javascript">
+                  (function() {
+                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                    po.src = 'https://apis.google.com/js/plusone.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                  })();
+                </script>
+            </div>
+        </div>
+        <hr>
+        <div class="item-info">
+            <dl class="item-address">
+                <dt class="title"><h4>Ubicación</h4></dt>
+                <dt class="address">Dirección:</dt>
+                <dd class="data">{{ espacio_.direccion.localidad.nombre | title }}, {{ espacio_.direccion.colonia | title }}, {{ espacio_.direccion.calle | title }} # {{ espacio_.direccion.codigo_postal }}.  </dd>
+                <dt class="phone">Telefono(s):</dt>
+                <dd class="data"><a href="tel:{{ espacio_.propietario.telefono }}"> {{ espacio_.propietario.telefono }}</a> y <a href="tel:{{ espacio_.propietario.celular }}" >{{ espacio_.propietario.celular }}</a></dd>
+                <dt class="email">Correo: </dt>
+                <dd class="data"><a href="mailto:{{ espacio_.propietario.correo }}">{{ espacio_.propietario.correo }}</a></dd>
+                <dt class="web">Pagina Web: </dt>
+                <dd class="data"><a href="{{ espacio_.url}}" target="_blank">{{ espacio_.url}}</a></dd>
+            </dl>
+
+            <dl class="item-hours">
+                <dt class="title"><h4>Horarios</h4></dt>
+                <dt class="day">{{ espacio_.dias_laborales }}</dt>
+                <dd class="data">{{ espacio_.horario_atencion }}</dd>
+            </dl>
+            <br>
+            <dl class="item-address">
+                <dt class="title"><h4>Visitas</h4></dt>
+                <dt class="day">{{ espacio_.num_visitas }}</dt>
+
+            </dl>
+        </div>
+
+        <div id="map_canvas" class="item-map clearfix" style="width: 300px; height: 300px; position: relative; background-color: rgb(229, 227, 223); overflow: hidden; -webkit-transform: translateZ(0);">
+
+        </div>
+    </article><!-- /#post-7821 -->
+
+
+        <hr>
+			<div id="ait-rating-system" class="rating-system" data-post-id="7821">
+			    <h3>Recomiendame</h3>
+                <div class="rating-send-form">
+				    <div class="rating-ipnuts">
+                        <div class="rating-details">
+						    <div class="detail">
+                                <input id="rating-name" placeholder="¿Como te llamas?" name="rating-name" type="text">
+                            </div>
+	    					<div class="detail">
+                                <textarea rows="4" cols="50" placeholder="¿Que opinas de mi servicio?"></textarea>
+                            </div>
+						    <button class="send-rating">Recomiendame</button>
+						    <div class="message error" style="display: none;">
+                                Por favor, rellene todos los campos!
+                            </div>
+						    <div class="message success" style="display: none;">
+                                Tu calificación se ha enviado correctamente
+                            </div>
+					    </div>
+					    <div class="ratings">
+                            <div class="rating clearfix" data-rating-id="1" data-rated-value="0">
+                                <div class="rating-title">
+                                    Precio
+                                </div>
+								<div class="stars clearfix">
+                                    <div class="star" data-star-id="1"></div>
+                                    <div class="star" data-star-id="2"></div>
+                                    <div class="star" data-star-id="3"></div>
+                                    <div class="star" data-star-id="4"></div>
+                                    <div class="star" data-star-id="5"></div>
+                                </div>
+                            </div>
+                            <div class="rating clearfix" data-rating-id="2" data-rated-value="0">
+                                <div class="rating-title">
+                                    Instalaciones
+                                </div>
+								<div class="stars clearfix">
+                                    <div class="star" data-star-id="1"></div>
+                                    <div class="star" data-star-id="2"></div>
+                                    <div class="star" data-star-id="3"></div>
+                                    <div class="star" data-star-id="4"></div>
+                                    <div class="star" data-star-id="5"></div>
+                                </div>
+							</div>
+                            <div class="rating clearfix" data-rating-id="3" data-rated-value="0">
+                                <div class="rating-title">
+                                    Atención
+                                </div>
+								<div class="stars clearfix">
+                                    <div class="star" data-star-id="1"></div>
+                                    <div class="star" data-star-id="2"></div>
+                                    <div class="star" data-star-id="3"></div>
+                                    <div class="star" data-star-id="4"></div>
+                                    <div class="star" data-star-id="5"></div>
+                                </div>
+							</div>
+                        </div><!-- .ratings -->
+				    </div><!-- .rating-inputs -->
+			    </div><!-- .rating-send-form -->
+                <div class="user-ratings">
+                    <div class="user-rating">
+					    <div class="user-values" style="display: none;">
+                            <div class="rating clearfix">
+                                <div class="rating-title">
+                                    Precio
+                                </div>
+                                <div class="user-stars clearfix">
+                                    <div class="star active" data-star-id="1"></div>
+                                    <div class="star active" data-star-id="2"></div>
+                                    <div class="star active" data-star-id="3"></div>
+                                    <div class="star active" data-star-id="4"></div>
+                                    <div class="star active" data-star-id="5"></div>
+                                </div>
+                            </div>
+                            <div class="rating clearfix">
+                                <div class="rating-title">
+                                    Instalaciones
+                                </div>
+                                <div class="user-stars clearfix">
+                                    <div class="star active" data-star-id="1"></div>
+                                    <div class="star active" data-star-id="2"></div>
+                                    <div class="star active" data-star-id="3"></div>
+                                    <div class="star active" data-star-id="4"></div>
+                                    <div class="star active" data-star-id="5"></div>
+                                </div>
+                            </div>
+                            <div class="rating clearfix">
+                                <div class="rating-title">
+                                    Atención
+                                </div>
+                                <div class="user-stars clearfix">
+                                    <div class="star active" data-star-id="1"></div>
+                                    <div class="star active" data-star-id="2"></div>
+                                    <div class="star active" data-star-id="3"></div>
+                                    <div class="star active" data-star-id="4"></div>
+                                    <div class="star active" data-star-id="5"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-details">
+                            <div class="name">
+                                John
+                            </div>
+						    <div class="date">
+                                2013-04-26 12:58:30
+                            </div>
+                            <div class="value">
+                                <div class="star active" data-star-id="1" ></div>
+                                <div class="star active" data-star-id="2"></div>
+                                <div class="star active" data-star-id="3"></div>
+                                <div class="star active" data-star-id="4"></div>
+                                <div class="star active" data-star-id="5"></div>
+                            </div>
+                            <div class="description">
+                                my rating :)
+                            </div>
+					    </div>
+				    </div>
+                </div>
+            </div>
+
+    <div class="closeable">
+    <div class="open-button item comments-opened">
+            Close Comments
+    </div>
+
+
+
+</div>
+
+{% endblock contenido %}
+{% block scripts %}
+
+    <script>
+            $(document).ready(function() {
+                $(".contact-owner").fancybox({
+                    maxWidth	: 790,
+                    maxHeight	: 800,
+                    fitToView	: false,
+                    width		: '25%',
+                    height		: '47%',
+                    autoSize	: false,
+                    closeClick	: false,
+                    openEffect	: 'none',
+                    closeEffect	: 'none'
+                });
+            });
+        </script>
+
+    <script>
+        $(document).ready(function(){
+            $.post(
+             "/visitas_espacios/",
+             {q:{{ espacio_id }}},
+             function(data) {
+            });
+        });
+    </script>
+
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!--http://telegolf.org/pruebas/mapas/mapas_marcador.php#B#-->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    html { height: 100% }
+    body { height: 100%; margin: 0; padding: 0 }
+    #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key=
+AIzaSyCtc_RTXcpowT-00JCY8C9jihXnvEPCNcw&sensor=true">
+    </script>
+    <script type="text/javascript">
+    function initialize() {
+        var longitud = {{ espacio_.direccion.longitud }}
+        var latitud = {{ espacio_.direccion.latitud }}
+        latLng = new google.maps.LatLng(latitud,longitud )
+
+        var mapOptions = {
+            center: latLng,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+
+        // CREACION DEL MARCADOR
+    marker = new google.maps.Marker({
+    position: latLng,
+    title: 'Arrastra el marcador si quieres moverlo',
+    map: map,
+    draggable: true
+  });
+
+google.maps.event.addListener(map, 'click', function(event) {
+     updateMarker(event.latLng);
+   });
+
+geocodePosition(latLng);
+
+ // Permito los eventos drag/drop sobre el marcador
+  google.maps.event.addListener(marker, 'dragstart', function() {
+    updateMarkerAddress('Arrastrando...');
+  });
+
+  google.maps.event.addListener(marker, 'drag', function() {
+    updateMarkerStatus('Arrastrando...');
+    updateMarkerPosition(marker.getPosition());
+  });
+
+  google.maps.event.addListener(marker, 'dragend', function() {
+    updateMarkerStatus('Arrastre finalizado');
+    geocodePosition(marker.getPosition());
+  });
+
+    }
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+// ESTA FUNCION OBTIENE LA DIRECCION A PARTIR DE LAS COORDENADAS POS
+function geocodePosition(pos) {
+  geocoder.geocode({
+    latLng: pos
+  }, function(responses) {
+    if (responses && responses.length > 0) {
+      updateMarkerAddress(responses[0].formatted_address);
+    } else {
+      updateMarkerAddress('No puedo encontrar esta direccion.');
+    }
+  });
+}
+
+// OBTIENE LA DIRECCION A PARTIR DEL LAT y LON DEL FORMULARIO
+function codeLatLon() {
+      str= document.form_mapa.longitud.value+" , "+document.form_mapa.latitud.value;
+      latLng2 = new google.maps.LatLng(document.form_mapa.latitud.value ,document.form_mapa.longitud.value);
+      marker.setPosition(latLng2);
+      map.setCenter(latLng2);
+      geocodePosition (latLng2);
+      // document.form_mapa.direccion.value = str+" OK";
+}
+
+// RECUPERO LOS DATOS LON LAT Y DIRECCION Y LOS PONGO EN EL FORMULARIO
+function updateMarkerPosition (latLng) {
+  document.form_mapa.longitud.value =latLng.lng();
+  document.form_mapa.latitud.value = latLng.lat();
+}
+// ACTUALIZO LA POSICION DEL MARCADOR
+function updateMarker(location) {
+        marker.setPosition(location);
+        updateMarkerPosition(location);
+        geocodePosition(location);
+      }
+
+    </script>
+
+{% endblock scripts %}

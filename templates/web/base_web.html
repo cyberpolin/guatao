@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        {% load staticfiles %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Guatao.com.mx .:. El que busca encuentra...</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        {% block staticos %}
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static "web/css/normalize.min.css"%}">
+        <link rel="stylesheet" href="{% static "web/css/main.css"%}">
+
+
+        <link id="ait-style" rel="stylesheet" type="text/css" media="all" href="{% static "web/css/style.css" %}" />
+        <link rel='stylesheet' id='ait-jquery-fancybox-css'  href='{% static "web/css/fancybox/jquery.fancybox-1.3.4.css"%}' type='text/css' media='all' />
+        <link rel='stylesheet' id='jquery-ui-css-css'  href='{% static "web/css/jquery-ui-1.10.1.custom.min.css"%}' type='text/css' media='all' />
+
+
+        <script src="{% static "web/js/modernizr-2.6.2.min.js"%}"></script>
+
+
+        <script src="{% static "web/calificacion/jquery.js"%}"></script>
+        <script src="{% static "web/calificacion/rating.js"%}"></script>
+
+        <style type="text/css">
+            #menu div.barraMenu,
+            #menu div.barraMenu a.botonMenu {
+            font-family: sans-serif, Verdana, Arial;
+            font-size: 8pt;
+
+            }
+
+            #menu div.barraMenu {
+            text-align: left;
+            }
+
+            #menu div.barraMenu a.botonMenu {
+            cursor: pointer;
+            padding: 4px 6px 2px 5px;
+            text-decoration: none;
+            }
+
+            #menu div.barraMenu a.botonMenu:hover {
+            background-color: #8904B1;
+            color: white;
+            }
+
+            #menu div.barraMenu a.botonMenu:active {
+            background-color: #8904B1;
+            color: black;
+            color: white;
+            }
+        </style>
+
+        {% endblock staticos %}
+
+    </head>
+    <body class="single single-ait-dir-item postid-7821 ait-directory" data-themeurl="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory">
+
+    {% block redsocial %}
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+<div class="topbar clearfix">
+        <div id="tagLineHolder">
+            <div class="defaultContentWidth clearfix">
+                <p class="left info">(993) 2 68.15.60</p>
+    <ul class="social-icons right clearfix">
+
+        <li class="left"><a href="http://www.facebook.com/guataomx"><img src="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory/design/img/social-icons/facebook-ff.png" height="24" width="24" alt="Facebook" title="Facebook" /></a></li>
+        <li class="left"><a href="http://www.youtube.com/user/guataomx"><img src="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory/design/img/social-icons/youtube-ff.png" height="24" width="24" alt="Whatch us on Youtube." title="Whatch us on Youtube." /></a></li>
+        <li class="left"><a href="http://www.twitter.com/guataomx"><img src="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory/design/img/social-icons/twitter-ff.png" height="24" width="24" alt="Follow us on Twitter" title="Follow us on Twitter" /></a></li>
+    </ul>
+<!-- WPML plugin required -->
+                <!-- <form method="get" id="searchform" action="http://preview.ait-themes.com/directory/wp1/">
+    <label for="s" class="assistive-text">Search</label>
+    <input type="text" class="field" name="s" id="s" placeholder="Search" />
+    <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+</form>
+ -->
+            </div>
+        </div>
+</div>
+{% endblock redsocial %}
+
+{% block encabezado %}
+
+
+<header id="branding" role="banner">
+    <div class="defaultContentWidth clearfix">
+        <div id="logo" class="left">
+                <a class="trademark" href="http://preview.ait-themes.com/directory/wp1/">
+                    <img src="{% static "web/img/logo.png"%}" alt="logo" />
+                </a>
+        </div>
+
+        <nav id="access" role="navigation">
+
+                <h3 class="assistive-text">Main menu</h3>
+<nav class="mainmenu"><ul id="menu-main-menu" class="menu">
+    <li id="menu-item-7648" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7 current_page_item menu-item-has-children menu-item-7648"><a href="/">Inicio</a>
+    </li>
+    <li id="menu-item-8114" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8114"><a title="Buy Theme" href="#">¿Como ser socio?</a></li>
+    {% if user.is_authenticated %}
+    <li id="menu-item-8114" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8114"><a title="Buy Theme" href="/logout_user/">Cerrar Sesión</a></li>
+    {% endif %}
+</ul></nav>
+        </nav><!-- #accs -->
+
+    </div>
+
+
+{% if user.is_authenticated %}
+<div style="margin-left: 65%;">
+    <img src="{% static "web/img/blog-icon-user.png"%}" alt="logo" />
+    <strong style="color: #8904B1;">{{ user.first_name }} {{ user.last_name }}</strong>
+</div>
+{% endif %}
+</header><!-- #branding -->
+
+
+{% endblock encabezado %}
+
+
+{% block busqueda %}
+
+
+            <div id="directory-search" data-interactive="yes">
+                <div class="defaultContentWidth clearfix">
+                    <form action=""  id="dir-search-form" method="POST" class="dir-searchform">
+                        {% csrf_token %}
+                        <div id="dir-search-inputs">
+                            <div id="dir-holder">
+                                <div class="dir-holder-wrap">
+                                <input type="text" id="dir-searchinput-text" name="buscar" placeholder="Buscar..." class="dir-searchinput" />
+
+                                <div id="dir-searchinput-settings" class="dir-searchinput-settings">
+
+                                </div>
+                                <input type="hidden" name="geo-lat" id="dir-searchinput-geo-lat" value="" />
+                                <input type="hidden" name="geo-lng" id="dir-searchinput-geo-lng" value="" />
+
+                                <input type="text" name="categoria" id="dir-searchinput-category" placeholder="Categorias" />
+                                <input type="text" id="dir-searchinput-category-id"  style="display: none;" />
+
+                                <input type="text" id="dir-searchinput-location" name="ubicacion" placeholder="Ubicación" />
+                                <input type="text"  id="dir-searchinput-location-id" value="" style="display: none;" />
+
+                                <div class="reset-ajax"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="dir-search-button">
+                            <input type="button" onclick="busqueda()" value="Buscar" class="dir-searchsubmit" />
+                        </div>
+                        <input type="hidden" name="dir-search" value="yes" />
+                    </form>
+                </div>
+            </div>
+
+{% endblock busqueda %}
+
+
+<div id="main" class="defaultContentWidth">
+    <div id="wrapper-row">
+        <div id="primary" class="">
+            <div id="content" role="main">
+                {% block contenido %}
+
+
+                {% endblock contenido %}
+            </div><!-- /#content -->
+        </div><!-- /#primary -->
+
+
+        <div id="secondary" class="widget-area" role="complementary">
+            {% if user.is_authenticated %}
+            <aside id="ait-directory-widget-2" class="widget widget_directory">
+                {% if messages %}
+                    <div class="alert alert-success" style="margin-left: 12%">
+                      {% for message in messages %}
+                      <div{% if message.tags %} style="color: #8904B1"  class=" {{ message.tags }}"{% endif %}>{{ message }}</div>
+                      {% endfor %}
+                    </div>
+                {% endif %}
+                <h3 class="widget-title"><span>MENU</span></h3>
+                <div class="not-logged">
+                    <div id="ait-login-tabs">
+                        <div id="menu"><div class="barraMenu">
+                        <ul>
+                            <li class="active"><a class="register various botonMenu" href="/mis_espacios_web/{{ user.id }}">Mis Espacios</a></li>
+                            <li class="active"><a class="register various botonMenu"  href="">Agregar Espacios</a></li>
+                            <li class="active"><a class="register various botonMenu"  href="/mensajes/{{ user.id }}">Ver Mensajes</a></li>
+                            <li class="active"><a class="register various botonMenu" href="#">Editar Perfil</a></li>
+
+                        </ul>
+                        </div></div>
+                       <br>
+                    </div>
+                </div>
+            </aside>
+            {% else %}
+            <aside id="ait-directory-widget-2" class="widget widget_directory">
+                <h3 class="widget-title"><span>CONVIERTETE EN SOCIO HOY!</span></h3>
+                <div class="not-logged">
+                    <div id="ait-login-tabs">
+                        <ul>
+                            <li class="active"><a class="" href="">Soy Socio</a></li>
+                            <li ><a class="register various"  data-fancybox-type="iframe" href="/regitro_socio_web/">Registrarme</a></li>
+                        </ul>
+                        <!-- registro -->
+                        {% if messages %}
+                            <div class="alert alert-success">
+                              {% for message in messages %}
+                              <div{% if message.tags %} style="color: #ff0000"  class=" {{ message.tags }}"{% endif %}>{{ message }}</div>
+                              {% endfor %}
+                            </div>
+                        {% endif %}
+                       <br>
+                        <div id="ait-dir-register-tab">
+                            <p></p>
+                            <form method="post" action="/validar/"  name="login" id="login" class="wp-user-form">
+                                {% csrf_token %}
+                                <div class="register-username">
+                                    <label for="user_login">Usuario </label>
+                                    <input type="text" name="user_login" value="" size="20" id="user_login_register_widget" tabindex="101" />
+                                </div>
+                                <div class="register-email">
+                                    <label for="user_email">Contraseña </label>
+                                    <input type="password" name="user_pass" value="" size="25" id="user_email_register_widget" tabindex="102" />
+                                </div>
+                                <div class="login-fields">
+                                    <input type="submit" name="" value="Iniciar Sesión" class="user-submit" tabindex="103" />
+
+                                </div>
+                            </form>
+                        </div>
+
+                        <script>
+                        jQuery(document).ready(function($) {
+                            var tabRegister = $('#ait-dir-register-tab'),
+                                tabLogin =  $('#ait-dir-login-tab'),
+                                linkLogin = $('#ait-login-tabs .login'),
+                                linkRegister = $('#ait-login-tabs .register');
+                            linkLogin.click(function(event) {
+                                linkRegister.parent().removeClass('active');
+                                tabRegister.hide();
+                                linkLogin.parent().addClass('active');
+                                tabLogin.show();
+                                event.preventDefault();
+                            });
+                            linkRegister.click(function(event) {
+                                linkLogin.parent().removeClass('active');
+                                tabLogin.hide();
+                                linkRegister.parent().addClass('active');
+                                tabRegister.show();
+                                event.preventDefault();
+                            });
+                            // init and change
+                            var select = tabRegister.find('select[name=directory-role]'),
+                                buttonSubmit = tabRegister.find('input[name=user-submit]'),
+                                freeTitle = 'Sign up',
+                                buyTitle = 'Buy with PayPal';
+                            if(select.find('option:selected').hasClass('free')){
+                                buttonSubmit.val(freeTitle);
+                            } else {
+                                buttonSubmit.val(buyTitle);
+                            }
+                            select.change(function(event) {
+                                if(select.find('option:selected').hasClass('free')){
+                                    buttonSubmit.val(freeTitle);
+                                } else {
+                                    buttonSubmit.val(buyTitle);
+                                }
+                            });
+                        });
+                        </script>
+
+                    </div>
+                </div>
+            </aside>
+            {% endif %}
+            <aside id="posts-widget-5" class="widget widget_posts">
+                <h3 class="widget-title"><span>Nuevos Socios</span></h3>
+                <div class="postitems-wrapper">
+
+                    {% for nuebos_socios in nuebos_socios %}
+                    <div class="postitem clearfix  with-thumbnail">
+                        <div class="thumb-wrap fl">
+                            {% for imagen in nuebos_socios.cat_imagenes_set.all %}
+                                <a href="/detalle/{{ nuebos_socios.direccion.localidad.nombre }}/0/{{ nuebos_socios.id }}" class="greyscale">
+                                    <img class="thumb" src="{{ MEDIA_URL }}{{ imagen.imagen }}" alt="" />
+                                </a>
+                            {% endfor %}
+                        </div><!-- /.thumb-wrap -->
+                        <h3><a href="/detalle/{{ nuebos_socios.direccion.localidad.nombre }}/0/{{ nuebos_socios.id }}">{{ nuebos_socios.nombre | title  }}</a></h3>
+                        <p><small>{{ nuebos_socios.descripcion_corta | title }}</small></p>
+                    </div><!-- /.item -->
+                    {% endfor %}
+                </div>
+            </aside>
+            <aside id="text-9" class="widget widget_text">
+                <h3 class="widget-title"><span>Soicio VIP</span></h3>
+                <div class="textwidget">
+                    {% for vip in socios_vip %}
+                        {% for imagen in vip.cat_imagenes_set.all %}
+                            <a href="/detalle/{{ vip.direccion.localidad.nombre }}/0/{{ vip.id }}" title="{{ vip.nombre | title  }}   {{ vip.descripcion_corta | title  }}">
+                                <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" alt="Banner" style="width: 125px;height: 125px;"/>
+                            </a>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </aside>
+            <aside id="search-3" class="widget widget_search">
+                <form  method="POST" id="searchform" class="searchform" action="">
+                    {% csrf_token %}
+                    <div>
+                        <label class="screen-reader-text" for="s">Buscar:</label>
+                        <input type="text" value="" name="s" id="s" placeholder="Buscar Socio VIP" />
+                        <input type="button" id="searchsubmit" value="Search" onclick="busqueda_socio_vip()" />
+                    </div>
+                </form>
+            </aside>
+        </div>
+    </div>
+
+</div> <!-- /#main -->
+
+    <footer id="colophon" role="contentinfo">
+        <div id="supplementary" class="widgets defaultContentWidth">
+            <div id="footer-widgets" class="widget-area" role="complementary">
+                <div id="posts-widget-3" class="box widget-container widget_posts">
+                    <div class="box-wrapper">
+                        <div class="title-border-bottom">
+                            <div class="title-border-top">
+                                <div class="title-decoration">
+                                </div>
+                                <h2 class="widget-title">Socios Nuevos</h2>
+                            </div>
+                        </div>
+                        <div class="postitems-wrapper">
+                            {% for nuebos_socios in nuebos_socios %}
+                            <div class="postitem clearfix  with-thumbnail">
+                                <div class="thumb-wrap fl">
+                                    {% for imagen in nuebos_socios.cat_imagenes_set.all %}
+                                    <a href="/detalle/{{ nuebos_socios.direccion.localidad.nombre }}/0/{{ nuebos_socios.id }}" class="greyscale">
+                                        <img class="thumb" src="{{ MEDIA_URL }}{{ imagen.imagen }}" alt="" />
+                                    </a>
+                                    {% endfor %}
+                                </div><!-- /.thumb-wrap -->
+                                <h3><a href="/detalle/{{ nuebos_socios.direccion.localidad.nombre }}/0/{{ nuebos_socios.id }}">{{ nuebos_socios.nombre | title  }}</a></h3>
+                                <p><small>{{ nuebos_socios.descripcion_corta | title  }}</small></p>
+                            </div><!-- /.item -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div id="recent-comments-4" class="box widget-container widget_recent_comments">
+                    <div class="box-wrapper">
+                        <div class="title-border-bottom">
+                            <div class="title-border-top">
+                                <div class="title-decoration">
+
+                                </div>
+                                <h2 class="widget-title">Recomendaciones</h2>
+                            </div>
+                        </div>
+                        <ul id="recentcomments">
+                            <li class="recentcomments">Juan recomendo,<a href="#">Abarrotes la Chata</a></li>
+                            <li class="recentcomments">Juan recomendo,<a href="#">Abarrotes la Chata</a></li>
+                            <li class="recentcomments">Juan recomendo,<a href="#">Abarrotes la Chata</a></li>
+                            <li class="recentcomments">Juan recomendo,<a href="#">Abarrotes la Chata</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="recent-posts-4" class="box widget-container widget_recent_entries">
+                    <div class="box-wrapper">
+                        <div class="title-border-bottom">
+                            <div class="title-border-top">
+                                <div class="title-decoration">
+
+                                </div>
+                                <h2 class="widget-title">Lo mas visto</h2>
+                            </div>
+                        </div>
+                        <ul>
+                            {% for espacio_mas_visto in espacios_mas_visto %}
+
+                            <li>
+                                <a href="/detalle/{{ espacio_mas_visto.direccion.localidad.nombre }}/0/{{ espacio_mas_visto.id }}">{{ espacio_mas_visto.nombre | title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div id="text-6" class="box widget-container widget_text">
+                    <div class="box-wrapper">
+                        <div class="title-border-bottom">
+                            <div class="title-border-top">
+                                <div class="title-decoration">
+
+                                </div>
+                                <h2 class="widget-title">¿Que es un Socio?</h2>
+                            </div>
+                        </div>
+                        <div class="textwidget">
+                            En guatao no tenemos clientes, todos son <strong>socios</strong> comerciales, al dar de alta tu empresa guatao se convertira en un aliado comercial, ayudandote a posicionarte en la web, asi llegaras a mas gente.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="site-generator" class="clearfix">
+            <div class="defaultContentWidth">
+                <div id="footer-text">
+                    <strong>guatao.mx &reg; 2014</strong>Todos los derechos reservados
+                </div>
+                <nav class="footer-menu">
+                    <ul id="menu-footer-menu" class="menu">
+                        <li id="menu-item-7788" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7 current_page_item menu-item-7788">
+                            <a href="/">Inicio</a>
+                        </li>
+                        <li id="menu-item-7788" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7 current_page_item menu-item-7788">
+                            <a href="#">¿Quieres ser Socio?</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{% static "web/js/jquery-1.10.1.min.js" %}"><\/script>')</script>
+
+        <link rel="stylesheet" href="{% static "web/autocompletable/jquery-ui.css" media=" %}" screen">
+        <script src="{% static "web/autocompletable/jquery.min.js" %}"></script>
+        <script src="{% static "web/autocompletable/jquery-ui.min.js" %}"></script>
+
+        <script type="text/javascript" src="{% static "web/fancy/source/jquery.fancybox.js" %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static "web/fancy/source/jquery.fancybox.css" %}" media="screen" />
+
+        <script src="{% static "administrador/wizard/js/jquery.validate.js" %}"></script>
+        <script src="{% static "administrador/wizard/js/stepy.jquery.js" %}"></script>
+
+        <script>
+            $(document).ready(function() {
+                $(".various").fancybox({
+                    maxWidth	: 1000,
+                    maxHeight	: 800,
+                    fitToView	: false,
+                    width		: '80%',
+                    height		: '100%',
+                    autoSize	: false,
+                    closeClick	: false,
+                    openEffect	: 'none',
+                    closeEffect	: 'none'
+                });
+            });
+        </script>
+        <script>
+            $(function(){
+                $("#dir-searchinput-text").autocomplete({
+                    source: "/ajaxautocompletable/",
+                    minLength: 2,
+
+                    });
+                });
+            $(function(){
+                $("#dir-searchinput-location").autocomplete({
+                    source: "/ajaxaubicacion/",
+                    minLength: 2,
+
+                    });
+                });
+            $(function(){
+                $("#dir-searchinput-category").autocomplete({
+                    source: "/ajaxacategoria/",
+                    minLength: 2,
+
+                    });
+                });
+            $(function(){
+                $("#s").autocomplete({
+                    source: "/ajax_socio_vip/",
+                    minLength: 2,
+                });
+            });
+
+        </script>
+        <script>
+            function busqueda(){
+                var buscar = document.getElementById('dir-searchinput-text').value;
+                var ubicacion = document.getElementById('dir-searchinput-location').value;
+                var categoria = document.getElementById('dir-searchinput-category').value;
+
+                if ((buscar == "") & (categoria=="")){
+                    alert("Escriba lo que quiere buscar ó la categoria en donde quiere buscar");
+                }
+                else{
+                    if (buscar == ""){
+                        buscar = "0";
+                    }
+                    if (categoria == ""){
+                        categoria = "0";
+                    }
+                    if(ubicacion == ""){
+                        ubicacion = "0";
+                    }
+                    window.location.href='/resultado/'+buscar+'/'+categoria+'/'+ubicacion;
+                }
+            }
+        </script>
+        <script>
+            function busqueda_socio_vip(){
+                var nombre_socio_vip = document.getElementById('s').value;
+                if (nombre_socio_vip != ""){
+                    window.location.href='/busqueda_socio_vip/'+nombre_socio_vip;
+                }
+            }
+        </script>
+        <script>
+
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <script type="text/javascript">
+            $(function(){
+                $('#login').validate({
+                    rules :{
+                        user_login : {
+                            required : true, //para validar campo vacio
+                        },
+                        user_pass : {
+                            required : true, //para validar campo vacio
+                        },
+
+                    },
+
+                    messages : {
+                        user_login : {
+                            required : "<label style='color:red;width: 157px;'>El usuario es requerido</label>",
+                        },
+                        user_pass : {
+                            required : "<label style='color:red;width: 157px;'>La contraseña es requerida</label>",
+                        },
+
+                      },
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-49480673-1']); _gaq.push(['_setDomainName', 'guatao.com.mx']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+        </script>
+
+
+        {% block scripts %}
+        {% endblock scripts %}
+
+    </body>
+</html>

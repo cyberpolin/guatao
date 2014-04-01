@@ -1,0 +1,746 @@
+{% extends "administrador/base.html" %}
+
+{% load staticfiles %}
+
+    
+    {% block extrahead %}   
+
+
+        <link href="{% static "administrador/vendors/easypiechart/jquery.easy-pie-chart.css" %}" rel="stylesheet" media="screen">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="{% static "administrador/vendors/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+        <script src="{% static "administrador/validate/jquery-1.10.2.min.js" %}"></script>
+
+
+<!--[if IE 7]>
+            <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
+        <![endif]-->
+
+        <link href="{% static "administrador/wizard/css/styles.css" %}" rel="stylesheet">
+        <!--============j avascript===========-->
+        <script src="{% static "administrador/wizard/js/jquery.validate.js" %}"></script>
+        <script src="{% static "administrador/wizard/js/stepy.jquery.js" %}"></script>
+
+        <!-- WIZZARD -->
+        <script type="text/javascript">
+            $(function () {
+                /*==JQUERY STEPY==*/
+                $('#stepy').stepy({
+                    backLabel: 'Back',
+                    nextLabel: 'Next',
+                    errorImage: true,
+                    block: true,
+                    description: true,
+                    legend: false,
+                    titleClick: true,
+                    titleTarget: '#stepy_tabby',
+                    validate: true
+                });
+                $('#stepy1').stepy({
+                    backLabel: 'Back',
+                    nextLabel: 'Next',
+                    block: true,
+                    description: true,
+                    legend: false,
+                    titleClick: true,
+                    titleTarget: '#stepy_tabby1'
+                });
+                $('#stepy_form').stepy({
+                    backLabel: 'Back',
+                    nextLabel: 'Next',
+                    errorImage: true,
+                    block: true,
+                    description: true,
+                    legend: false,
+                    titleClick: true,
+                    titleTarget: '#top_tabby',
+                    validate: true
+                });
+
+                $('#stepy').validate({
+                    errorPlacement: function (error, element) {
+                        $('#stepy div.stepy-error').append(error);
+                    },
+                    rules: {
+                        'username': {
+                                        required:true,
+                                        minlength: 5,
+                                        maxlength: 30
+                                      }, 
+                        'password1': {
+                                        required:true,
+                                        minlength: 5
+                                      }, 
+                        'password2': {
+                                        required:true,
+                                        minlength: 5,
+                                        equalTo: "#id_password1"
+                                     },
+                        
+                        'nombre_propietario': {
+                                        required:true,
+                                        maxlength: 50
+                                      },
+                        'apellido_paterno':  {
+                                        required:true,
+                                        maxlength: 50
+                                      },
+                        'apellido_materno':  {
+                                        required:true,
+                                        maxlength: 50
+                                      },
+                        'fecha_nacimiento':  {
+                                        required:true,
+                                        maxlength: 50
+                                      },
+                        'correo' : {
+                                    required : true, 
+                                    email    : true  
+                                    },
+                        'telefono': {
+                                    required : true,
+                                    number : true,
+                                    maxlength: 15
+                                    },
+                        'celular': {
+                                    required : true,
+                                    number : true,
+                                    maxlength: 15
+                                    }
+                        
+                    },
+                    messages: {
+                        'username': {
+                            required: 'El usuario es requerido!',
+                            minlength: "El usuario debe tener al menos 5 caracteres",
+                            maxlength: "El usuario debe tener al un maximo de 30 caracteres",
+                            
+                        },
+                        'password1': {
+                            required: 'La contraseña es requerida!',
+                            minlength: "La contraseña debe tener al menos 5 caracteres"
+                        },
+                        'password2': {
+                            required: "La contraseña es requerida!",
+                            minlength: "La contraseña debe tener al menos 5 caracteres",
+                            equalTo: "Por favor, introduzca la misma contraseña que el anterior"
+                        },                        
+                        'nombre_propietario': {
+                          required:'La nombre del propietario es requerido!',
+                          maxlength: "El nombre debe tener al un maximo de 50 caracteres",
+                        },
+                        'apellido_paterno': {
+                          required:'La epallido paterno es requerido!',
+                          maxlength: "El apellido paterno debe tener al un maximo de 50 caracteres",
+                        },
+                        'apellido_materno': {
+                          required:'La epallido materno es requerido!',
+                          maxlength: "El apellido materno debe tener al un maximo de 50 caracteres",
+                        },
+                        'fecha_nacimiento': {
+                          required:'La fecha de nacimiento es requerida!'
+                        },
+                        'correo': {
+                            required : "El correo es requerido!",
+                            email    : "Debe ingresar un correo valido"
+                        },
+                        'telefono': {
+                            required: "El numero telefonico es requerido!",
+                            number: "Debe ingresar solo digitos",
+                            maxlength: "El telefono debe tener al un maximo de 50 caracteres",
+                        },
+                        'celular': {
+                            required: "El numero celular es requerido!",
+                            number: "Debe ingresar solo digitos",
+                            maxlength: "El celular debe tener al un maximo de 50 caracteres",
+                        }
+                        
+                    }
+                });
+
+                //VALIDACIONES DEL WIZAR
+                $('#stepy').validate({
+                    errorPlacement: function (error, element) {
+                        $('#stepy div.stepy-error').append(error);
+                    },
+                    rules: {
+                        'username': 'required',
+                        'password1': {
+                                        required:true,
+                                        minlength: 5
+                                      }, 
+                        'password2': {
+                                        required:true,
+                                        minlength: 5,
+                                        equalTo: "#id_password1"
+                                     },
+                        'foto': 'required',
+                        'nombre': 'required',
+                        'apellido_paterno': 'required',
+                        'apellido_materno': 'required',
+                        'fecha_nacimiento': 'required',
+                        'correo' : {
+                                    required : true, 
+                                    email    : true  
+                                    },
+                        'telefono': {
+                                    required : true,
+                                    number : true
+                                    },
+                        'celular': {
+                                    required : true,
+                                    number : true
+                                    },
+                        'localidad': 'required',
+                        'colonia': 'required',
+                        'calle': 'required',
+                        'numero': 'required',
+                        'codigo_postal': 'required'
+                        
+                    },
+                    messages: {
+                        'username': {
+                            required: 'El usuario es requerido!'
+                            
+                        },
+                        'password1': {
+                            required: 'La contraseña es requerida!',
+                            minlength: "La contraseña debe tener al menos 5 caracteres"
+                        },
+                        'password2': {
+                            required: "La contraseña es requerida!",
+                            minlength: "La contraseña debe tener al menos 5 caracteres",
+                            equalTo: "Por favor, introduzca la misma contraseña que el anterior"
+                        },
+                        'foto': {
+                          required:'La foto es requerida!'
+                        },
+                        'nombre': {
+                          required:'La nombre es requerido!'
+                        },
+                        'apellido_paterno': {
+                          required:'La epallido paterno es requerido!'
+                        },
+                        'apellido_materno': {
+                          required:'La epallido materno es requerido!'
+                        },
+                        'fecha_nacimiento': {
+                          required:'La fecha de nacimiento es requerida!'
+                        },
+                        'correo': {
+                            required : "El correo es requerido!",
+                            email    : "Debe ingresar un correo valido"
+                        },
+                        'telefono': {
+                            required: "El numero telefonico es requerido!",
+                            number: "Debe ingresar solo digitos"
+                        },
+                        'celular': {
+                            required: "El numero celular es requerido!",
+                            number: "Debe ingresar solo digitos"
+                        },
+                        'localidad': {
+                          required:'La localidad es requerida!'
+                        },
+                        'colonia': {
+                          required:'La colonia es requerida!'
+                        },
+                        'calle': {
+                          required:'La calle es requerida!'
+                        },
+                        'numero': {
+                          required:'El numero es requerido!'
+                        },
+                        'codigo_postal': {
+                          required:'El codigo postal es requerido!'
+                        }
+                        
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript">
+        $(function(){
+          $('#formulario1').validate({
+            rules :{
+              localidad_direccion : {
+                    required : true //para validar campo vacio                    
+                  }
+
+                },
+
+                messages : {
+                  localidad_direccion : {
+                    required : "La localidad es requerida!",
+                    
+                  }
+
+                },
+                //TEMINA VALIDACIONES
+
+                //VENTANA MODAL PARA GUARDAR LOCALIDADES VIA AJAX
+                submitHandler: function(form) {
+                  $.ajax({
+                   type: "POST",
+                   url: "/agregar_localidad/",
+               data: $("#formulario1").serialize(), // serializes the form's elements.
+               success: function(response)
+               {
+                if(response.estatus=="True"){
+                  document.getElementById("formulario1").reset();
+                  $("#myModal").modal("hide");
+                  document.getElementById('id_localidad').options[0]=new Option(response.nombre,response.id_localidad,"0");
+
+                }
+              }
+            });
+                }
+              });    
+        });
+        </script>
+
+        <!-- FORMATO DE dd/mm/año PARA EL DATE PICKER -->
+        <script type="text/javascript">
+
+        $(function(){
+          $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+
+          });
+              });
+        </script>
+
+        <!--VALIDACION SI EL USUARIO EXISTE VIA AJAX-->
+        <script type="text/javascript" language="javascript">
+
+$(document).ajaxSend(function(event, xhr, settings) {
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    function sameOrigin(url) {
+        // url could be relative or scheme relative or absolute
+        var host = document.location.host; // host + port
+        var protocol = document.location.protocol;
+        var sr_origin = '//' + host;
+        var origin = protocol + sr_origin;
+        // Allow absolute or scheme relative URLs to same origin
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+            // or any other URL that isn't scheme relative or absolute i.e relative.
+            !(/^(\/\/|http:|https:).*/.test(url));
+    }
+    function safeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    }
+}); 
+
+
+
+        $(document).ready(function() {
+
+          $("#id_username").blur(function(event){          
+           r=$('#id_username').val();
+           if(r !=0){
+            $.post( 
+             "/validar_usuario/",  
+             {q:$('#id_username').val()},
+             function(data) {
+              $('#results').html(data);
+            }
+
+            );
+          }else{
+            $('#disp').css('display','none');
+          }
+        });
+
+
+          $( document ).ajaxStart( function() {
+            $( '#spinner' ).show();       
+          }).ajaxStop( function() {
+            $( '#spinner' ).hide();
+          });
+
+          });
+          </script>
+
+
+          <script type="text/javascript">
+
+          function imagen(id_persona_socio){            
+            $.post( 
+             "/consulta_socio_espacio/",  
+             {q:id_persona_socio},
+             function(data) {
+                
+                var data = JSON.parse(data);
+                
+                for(var i=0;i<data.length;i++){
+                  var imagen = data[i]['imagen'];
+                  var nombre = "Nombre del socio: " + data[i]['nombre'] + ' ' + data[i]['apellido_paterno'] + ' ' + data[i]['apellido_materno'];
+                  var fecha_registro = " Fecha de registro: " + data[i]['fecha_registro'];
+                  var fecha_nacimiento = "Fecha de nacimiento: " + data[i]['fecha_nacimiento'];
+                  var correo = "Correo: " + data[i]['correo'];
+                  var telefono = "Telefono: " + data[i]['telefono'];
+                  var celular = "Celular" + data[i]['celular'];
+                  //var red_social = "Red social: " + data[i]['nombre_red'];
+                  var id =data[i]['id'];
+                  var idis ="<a href='/detalle_socio/"+id+"'>"+"Ver Espacios"+"</a>";
+                
+                }
+                $('<img />', { 'src': 'http://localhost:8000/media/'+imagen, 'id': 'miImagen', 'data-src':'holder.js/260x180', 'alt':'260x180', 'style':'width: 80px; height: 50px;float:right;' }).appendTo('#imagen');
+                $('#nombre').html(nombre);
+                $('#fecha_registro').html(fecha_registro);
+                $('#fecha_nacimiento').html(fecha_nacimiento);
+                $('#correo').html(correo);
+                $('#telefono').html(telefono);
+                $('#celular').html(celular);
+                //$('#red_social').html(red_social);
+                $('#id').html(idis);
+              
+            });
+
+          }
+
+          function cerrar_detalle(){
+                location.reload(); 
+            }
+
+          </script>
+
+    {% endblock extrahead %}
+
+    {% block maincontent %}
+    
+        
+                <!--/span-->
+                
+                    
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="stepy-widget">
+                                    <div class="widget-head clearfix bondi-blue">
+                                        <div id="stepy_tabby" class="pull-right">
+                                        </div>
+                                        <h3>Registro de Socios</h3>
+                                    </div>
+                                    <div class="widget-container gray ">
+                                        <div class="form-container">
+                                            <form id="stepy" method="POST" enctype="multipart/form-data" class=" form-horizontal left-align form-well">
+                                            <input type="hidden" id="socio" name="socio" value="socio">
+                                               {% csrf_token %}
+
+                                               {{ formulario_socio.non_field_errors }}
+                                               {{ formulario_persona_espacio_socio.non_field_errors }}
+                                                <fieldset title="Paso 1">
+                                                    <legend>Usuario</legend>
+                                                    <div class="control-group">
+                                                        <label class="control-label">{{formulario_socio.username.label_tag}}</label>
+                                                        <div class="controls">
+                                                           {{formulario_socio.username}}
+                                                        </div>
+                                                        <div id="results" style="position:relative;top:-90px;left:10px;"></div>
+
+                                                        <span id="spinner" style="display:none;position:relative;top:-30px;left:260px;"><img src="{% static "administrador/images/loader.gif" %}"></span>
+
+                                                        {{formulario_socio.username.errors}}
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">{{formulario_socio.password1.label_tag}}</label>
+                                                        <div class="controls">
+                                                           {{formulario_socio.password1}}
+                                                        </div>
+                                                        {{formulario_socio.password1.errors}}
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">{{formulario_socio.password2.label_tag}}</label>
+                                                        <div class="controls">
+                                                           {{formulario_socio.password2}}
+                                                        </div>
+                                                        {{formulario_socio.password2.errors}}
+                                                    </div>
+                                                    
+                                                </fieldset>    
+                                                <fieldset title="Paso 2">
+                                                    <legend>Datos Personales</legend>
+                                                    <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.foto.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.foto}} 
+                                                        </div>
+                                                        {{formulario_persona_espacio_socio.foto.errors}}
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.nombre_propietario.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.nombre_propietario}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.nombre_propietario.errors}}
+                                                        </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.apellido_paterno.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.apellido_paterno}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.apellido_paterno.errors}}
+                                                        </div>
+                                                        
+                                                        <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.apellido_materno.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.apellido_materno}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.apellido_materno.errors}}
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.fecha_nacimiento.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.fecha_nacimiento}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.fecha_nacimiento.errors}}
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.correo.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.correo}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.correo.errors}}
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.telefono.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.telefono}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.telefono.errors}}
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.celular.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.celular}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.celular.errors}}
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.red_social.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.red_social}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.red_social.errors}}
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                        <label class="control-label">{{formulario_persona_espacio_socio.usuario_red_social.label_tag}}</label>
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.usuario_red_social}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.usuario_red_social.errors}}
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                        <!-- <label class="control-label">{{formulario_persona_espacio_socio.tipo_usuario.label_tag}}</label> -->
+                                                        <div class="controls">
+                                                            {{formulario_persona_espacio_socio.tipo_usuario}}
+                                                            </div>
+                                                        {{formulario_persona_espacio_socio.tipo_usuario.errors}}
+                                                        </div>
+
+                                                        </fieldset>
+                                                        <button type="submit" class="finish btn btn-extend"> Finish!</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                   
+
+                
+
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <!-- block -->
+                            <div class="block">
+                                <div class="navbar navbar-inner block-header">
+                                    <div class="muted pull-left">Socios</div>
+                                    <div class="pull-right"><span class="badge badge-info">{{socios}} </span>
+                                    </div>
+                                </div>
+                                <div class="block-content collapse in">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Foto</th>
+                                                <th>Nombre</th>
+                                                <th>Correo</th>
+                                                <th>Telefono</th>
+                                                <th>Agregar<br> Espacio</th>
+                                                <th>Editar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if list_socios %}                               
+                                            {% for p in list_socios %}
+                                            <tr>                                                
+                                                <td> {{ forloop.counter }}</td>
+                                                <td>
+
+                                                    <a href="#myModal" onClick="imagen({{p.id}})" class="Modal" data-toggle="modal" >
+                                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 80px; height: 50px;" src="{{ MEDIA_URL }}{{p.imagen}}" alt="image">                                                        
+                                                    </a>                                                   
+
+                                                </td>
+                                                <td>{{p.nombre}} {{p.apellido_paterno}} {{p.apellido_materno}}</td>
+                                                <td>{{p.correo}}</td>
+                                                <td>{{p.telefono}}</td>
+                                                <td><a href="#" onclick="window.open('/alta_espacio_socio/{{p.id}}','mywindow', 'location=no,status=1,scrollbars=1,width=750,height=700'); return false;"><i class="icon-plus"></i></a></td>
+                                                <td><a href="/editar_socio/{{p.id}}"><i class="icon-edit"></i></a></td>                                             
+                                            </tr>
+                                            {% endfor %}
+                                            {% else %}
+                                            <tr>
+                                                <td><h3>Sin Socios</h3></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /block -->
+                        </div>                        
+                    </div>
+
+                    <div id="myModal" class="modal hide">
+                      <div class="modal-header">
+                        <button data-dismiss="modal" class="close" onclick="cerrar_detalle()" type="button">&times;</button>
+                        <h3>Detalles del Socio</h3>
+                      </div>
+                      <div class="modal-body">
+                        <p><div id="imagen"></div></p>
+                        <p><div id="nombre"></div></p>
+                        <p><div id="fecha_registro"></div></p>
+                        <p><div id="fecha_nacimiento"></div></p>
+                        <p><div id="correo"></div></p>
+                        <p><div id="telefono"></div></p>
+                        <p><div id="celular"></div></p>
+                        <p><div id="red_social"></div></p>
+                        <p><div id="id"></div></p>                        
+                      </div>
+                    </div>
+
+                    
+                    
+                </div>
+            </div>
+            {% endblock maincontent %}
+        
+        
+        {% block extralibs %}
+        <!--/.fluid-container-->
+        
+        <script src="{% static "administrador/bootstrap/js/bootstrap.js" %}"></script>
+        <script src="{% static "administrador/vendors/easypiechart/jquery.easy-pie-chart.js" %}"></script>
+        <script src="{% static "administrador/assets/scripts.js" %}"></script>
+        <script>
+        $(function() {
+            // Easy pie charts
+            $('.chart').easyPieChart({animate: 1000});
+        });
+        </script>
+
+        
+        
+        <script src="{% static "administrador/vendors/jquery.uniform.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/chosen.jquery.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/bootstrap-datepicker.js"%}"></script>
+
+        <script src="{% static "administrador/vendors/wysiwyg/bootstrap-wysihtml5.js" %}"></script>
+        <script src="{% static "administrador/vendors/wizard/jquery.bootstrap.wizard.min.js" %}"></script>
+
+
+        <script>
+        
+        </script>
+
+         <!--/.fluid-container-->
+        <link href="{% static "administrador/vendors/datepicker.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "administrador/vendors/uniform.default.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "administrador/vendors/chosen.min.css" %}" rel="stylesheet" media="screen">
+
+        <link href="{% static "administrador/vendors/wysiwyg/bootstrap-wysihtml5.css" %}" rel="stylesheet" media="screen">
+        
+        
+        <script src="{% static "administrador/vendors/jquery.uniform.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/chosen.jquery.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/bootstrap-datepicker.js" %}"></script>
+
+       
+
+        
+
+
+        <script src="{% static "administrador/assets/scripts.js" %}"></script>
+        <script>
+        $(function() {
+            $(".datepicker").datepicker();
+            $(".uniform_on").uniform();
+            $(".chzn-select").chosen();
+            $('.textarea').wysihtml5();
+
+            $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+                var $total = navigation.find('li').length;
+                var $current = index+1;
+                var $percent = ($current/$total) * 100;
+                $('#rootwizard').find('.bar').css({width:$percent+'%'});
+                // If it's the last tab then hide the last button and show the finish instead
+                if($current >= $total) {
+                    $('#rootwizard').find('.pager .next').hide();
+                    $('#rootwizard').find('.pager .finish').show();
+                    $('#rootwizard').find('.pager .finish').removeClass('disabled');
+                } else {
+                    $('#rootwizard').find('.pager .next').show();
+                    $('#rootwizard').find('.pager .finish').hide();
+                }
+            }});
+            $('#rootwizard .finish').click(function() {
+                alert('Finished!, Starting over!');
+                $('#rootwizard').find("a[href*='tab1']").trigger('click');
+            });
+        });
+        </script>
+        {% endblock extralibs %}
+    
+

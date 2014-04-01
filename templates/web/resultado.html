@@ -1,0 +1,130 @@
+{% extends "web/base_web.html" %}
+
+
+{% block contenido %}
+
+
+
+                <article id="post-item-category">
+                    <header class="entry-header">
+                        <h1 class="entry-title">
+                            <span>Resultado</span>
+                        </h1>
+                        <div class="category-breadcrumb clearfix">
+                            <span class="here">You are here:</span>
+                            <span class="home"><a href="/">Inicio</a>&nbsp;&nbsp;&gt;</span>
+                            <span class="name"><a href="#">Resultado</a></span>
+                        </div>
+                    </header>
+
+                    <div class="entry-content">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+	                </div>
+
+
+                    <hr />
+
+                    <div class="category-items clearfix">
+                        <div class="dir-sorting clearfix">
+                            <div class="label">
+                                Mostrando 10 de 10 Espacios
+                            </div>
+                            <form>
+                                <div class="count">
+                                    <label for="pagination">Count:</label>
+                                    <select name="pagination" id="sorting-pagination">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+                        <script>
+                        jQuery(document).ready(function($) {
+
+                            var sorting = $('.dir-sorting'),
+                                form = sorting.find('form'),
+                                count = sorting.find('#sorting-pagination'),
+                                sortby = sorting.find('#sorting-sortby'),
+                                sort = sorting.find('#sorting-sort');
+
+                            var firstPageLink = "http://preview.ait-themes.com/directory/wp1/cat/automotive/";
+
+                            var values = { };
+                                values.count = 10;
+                                values.sortby = "post_date";
+                                values.sort = "DESC";
+
+                            // if select don't have value
+                            if (count.find("option[value='"+values.count+"']").length == 0) {
+                                count.prepend('<option value="'+values.count+'">'+values.count+'</option>');
+                            }
+                            count.val(values.count);
+                            sortby.val(values.sortby);
+                            sort.val(values.sort);
+
+                            count.change(function(event) {
+                                form.attr("action",firstPageLink);
+                                form.submit();
+                            });
+                            sortby.change(function(event) {
+                                form.removeAttr('action');
+                                form.submit();
+                            });
+                            sort.change(function(event) {
+                                form.removeAttr('action');
+                                form.submit();
+                            });
+
+                        });
+                        </script>
+
+
+                        {% for espacio in espacios %}
+                        <ul class="items">
+                            {% if forloop.counter == 1 %}
+                                <li class="item clear administrator featured">
+                                    <div class="thumbnail">
+                                        {% for imagen in espacio.cat_imagenes_set.all %}
+                                        <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" alt="Item thumbnail" style="width: 100px;height: 100px;" />
+                                        {% endfor %}
+                                        <div class="comment-count">{{ espacio.num_visitas }}</div>
+                                    </div>
+
+                                    <div class="description">
+                                        <h3>
+                                            <a href="/detalle/{{ espacio.direccion.localidad.nombre }}/0/{{ espacio.id }}">{{ espacio.nombre | title }}</a>
+                                        </h3>
+                                        <p>{{ espacio.descripcion_larga | title }}</p>
+
+                                    </div>
+                                </li>
+                            {% else %}
+                                <li class="item clear administrator">
+                                    <div class="thumbnail">
+                                        {% for imagen in espacio.cat_imagenes_set.all %}
+                                        <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" alt="Item thumbnail" style="width: 100px;height: 100px;" />
+                                        {% endfor %}
+                                        <div class="comment-count">{{ espacio.num_visitas }}</div>
+                                    </div>
+
+                                    <div class="description">
+                                        <h3>
+                                            <a href="/detalle/{{ espacio.direccion.localidad.nombre }}/0/{{ espacio.id }}">{{ espacio.nombre | title }}</a>
+                                        </h3>
+                                        <p>{{ espacio.descripcion_larga | title }}</p>
+
+                                    </div>
+                                </li>
+                            {% endif %}
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </article><!-- /#post-item-category -->
+
+{% endblock contenido %}

@@ -1,0 +1,66 @@
+.commentlist li						{ }
+.commentlist li li					{ padding-bottom: 0px; }
+
+.comment 							{ position: relative; padding: 10px 0;  }
+
+.children 							{ padding-left: 65px; }
+.children .comment 					{ }
+.children .comment-arrow 			{ content: ""; height: 0px; width: 0px; border-color: transparent transparent #ffffff; border-style: solid; border-width: 0 11px 11px; position: absolute; top: -12px; left: 24px; } /*colorpicker*/
+.children .comment-arrow:before		{ content: ""; height: 0px; width: 0px; border-color: transparent transparent #f4f4f4; border-style: solid; border-width: 0 9px 9px; position: absolute; top: 3px; left: -9px; } /*colorpicker*/
+
+.children #respond:before { content: ""; height: 0px; width: 0px; border-color: transparent transparent #ffffff; border-style: solid; border-width: 0 11px 11px; position: absolute; top: -12px; left: 24px; }
+
+.children #respond:after { content: ""; height: 0px; width: 0px; border-color: transparent transparent #f4f4f4; border-style: solid; border-width: 0 9px 9px; position: absolute; top: -8px; left: 26px; }
+
+.comment .avatar 					{ width: 45px; height: 45px; }
+
+.content > div a					{ text-decoration: none; }
+.content > div,
+.comment .content p	 				{ margin: 0 0 0 64px; }
+.comment .comment-meta 				{ margin: 10px 0 10px 64px; }
+
+.comment .comment-controls			{ position: absolute; top: 5px; right: 15px; }
+.comment .comment-controls .reply,
+.comment .comment-controls .edit-link	{ float: left; text-transform: uppercase; font-size: 11px; }
+
+.comment .comment-controls .reply a 	{ color: #000; }
+.comment .comment-controls .edit-link	{ margin: 0 8px 0 0; }
+.comment .comment-controls .edit-link a { color: #ff0000; }
+
+.reply, .edit-link { display: inline; float: right; margin-left: 10px; }
+
+ #comments h2 						{ text-transform: uppercase; font-size: 20px; font-family: Arial, Helvetica, sans-serif; /*color: @titlesFontColor;*/ margin: 0 0 15px; padding-bottom: 10px; line-height: 23px; }
+h3#reply-title 						{ font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #222; margin: 0 0 20px; text-transform: uppercase; }
+
+.author.vcard { font-weight: bold; }
+
+ol.commentlist { border-top: 1px solid #CFCFCF; }
+
+
+/* reply */
+
+#respond 							{ background: #f2f2f2; border: 1px dotted #CFCFCF; padding: 16px 16px 10px 16px; position: relative; margin: 0px 0px 20px 0px; }
+#commentform						{ position: relative; }
+#commentform p 						{ position: relative; margin-bottom: 8px; }
+#commentform .comment-form-author,
+#commentform .comment-form-email, 
+#commentform .comment-form-url		{ width: 134px; margin-right: 8px; float: left; }
+#commentform .comment-form-url		{ margin-right: 0px; }
+#commentform .comment-form-comment	{ clear: both; }	 
+#commentform label 					{ position: absolute;  top: 5px; left: 12px; }
+#commentform textarea 				{ width: 100%; height: 100px; padding: 5px 10px; border: 1px solid #e5e5e5; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+#commentform input					{ width: 114px; padding: 5px 10px; border: 1px solid #e5e5e5; }
+#commentform .required 				{ position: absolute; top: -4px; left: -11px; height: 0px; width: 0px; border-color: #ff6000 transparent transparent; border-style: solid; border-width: 10px 10px 0 0; overflow: hidden; }
+#commentform .comment-notes,
+#commentform .logged-in-as 			{ font-style: italic; margin: -15px 0px 15px 0px; font-size: 11px; line-height: 16px;  }
+#commentform .comment-notes .required, 
+#commentform .form-allowed-tags 	{ display: none; }
+#respond #submit 					{ background: #2876AE; color: #fff; font-size: 12px; padding: 5px 10px; width: auto; font-family: Arial, Helvetica, sans-serif; cursor: pointer; }
+#cancel-comment-reply-link 			{ float: right; color: #ff0000; }
+
+
+/* comments closing */
+
+.closeable 							{ position: relative; }
+.open-button 						{ position: absolute; right: 0; top: 3px; height: 16px; background: url('design/img/closeable.png') scroll 0 0 no-repeat transparent; cursor: pointer; padding: 0 0 0 20px; }
+.open-button.comments-closed 		{ background-position: 0 bottom; }

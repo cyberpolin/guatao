@@ -1,0 +1,4 @@
+*.pyc
+*.pyo
+/inTabasco_/settings.py
+/inTabasco_/wsgi.py

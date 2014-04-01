@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+    <title>Admin Login</title>
+    <!-- Bootstrap -->
+    <link href="{% static "administrador/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
+    <link href="{% static "administrador/bootstrap/css/bootstrap-responsive.min.css" %}" rel="stylesheet" media="screen">
+    <link href="{% static "administrador/assets/styles.css" %}" rel="stylesheet" media="screen">
+     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+<!--JQUERY VALIDATE-->
+    <script src="{% static "administrador/validate/jquery-1.10.2.min.js" %}"></script>
+    <script src="{% static "administrador/validate/jquery.validate.js" %}"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $('#formulario').validate({
+            rules :{
+                email : {
+                    required : true, //para validar campo vacio
+                    email    : true,  //para validar formato email
+                }
+
+            },
+
+            messages : {
+                email : {
+                    required : "Debe ingresar el email",
+                    email    : "Debe ingresar un email valido"
+                }
+
+              },
+        });    
+    });
+</script>
+<!--JQUERY VALIDATE-->
+
+  </head>
+  <body id="login">
+    <div class="container">
+
+      <form class="form-signin" action="/validar/" method="post">
+        {% csrf_token %}
+        {% if messages %}
+        <div class="alert alert-success">
+          {% for message in messages %}
+          <button class="close" data-dismiss="alert">&times;</button>
+          <div{% if message.tags %}  class=" {{ message.tags }}"{% endif %}>{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %} 
+
+       <h2 class="form-signin-heading">Por favor, inicie sesión</h2>
+        <input type="text" class="input-block-level" name="username" placeholder="Usuario">
+        <input type="password" class="input-block-level" name="password" placeholder="Contraseña">
+        <label class="checkbox">
+          <!--<input type="checkbox" value="remember-me">-->
+          <a href="#myModal" data-toggle="modal" class="badge badge-info">Recordar Contraseña</a>
+          
+        </label>
+        <button class="btn btn-large btn-primary" type="submit">Iniciar Seción</button>
+      </form>
+
+                    
+    <div id="myModal" class="modal hide">
+      <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">&times;</button>
+        <h3>Recordar Contraseña</h3>
+      </div>
+      <div class="modal-body">
+        <form id="formulario"  method="POST" action="/reset_password/">
+
+        {% csrf_token%}
+
+        <label >Email <span>*</span></label>
+        <div >
+          <input type="text" name="email" class="required"/>          
+          <input type="submit" class="btn btn-primary" value="Enviar" />
+        </div>
+
+
+
+      </form>
+      </div>
+    </div>
+
+
+    </div> <!-- /container -->
+    <!--<script src="{% static "administrador/vendors/jquery-1.9.1.min.js" %}"></script>-->
+    <script src="{% static "administrador/bootstrap/js/bootstrap.min.js" %}"></script>
+  </body>
+</html>

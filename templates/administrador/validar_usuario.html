@@ -1,0 +1,24 @@
+
+<html>
+<head>
+	{% load staticfiles %}<title></title>
+
+<link rel="stylesheet" href="{% static "assets/css/form.css" %}" media="screen">
+</head>
+<body>
+
+{% if results|length %}
+  <div class="note" style="position:relative;top:67px;left:250px;">
+  	<span class="errorMessage">
+  El usuario no está disponible.
+  </span>
+  </div>
+{% else %}
+  <div class="note" style="position:relative;top:67px;left:250px; color:green;">
+  <span id="disp" >Usuario disponible.</span>
+  </div>
+{% endif %}
+
+
+</body>
+</html>
