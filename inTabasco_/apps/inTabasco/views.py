@@ -240,3 +240,15 @@ def detalle_mensaje(request, mensaje_id):
 
     contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'mensaje':mensaje,'espacios_mas_visto':espacios_mas_visto}
     return render_to_response('web/detalle_mensaje.html',contexto, context_instance = RequestContext( request ))
+
+@login_required(login_url='login_')
+def perfil_socio( request, socio_id ):
+    nuevos_socios = espacio.objects.all().order_by('-id')[:2]
+    socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
+    espacios_mas_visto  = espacio.objects.filter( ).order_by('-num_visitas')[:4]
+
+    persona = cat_persona.objects.get( usuario__id = socio_id )
+
+
+    contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'persona':persona,'espacios_mas_visto':espacios_mas_visto}
+    return render_to_response('web/perfil.html',contexto, context_instance = RequestContext( request ))

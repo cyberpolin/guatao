@@ -14,5 +14,16 @@ urlpatterns = patterns('',
     url(r'^mis_espacios_web/(?P<socio_id>\d+)', mis_espacios_web),
     url(r'^mensajes/(?P<socio_id>\d+)', mensajes),
     url(r'^detalle_mensaje/(?P<mensaje_id>\d+)', detalle_mensaje),
+    url(r'^perfil_socio/(?P<socio_id>\d+)', perfil_socio),
+
+
+
+    url(r'^cambio_password/chpasswd/done/?',
+    'django.contrib.auth.views.password_change_done',
+    {'template_name':'registration/password_change_done.html'}),
+
+    url(r'^cambio_password/chpasswd/?','django.contrib.auth.views.password_change',
+    {'template_name':'registration/password_change_form.html'}),
+
 
 	)

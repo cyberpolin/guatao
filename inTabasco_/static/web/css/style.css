@@ -4625,3 +4625,8 @@ div.wpcf7 { margin-bottom:20px; }
 .icon-colonias {
   background: url('img/categorias/colonias.png') no-repeat;
 }
+.password_new input[type=password] {
+    border: solid 1px;
+
+
+}

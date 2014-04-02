@@ -1,0 +1,56 @@
+{% extends "web/base_web.html" %}
+
+
+
+{% block contenido %}
+
+
+
+    <article id="post-7821" class="post-7821 ait-dir-item type-ait-dir-item status-publish hentry">
+        <header class="entry-header">
+            <h1 class="entry-title">
+                <a href="#" title="{{ persona.nombre | upper }}" rel="bookmark">{{ persona.nombre | title }} {{ persona.apellido_paterno | title }} {{ persona.apellido_materno | title }}</a>
+            </h1>
+
+            <div class="category-breadcrumb clearfix">
+                <span class="home"><a href="/">Inicio</a>&nbsp;&nbsp;&gt;</span>
+                <span class="name"><a href="#">Perfil</a></span>
+            </div>
+        </header>
+
+        <div class="entry-content clearfix">
+            <div class="item-image">
+
+                <img src="{{ MEDIA_URL }}{{ persona.imagen }}" style="height:200px;width: 140px; " alt="Item image">
+
+                <a id="contact-owner-button" class="contact-owner button" href="/editar_perfil/{{ persona.usuario.id }}">Editar</a>
+                <a id="contact-owner-button" class="contact-owner button" href="/cambio_password/chpasswd/{{user.id}}">Cambiar Contraseña</a>
+            </div>
+            <dl class="item-address">
+                <dt class="title"><h4>Datos Personales</h4></dt>
+                <dt class="address">Nombre:</dt>
+                <dd class="data">{{ persona.nombre | title }} {{ persona.apellido_paterno | title }} {{ persona.apellido_materno | title }} </dd>
+                <dt class="phone">F. de  Nac.:</dt>
+                <dd class="data"> {{ persona.fecha_nacimiento }}</dd>
+                <dt class="phone">Correo: </dt>
+                <dd class="data">{{ persona.correo }}</dd>
+                <dt class="web">Telefono: </dt>
+                <dd class="data">{{ persona.telefono }}</dd>
+                <dt class="web">Celular: </dt>
+                <dd class="data">{{ persona.celular }}</dd>
+
+            </dl>
+        </div>
+
+
+    </article><!-- /#post-7821 -->
+
+
+
+
+
+{% endblock contenido %}
+{% block scripts %}
+
+
+{% endblock scripts %}
