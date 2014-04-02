@@ -8,12 +8,24 @@
                 <article id="post-item-category">
                     <header class="entry-header">
                         <h1 class="entry-title">
-                            <span>Espacios</span>
+                            <span>
+                                {% if categoria %}
+                                    {{ categoria.categoria }}
+                                {% else %}
+                                    Resultado
+                                {% endif %}
+                            </span>
                         </h1>
                         <div class="category-breadcrumb clearfix">
                             <span class="here">You are here:</span>
                             <span class="home"><a href="/">Inicio</a>&nbsp;&nbsp;&gt;</span>
-                            <span class="name"><a href="#">Espacios</a></span>
+                            <span class="name"><a href="#">
+                                {% if categoria %}
+                                    {{ categoria.categoria | title }}
+                                {% else %}
+                                    Resultado
+                                {% endif %}
+                            </a></span>
                         </div>
                     </header>
 
@@ -98,7 +110,7 @@
 
                                     <div class="description">
                                         <h3>
-                                            <a href="/detalle/{{ espacio.direccion.localidad.nombre }}/0/{{ espacio.id }}">{{ espacio.nombre | title }}</a>
+                                            <a href="/detalle/{{ espacio.direccion.localidad.nombre }}/{% if categoria %}{{ categoria.categoria }}{% else %}resultado{% endif %}/{{ espacio.id }}">{{ espacio.nombre | title }}</a>
                                         </h3>
                                         <p>{{ espacio.descripcion_larga | title }}</p>
 

@@ -11,7 +11,7 @@ from django.contrib import messages
 from inTabasco_.apps.inTabasco.models import *
 
 def login_(request):
-    return TemplateResponse(request,'administrador/login.html',{'request':request})
+    return HttpResponseRedirect('/')
 
 def validar(request):
     username = request.POST['user_login']

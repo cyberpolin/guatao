@@ -16,13 +16,9 @@
                 <span class="here">You are here</span>
                 <span class="home"><a href="/">Inicio</a>&nbsp;&nbsp;&gt;</span>
                 <span class="ancestors">
-                    <a href="#">Villahermosa</a>&nbsp;&nbsp;&gt;
+                    <a href="{% if categoria == None %}#{% else %}/categoria/{{ categoria.id }}{% endif %}">{% if categoria == None %}Resultado{% else %}{{ categoria.categoria | title }}{% endif %}</a>&nbsp;&nbsp;&gt;
                 </span>
-                <span class="ancestors">
-                    <a href="#">Mecanicos</a>&nbsp;&nbsp;&gt;
-                </span>
-                <span class="name"><a href="#">Atasta</a></span>
-                <span class="title"> &gt;&nbsp;&nbsp;{{ espacio_.nombre | title }}</span>
+                <span class="title"> {{ espacio_.nombre | title }}</span>
             </div>
         </header>
 
@@ -225,6 +221,11 @@
 
 {% endblock contenido %}
 {% block scripts %}
+    <script>
+        function calificar(){
+
+        }
+    </script>
 
     <script>
             $(document).ready(function() {

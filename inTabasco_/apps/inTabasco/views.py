@@ -10,6 +10,7 @@ from django.contrib.auth.models import Group
 from django.core.mail import send_mail, BadHeaderError
 
 from django.contrib.auth.decorators import *
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     categorias = cat_categorias_espacios.objects.all()
@@ -75,16 +76,22 @@ def categoria( request, categoria_id):
     espacios_mas_visto  = espacio.objects.filter().order_by('-num_visitas')[:4]
 
     espacios = espacio.objects.filter( categorias__id = categoria_id ).order_by('-num_visitas')
+    categoria = cat_categorias_espacios.objects.get( pk = categoria_id)
 
-    contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
+    contexto = {'categoria':categoria,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
     return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 
 def detalle( request, espacio_id, categoria, direccion):
+
     nuevos_socios = espacio.objects.all().order_by('-id')[:2]
     socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
     detalleEspacio = espacio.objects.get( pk = espacio_id )
     espacios_mas_visto  = espacio.objects.filter().order_by('-num_visitas')[:4]
+    try:
+        categoria = cat_categorias_espacios.objects.get( categoria = categoria )
+    except cat_categorias_espacios.DoesNotExist:
+        categoria = None
 
     contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacio_':detalleEspacio, 'espacio_id':espacio_id,'espacios_mas_visto':espacios_mas_visto,'direccion':direccion,'categoria':categoria}
     return render_to_response('web/detalle.html',contexto, context_instance = RequestContext( request ))
@@ -214,7 +221,7 @@ def mis_espacios_web( request, socio_id ):
     contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
     return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
-@login_required(login_url='login_')
+@login_required(login_url='/login_')
 def mensajes(request, socio_id):
     nuevos_socios = espacio.objects.all().order_by('-id')[:2]
     socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
@@ -228,7 +235,7 @@ def mensajes(request, socio_id):
     return render_to_response('web/mensajes.html',contexto, context_instance = RequestContext( request ))
 
 
-@login_required(login_url='login_')
+@login_required(login_url='/login_')
 def detalle_mensaje(request, mensaje_id):
     nuevos_socios = espacio.objects.all().order_by('-id')[:2]
     socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
@@ -241,7 +248,7 @@ def detalle_mensaje(request, mensaje_id):
     contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'mensaje':mensaje,'espacios_mas_visto':espacios_mas_visto}
     return render_to_response('web/detalle_mensaje.html',contexto, context_instance = RequestContext( request ))
 
-@login_required(login_url='login_')
+@login_required(login_url='/login_')
 def perfil_socio( request, socio_id ):
     nuevos_socios = espacio.objects.all().order_by('-id')[:2]
     socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
