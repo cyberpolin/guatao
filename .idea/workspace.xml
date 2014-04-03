@@ -39,19 +39,10 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="250" column="36" selection-start="12117" selection-end="12117" vertical-scroll-proportion="0.5755895" vertical-offset="4085" max-vertical-offset="4806">
+            <state line="110" column="58" selection-start="4578" selection-end="4578" vertical-scroll-proportion="0.5714286" vertical-offset="1584" max-vertical-offset="6066">
               <folding>
                 <element signature="e#16#41#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="19" selection-start="738" selection-end="746" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -90,27 +81,27 @@
         <option value="$PROJECT_DIR$/inTabasco_/urls.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/views.py" />
-        <option value="$PROJECT_DIR$/templates/web/base_web.html" />
         <option value="$PROJECT_DIR$/templates/web/espacios.html" />
         <option value="$PROJECT_DIR$/templates/web/perfil.html" />
-        <option value="$PROJECT_DIR$/inTabasco_/static/web/css/style.css" />
         <option value="$PROJECT_DIR$/templates/registration/password_change_done.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/urls.py" />
-        <option value="$PROJECT_DIR$/templates/web/resultado.html" />
         <option value="$PROJECT_DIR$/templates/registration/password_change_form.html" />
         <option value="$PROJECT_DIR$/templates/web/detalle.html" />
         <option value="$PROJECT_DIR$/inTabasco_/settings.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/Login/views.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/Login/urls.py" />
+        <option value="$PROJECT_DIR$/templates/web/resultado.html" />
+        <option value="$PROJECT_DIR$/templates/web/base_web.html" />
+        <option value="$PROJECT_DIR$/inTabasco_/static/web/css/style.css" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="64" />
-    <option name="y" value="-4" />
+    <option name="y" value="24" />
     <option name="width" value="1857" />
-    <option name="height" value="1085" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -235,6 +226,72 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="apps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -318,7 +375,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DirectorioGubernamental" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../insumos" />
     <property name="SearchEverywhereHistory" value="mi&#10;&lt;" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -597,7 +654,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1857" height="1085" extended-state="6" />
+    <frame x="64" y="24" width="1857" height="1057" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -609,7 +666,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978564" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18113612" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18674034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="165" y="124" width="1657" height="885" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -661,11 +718,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="50" selection-start="5060" selection-end="5060" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="5256" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="903" />
@@ -836,30 +888,9 @@
         <state line="26" column="62" selection-start="1015" selection-end="1015" vertical-scroll-proportion="0.5974026" vertical-offset="54" max-vertical-offset="3042" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/404.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="22" selection-start="116" selection-end="116" vertical-scroll-proportion="0.17847025" vertical-offset="0" max-vertical-offset="706">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="50" selection-start="135" selection-end="135" vertical-scroll-proportion="0.049113233" vertical-offset="0" max-vertical-offset="733">
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/web/regitro_socio_web.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="267" selection-start="9498" selection-end="9733" vertical-scroll-proportion="0.48540145" vertical-offset="2913" max-vertical-offset="6246" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/static/web/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4627" column="34" selection-start="120164" selection-end="120164" vertical-scroll-proportion="0.79094076" vertical-offset="82605" max-vertical-offset="83466">
+        <state line="184" column="267" selection-start="9498" selection-end="9733" vertical-scroll-proportion="0.48540145" vertical-offset="2913" max-vertical-offset="6246">
           <folding />
         </state>
       </provider>
@@ -880,13 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="200" column="118" selection-start="9423" selection-end="9450" vertical-scroll-proportion="-0.8633093" vertical-offset="4320" max-vertical-offset="10422">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="156" column="52" selection-start="5032" selection-end="5032" vertical-scroll-proportion="0.025531914" vertical-offset="2754" max-vertical-offset="6192">
@@ -894,19 +918,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/resultado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="173" selection-start="5547" selection-end="5547" vertical-scroll-proportion="0.6766917" vertical-offset="1566" max-vertical-offset="2646">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/password_change_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="85" column="0" selection-start="2914" selection-end="2914" vertical-scroll-proportion="0.837594" vertical-offset="973" max-vertical-offset="1638">
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -940,20 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="19" selection-start="738" selection-end="746" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/detalle.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="357" selection-end="357" vertical-scroll-proportion="-8.666667" vertical-offset="0" max-vertical-offset="6534">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/apps/Login/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="23" selection-start="163" selection-end="163" vertical-scroll-proportion="0.098092645" vertical-offset="0" max-vertical-offset="734">
@@ -965,14 +966,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="41" column="0" selection-start="1564" selection-end="1600" vertical-scroll-proportion="0.73024523" vertical-offset="202" max-vertical-offset="936">
           <folding>
-            <element signature="e#16#41#0" expanded="true" />
+            <element signature="e#16#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="5" selection-start="1225" selection-end="1225" vertical-scroll-proportion="0.66212535" vertical-offset="0" max-vertical-offset="734">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="50" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="734">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/404.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="22" selection-start="116" selection-end="116" vertical-scroll-proportion="0.17821783" vertical-offset="0" max-vertical-offset="707">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/detalle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="357" selection-end="357" vertical-scroll-proportion="-8.666667" vertical-offset="0" max-vertical-offset="6534">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/static/web/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4618" column="13" selection-start="119935" selection-end="119935" vertical-scroll-proportion="0.5755895" vertical-offset="82709" max-vertical-offset="83430">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="104" selection-start="992" selection-end="992" vertical-scroll-proportion="-0.6743516" vertical-offset="810" max-vertical-offset="10422">
+          <folding>
+            <element signature="n#style#0;n#div#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#4;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#6;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/resultado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="69" selection-start="5665" selection-end="5665" vertical-scroll-proportion="0.5072046" vertical-offset="1520" max-vertical-offset="2214">
+          <folding>
+            <element signature="e#3443#3478#0" expanded="true" />
+            <element signature="e#4593#4628#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="250" column="36" selection-start="12117" selection-end="12117" vertical-scroll-proportion="0.5755895" vertical-offset="4085" max-vertical-offset="4806">
+        <state line="110" column="58" selection-start="4578" selection-end="4578" vertical-scroll-proportion="0.5714286" vertical-offset="1584" max-vertical-offset="6066">
           <folding>
             <element signature="e#16#41#0" expanded="true" />
           </folding>

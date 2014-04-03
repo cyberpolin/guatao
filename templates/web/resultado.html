@@ -44,57 +44,19 @@
                             <form>
                                 <div class="count">
                                     <label for="pagination">Count:</label>
-                                    <select name="pagination" id="sorting-pagination">
-                                        <option value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="30">30</option>
-                                        <option value="40">40</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
+                                    <select name="pagination" id="sorting-pagination" onchange = "window.location.href = '?filtrado=' + this.value">
+                                        <option value="5">Seleccione</option>
+                                        <option value="5" {% if filtrado == '5'%}selected{% endif %}>5</option>
+                                        <option value="10" {% if filtrado == '10'%}selected{% endif %}>10</option>
+                                        <option value="20" {% if filtrado == '20'%}selected{% endif %}>20</option>
+                                        <option value="50" {% if filtrado == '50'%}selected{% endif %}>50</option>
+                                        <option value="100" {% if filtrado == '100'%}selected{% endif %}>100</option>
                                     </select>
                                 </div>
                             </form>
                         </div>
 
-                        <script>
-                        jQuery(document).ready(function($) {
 
-                            var sorting = $('.dir-sorting'),
-                                form = sorting.find('form'),
-                                count = sorting.find('#sorting-pagination'),
-                                sortby = sorting.find('#sorting-sortby'),
-                                sort = sorting.find('#sorting-sort');
-
-                            var firstPageLink = "http://preview.ait-themes.com/directory/wp1/cat/automotive/";
-
-                            var values = { };
-                                values.count = 10;
-                                values.sortby = "post_date";
-                                values.sort = "DESC";
-
-                            // if select don't have value
-                            if (count.find("option[value='"+values.count+"']").length == 0) {
-                                count.prepend('<option value="'+values.count+'">'+values.count+'</option>');
-                            }
-                            count.val(values.count);
-                            sortby.val(values.sortby);
-                            sort.val(values.sort);
-
-                            count.change(function(event) {
-                                form.attr("action",firstPageLink);
-                                form.submit();
-                            });
-                            sortby.change(function(event) {
-                                form.removeAttr('action');
-                                form.submit();
-                            });
-                            sort.change(function(event) {
-                                form.removeAttr('action');
-                                form.submit();
-                            });
-
-                        });
-                        </script>
 
 
                         {% for espacio in espacios %}
@@ -137,6 +99,20 @@
                         </ul>
                         {% endfor %}
                     </div>
+                    <nav class="paginate-links">
+                        <div class="page_nav">
+                             {% if espacios.has_previous %}
+                                <a class="page-numbers prev" href="#" onClick="parent.location='?page={{ espacios.previous_page_number }}&filtrado={{filtrado}}'" >Atras</a>
+                            {% endif %}
+                            <span class="current">
+                                Pagina {{ espacios.number }} de {{ espacios.paginator.num_pages }}.
+                            </span>
+                            {% if espacios.has_next %}
+                                <a class="page-numbers next" href="#" onClick="parent.location='?page={{ espacios.next_page_number }}&filtrado={{filtrado}}'">Siguiente</a>
+                            {% endif %}
+
+                        </div>
+	                </nav>
                 </article><!-- /#post-item-category -->
 
 {% endblock contenido %}
