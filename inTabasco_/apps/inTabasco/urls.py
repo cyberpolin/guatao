@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^mensajes/(?P<socio_id>\d+)', mensajes),
     url(r'^detalle_mensaje/(?P<mensaje_id>\d+)', detalle_mensaje),
     url(r'^perfil_socio/(?P<socio_id>\d+)', perfil_socio),
+    url(r'^localidades_cercanas/(?P<colonia>.+)/', localidades_cercanas),
 
 
 

@@ -124,7 +124,7 @@ class cat_direcciones(models.Model):
     latitud = models.CharField(max_length=300, null=True, blank=True)
 
     def __unicode__(self):
-        return u'%s' % self.calle
+        return '%s - %s - %s' % (self.localidad, self.colonia, self.calle)
 
 
     class Meta:
@@ -301,18 +301,20 @@ class caja(models.Model):
         )
 
 
-class contador_visitas( models.Model ):
-    contador = models.IntegerField()
-    fecha = models.DateField( default = datetime.now())
-    direccion_mac = models.CharField( max_length = 20 )
+class recomendaciones( models.Model ):
+    nombre_usuario = models.CharField( max_length = 150 )
+    fecha = models.DateTimeField( auto_now = True)
+    opinion = models.TextField()
+    calificacion = models.IntegerField()
+    espacio = models.ForeignKey(espacio)
 
     def __unicode__(self):
-        return u'%s' % self.direccion_mac
+        return u'%s' % self.nombre_usuario
 
     class Meta:
-        ordering = ['fecha']
-        verbose_name = 'contador'
-        verbose_name_plural = 'Contador de Visitas'
+        ordering = ['nombre_usuario','fecha']
+        verbose_name = 'recomendaciones'
+        verbose_name_plural = 'Recomiendame'
 
 class contactame( models.Model ):
     nombre = models.CharField( max_length = 100 )

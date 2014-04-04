@@ -26,3 +26,14 @@ class contactar_socio_form( forms.Form ):
 
 	def clean(self):
 		return self.cleaned_data
+
+class recomendacion_form( ModelForm ):
+	nombre_usuario = forms.CharField( max_length = 150, widget = forms.TextInput(attrs={'placeholder':'¿Como te llamas?'}) )
+	opinion = forms.CharField( widget = forms.Textarea(attrs={'placeholder':'¿Que opinas de mi servicio?'}) )
+	calificacion = forms.IntegerField( widget = forms.TextInput(attrs={'style':'display:none'}) )
+	class Meta:
+		model = recomendaciones
+		fields = ('nombre_usuario','opinion','calificacion')
+
+	def clean(self):
+		return self.cleaned_data

@@ -91,65 +91,76 @@
         <hr>
 			<div id="ait-rating-system" class="rating-system" data-post-id="7821">
 			    <h3>Recomiendame</h3>
-                <div class="rating-send-form">
-				    <div class="rating-ipnuts">
-                        <div class="rating-details">
-						    <div class="detail">
-                                <input id="rating-name" placeholder="¿Como te llamas?" name="rating-name" type="text">
+                <form action="" method="post">
+                   {% csrf_token %}
+                   {{ formulario.non_field_errors }}
+                    <div class="rating-send-form">
+                        <div class="rating-ipnuts">
+                            <div class="rating-details">
+                                <div class="detail">
+                                    {{ formulario.nombre_usuario }}
+                                </div>
+                                <div class="message error">
+                                    {{ formulario.nombre_usuario.errors }}
+                                </div>
+                                <div class="detail">
+                                    {{ formulario.opinion }}
+                                </div>
+                                <div class="message error">
+                                    {{ formulario.opinion.errors }}
+                                </div>
+                                <button class="send-rating">Recomiendame</button>
                             </div>
-	    					<div class="detail">
-                                <textarea rows="4" cols="50" placeholder="¿Que opinas de mi servicio?"></textarea>
-                            </div>
-						    <button class="send-rating">Recomiendame</button>
-						    <div class="message error" style="display: none;">
-                                Por favor, rellene todos los campos!
-                            </div>
-						    <div class="message success" style="display: none;">
-                                Tu calificación se ha enviado correctamente
-                            </div>
-					    </div>
-					    <div class="ratings">
-                            <div class="rating clearfix" data-rating-id="1" data-rated-value="0">
-                                <div class="rating-title">
-                                    Precio
+                            <div class="ratings">
+                                <div class="rating clearfix" data-rating-id="1" data-rated-value="0">
+                                    <div class="rating-title">
+                                        Calificacion
+                                    </div>
+                                    <div class="stars clearfix">
+                                        <div class="star" data-star-id="1" onclick="calificar(1)"></div>
+                                        <div class="star" data-star-id="2" onclick="calificar(2)"></div>
+                                        <div class="star" data-star-id="3" onclick="calificar(3)"></div>
+                                        <div class="star" data-star-id="4" onclick="calificar(4)"></div>
+                                        <div class="star" data-star-id="5" onclick="calificar(5)"></div>
+                                    </div>
                                 </div>
-								<div class="stars clearfix">
-                                    <div class="star" data-star-id="1"></div>
-                                    <div class="star" data-star-id="2"></div>
-                                    <div class="star" data-star-id="3"></div>
-                                    <div class="star" data-star-id="4"></div>
-                                    <div class="star" data-star-id="5"></div>
+                                {{ formulario.calificacion }}
+                                <div class="message error">
+                                    {{ formulario.calificacion.errors }}
                                 </div>
-                            </div>
-                            <div class="rating clearfix" data-rating-id="2" data-rated-value="0">
-                                <div class="rating-title">
-                                    Instalaciones
+                                <!--
+                                <div class="rating clearfix" data-rating-id="2" data-rated-value="0">
+                                    <div class="rating-title">
+                                        Instalaciones
+                                    </div>
+                                    <div class="stars clearfix">
+                                        <div class="star" data-star-id="1"></div>
+                                        <div class="star" data-star-id="2"></div>
+                                        <div class="star" data-star-id="3"></div>
+                                        <div class="star" data-star-id="4"></div>
+                                        <div class="star" data-star-id="5"></div>
+                                    </div>
                                 </div>
-								<div class="stars clearfix">
-                                    <div class="star" data-star-id="1"></div>
-                                    <div class="star" data-star-id="2"></div>
-                                    <div class="star" data-star-id="3"></div>
-                                    <div class="star" data-star-id="4"></div>
-                                    <div class="star" data-star-id="5"></div>
-                                </div>
-							</div>
-                            <div class="rating clearfix" data-rating-id="3" data-rated-value="0">
-                                <div class="rating-title">
-                                    Atención
-                                </div>
-								<div class="stars clearfix">
-                                    <div class="star" data-star-id="1"></div>
-                                    <div class="star" data-star-id="2"></div>
-                                    <div class="star" data-star-id="3"></div>
-                                    <div class="star" data-star-id="4"></div>
-                                    <div class="star" data-star-id="5"></div>
-                                </div>
-							</div>
-                        </div><!-- .ratings -->
-				    </div><!-- .rating-inputs -->
-			    </div><!-- .rating-send-form -->
+                                <div class="rating clearfix" data-rating-id="3" data-rated-value="0">
+                                    <div class="rating-title">
+                                        Atención
+                                    </div>
+                                    <div class="stars clearfix">
+                                        <div class="star" data-star-id="1"></div>
+                                        <div class="star" data-star-id="2"></div>
+                                        <div class="star" data-star-id="3"></div>
+                                        <div class="star" data-star-id="4"></div>
+                                        <div class="star" data-star-id="5"></div>
+                                    </div>
+                                </div>-->
+                            </div><!-- .ratings -->
+                        </div><!-- .rating-inputs -->
+                    </div><!-- .rating-send-form -->
+                </form>
+                {% if  recomendacion %}
                 <div class="user-ratings">
                     <div class="user-rating">
+                        <!--
 					    <div class="user-values" style="display: none;">
                             <div class="rating clearfix">
                                 <div class="rating-title">
@@ -187,27 +198,56 @@
                                     <div class="star active" data-star-id="5"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
+                        {% for recomendacion in recomendacion %}
                         <div class="user-details">
                             <div class="name">
-                                John
+                                {{ recomendacion.nombre_usuario | title }}
                             </div>
 						    <div class="date">
-                                2013-04-26 12:58:30
+                                {{ recomendacion.fecha }}
                             </div>
                             <div class="value">
-                                <div class="star active" data-star-id="1" ></div>
-                                <div class="star active" data-star-id="2"></div>
-                                <div class="star active" data-star-id="3"></div>
-                                <div class="star active" data-star-id="4"></div>
-                                <div class="star active" data-star-id="5"></div>
+                                {% if recomendacion.calificacion == 1 %}
+                                    <div class="star active" data-star-id="1" ></div>
+                                    <div class="star " data-star-id="2"></div>
+                                    <div class="star " data-star-id="3"></div>
+                                    <div class="star " data-star-id="4"></div>
+                                    <div class="star " data-star-id="5"></div>
+                                {% elif recomendacion.calificacion == 2 %}
+                                    <div class="star active" data-star-id="1" ></div>
+                                    <div class="star active" data-star-id="2"></div>
+                                    <div class="star " data-star-id="3"></div>
+                                    <div class="star " data-star-id="4"></div>
+                                    <div class="star " data-star-id="5"></div>
+                                {% elif recomendacion.calificacion == 3 %}
+                                    <div class="star active" data-star-id="1" ></div>
+                                    <div class="star active" data-star-id="2"></div>
+                                    <div class="star active" data-star-id="3"></div>
+                                    <div class="star " data-star-id="4"></div>
+                                    <div class="star " data-star-id="5"></div>
+                                {% elif recomendacion.calificacion == 4 %}
+                                    <div class="star active" data-star-id="1" ></div>
+                                    <div class="star active" data-star-id="2"></div>
+                                    <div class="star active" data-star-id="3"></div>
+                                    <div class="star active" data-star-id="4"></div>
+                                    <div class="star " data-star-id="5"></div>
+                                {% elif recomendacion.calificacion == 5 %}
+                                    <div class="star active" data-star-id="1" ></div>
+                                    <div class="star active" data-star-id="2"></div>
+                                    <div class="star active" data-star-id="3"></div>
+                                    <div class="star active" data-star-id="4"></div>
+                                    <div class="star active" data-star-id="5"></div>
+                                {% endif %}
                             </div>
                             <div class="description">
-                                my rating :)
+                                {{ recomendacion.opinion }}
                             </div>
 					    </div>
+                        {% endfor %}
 				    </div>
                 </div>
+                {% endif %}
             </div>
 
     <div class="closeable">
@@ -222,8 +262,8 @@
 {% endblock contenido %}
 {% block scripts %}
     <script>
-        function calificar(){
-
+        function calificar(valor){
+            $('#id_calificacion').val(valor);
         }
     </script>
 

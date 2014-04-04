@@ -19,14 +19,16 @@ def index(request):
 	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
 	total_espacios = espacio.objects.all().count()
 	espacios_mas_visto = espacio.objects.filter(status__status = 'A').order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:4]
 
-	contexto = {'categorias':categorias,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip, 'total_espacios':total_espacios,'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'espacios_recomendados':espacios_recomendados,'categorias':categorias,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip, 'total_espacios':total_espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/index.html', contexto, context_instance = RequestContext( request ))
 
 def resultado( request, buscar, categoria, ubicacion ):
 	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
 	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
 	espacios_mas_visto = espacio.objects.filter().order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:4]
 	espacios = None
 
 	filtrado = 5
@@ -111,7 +113,7 @@ def resultado( request, buscar, categoria, ubicacion ):
 			espacios = paginator.page(paginator.num_pages)
 
 
-	contexto = {'filtrado':filtrado,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios, 'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios, 'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 def busqueda_socio_vip( request, nombre):
@@ -129,6 +131,7 @@ def categoria( request, categoria_id):
 	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
 	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
 	espacios_mas_visto  = espacio.objects.filter().order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:4]
 
 	espacios = espacio.objects.filter( categorias__id = categoria_id ).order_by('-num_visitas')
 	categoria = cat_categorias_espacios.objects.get( pk = categoria_id)
@@ -148,7 +151,7 @@ def categoria( request, categoria_id):
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		espacios = paginator.page(paginator.num_pages)
 
-	contexto = {'filtrado':filtrado,'categoria':categoria,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'categoria':categoria,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 
@@ -158,12 +161,32 @@ def detalle( request, espacio_id, categoria, direccion):
 	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
 	detalleEspacio = espacio.objects.get( pk = espacio_id )
 	espacios_mas_visto  = espacio.objects.filter().order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:4]
 	try:
-		categoria = cat_categorias_espacios.objects.get( categoria = categoria )
+		categoria_ = cat_categorias_espacios.objects.get( categoria = categoria )
 	except cat_categorias_espacios.DoesNotExist:
-		categoria = None
+		categoria_ = None
 
-	contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacio_':detalleEspacio, 'espacio_id':espacio_id,'espacios_mas_visto':espacios_mas_visto,'direccion':direccion,'categoria':categoria}
+	if request.method == 'POST':
+		formulario = recomendacion_form( request.POST )
+		if formulario.is_valid():
+			recomiendame = formulario.save( commit = False )
+			espacio_  = espacio.objects.get( pk = espacio_id)
+			recomiendame.espacio = espacio_
+			#return HttpResponse(categoria)
+			recomiendame.save()
+			msj = 'Tu recomendacion se ha enviado correctamente'
+			messages.success(request, msj)
+			return HttpResponseRedirect('/detalle/'+str(direccion)+'/'+categoria+'/'+str(espacio_id)+'/')
+		else:
+			msj='Error'
+			messages.success(request, msj)
+	else:
+		formulario = recomendacion_form()
+
+	recomendacion = recomendaciones.objects.filter( espacio = espacio_id ).order_by('-fecha')[:10]
+
+	contexto = {'espacios_recomendados':espacios_recomendados,'recomendacion':recomendacion,'formulario':formulario,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacio_':detalleEspacio, 'espacio_id':espacio_id,'espacios_mas_visto':espacios_mas_visto,'direccion':direccion,'categoria':categoria_}
 	return render_to_response('web/detalle.html',contexto, context_instance = RequestContext( request ))
 
 @csrf_exempt
@@ -284,11 +307,13 @@ def mis_espacios_web( request, socio_id ):
 	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
 	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
 	espacios_mas_visto  = espacio.objects.filter( ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:4]
+
 
 
 	espacios = espacio.objects.filter( propietario__usuario__id = socio_id ).order_by('-num_visitas')
 
-	contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 @login_required(login_url='/login_')
@@ -296,12 +321,13 @@ def mensajes(request, socio_id):
 	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
 	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
 	espacios_mas_visto  = espacio.objects.filter( ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:4]
 
 	persona = cat_persona.objects.get( usuario = socio_id)
 	mensajes = contactame.objects.filter( socio_contactar = persona).order_by('fecha_mensaje')
 
 
-	contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'mensajes':mensajes,'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'mensajes':mensajes,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/mensajes.html',contexto, context_instance = RequestContext( request ))
 
 
@@ -310,12 +336,13 @@ def detalle_mensaje(request, mensaje_id):
 	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
 	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
 	espacios_mas_visto  = espacio.objects.filter( ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:4]
 
 	mensaje = contactame.objects.get( pk = mensaje_id)
 	mensaje.leido = True
 	mensaje.save()
 
-	contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'mensaje':mensaje,'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'mensaje':mensaje,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/detalle_mensaje.html',contexto, context_instance = RequestContext( request ))
 
 @login_required(login_url='/login_')
@@ -323,9 +350,40 @@ def perfil_socio( request, socio_id ):
 	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
 	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
 	espacios_mas_visto  = espacio.objects.filter( ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:4]
 
 	persona = cat_persona.objects.get( usuario__id = socio_id )
 
 
-	contexto = {'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'persona':persona,'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'persona':persona,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/perfil.html',contexto, context_instance = RequestContext( request ))
+
+def localidades_cercanas( request, colonia):
+	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
+	espacios_mas_visto  = espacio.objects.filter().order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:4]
+
+	espacios = espacio.objects.filter( direccion__colonia = colonia ).order_by('-num_visitas')
+
+	filtrado = 5 # Show 10 contacts per page
+	if 'filtrado' in request.GET:
+		filtrado = request.GET.get('filtrado')
+	paginator = Paginator(espacios, filtrado) # Muestra de 2 en 2
+	page = request.GET.get('page')
+
+	try:
+		espacios = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		espacios = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		espacios = paginator.page(paginator.num_pages)
+
+	contexto = {'espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'categoria':categoria,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
+	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
+
+
+
+

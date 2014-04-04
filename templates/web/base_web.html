@@ -373,10 +373,9 @@
                             </div>
                         </div>
                         <ul id="recentcomments">
-                            <li class="recentcomments">Juan recomendo,<a href="#">Abarrotes la Chata</a></li>
-                            <li class="recentcomments">Juan recomendo,<a href="#">Abarrotes la Chata</a></li>
-                            <li class="recentcomments">Juan recomendo,<a href="#">Abarrotes la Chata</a></li>
-                            <li class="recentcomments">Juan recomendo,<a href="#">Abarrotes la Chata</a></li>
+                            {% for mas_recomendados in espacios_recomendados %}
+                            <li class="recentcomments">{{ mas_recomendados.nombre_usuario }} recomendo,<a href="/detalle/{{mas_recomendados.espacio.direccion.localidad.nombre}}/0/{{mas_recomendados.espacio.id}}">{{ mas_recomendados.espacio.nombre }}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>

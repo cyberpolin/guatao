@@ -56,7 +56,7 @@
                     <div class="category-wrap-table">
                         <div class="category-wrap-row">
                             <div class="descripcion icon-colonias">
-                                <h3><a href="#"><div id="colonia"></div></a></h3>
+                                <h3><div id="colonia"></div></h3>
                                 <!--<ul>
                                     <li><a href="#">Mecanicos</a></li>
                                     <li><a href="#">Micelaneas</a></li>
@@ -131,7 +131,7 @@
                 for(var i=0;i<valores.length;i++){
                     var obj = valores[i];
                     for(var key in obj){
-                        colonia += '<li>'+obj[key]+'</li>';
+                        colonia += "<li><a href='/localidades_cercanas/"+obj[key]+"/'>"+obj[key]+"</a></li>";
                     }
                 }
                 $('#colonia').html(colonia);
