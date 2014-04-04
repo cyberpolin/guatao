@@ -27,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="366" column="94" selection-start="16424" selection-end="16424" vertical-scroll-proportion="0.30097088" vertical-offset="6371" max-vertical-offset="7110">
+            <state line="365" column="88" selection-start="16463" selection-end="16463" vertical-scroll-proportion="0.0" vertical-offset="2782" max-vertical-offset="7128">
               <folding>
                 <element signature="e#16#41#0" expanded="true" />
               </folding>
@@ -56,10 +56,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base_web.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="detalle.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/web/detalle.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="251" column="0" selection-start="16024" selection-end="16024" vertical-scroll-proportion="-10.666667" vertical-offset="4230" max-vertical-offset="7110">
+              <folding>
+                <element signature="e#1154#1189#0" expanded="true" />
+                <element signature="e#2443#2747#0" expanded="true" />
+                <element signature="e#2831#2959#0" expanded="true" />
+                <element signature="e#5764#5910#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base_web.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="376" column="208" selection-start="19522" selection-end="19522" vertical-scroll-proportion="-21.592592" vertical-offset="6185" max-vertical-offset="10404">
+            <state line="564" column="8" selection-start="27792" selection-end="27792" vertical-scroll-proportion="0.7029412" vertical-offset="9674" max-vertical-offset="10404">
               <folding />
             </state>
           </provider>
@@ -116,11 +130,11 @@
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/forms.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py" />
-        <option value="$PROJECT_DIR$/templates/web/detalle.html" />
-        <option value="$PROJECT_DIR$/templates/web/base_web.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/urls.py" />
         <option value="$PROJECT_DIR$/templates/web/index.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py" />
+        <option value="$PROJECT_DIR$/templates/web/detalle.html" />
+        <option value="$PROJECT_DIR$/templates/web/base_web.html" />
       </list>
     </option>
   </component>
@@ -627,7 +641,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978564" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18113612" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19614148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="165" y="124" width="1657" height="885" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -948,18 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/detalle.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="248" column="20" selection-start="15974" selection-end="15974" vertical-scroll-proportion="0.0259366" vertical-offset="4446" max-vertical-offset="7254">
-          <folding>
-            <element signature="e#1154#1189#0" expanded="true" />
-            <element signature="e#2443#2747#0" expanded="true" />
-            <element signature="e#2831#2959#0" expanded="true" />
-            <element signature="e#5764#5910#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="92" selection-start="1965" selection-end="1965" vertical-scroll-proportion="0.7988904" vertical-offset="0" max-vertical-offset="810">
@@ -976,10 +978,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="376" column="208" selection-start="19522" selection-end="19522" vertical-scroll-proportion="-21.592592" vertical-offset="6185" max-vertical-offset="10404">
+        <state line="29" column="5" selection-start="1299" selection-end="1299" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="365" column="88" selection-start="16463" selection-end="16463" vertical-scroll-proportion="0.0" vertical-offset="2782" max-vertical-offset="7128">
+          <folding>
+            <element signature="e#16#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -990,19 +1001,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/web/detalle.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="5" selection-start="1299" selection-end="1299" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-          <folding />
+        <state line="251" column="0" selection-start="16024" selection-end="16024" vertical-scroll-proportion="-10.666667" vertical-offset="4230" max-vertical-offset="7110">
+          <folding>
+            <element signature="e#1154#1189#0" expanded="true" />
+            <element signature="e#2443#2747#0" expanded="true" />
+            <element signature="e#2831#2959#0" expanded="true" />
+            <element signature="e#5764#5910#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="366" column="94" selection-start="16424" selection-end="16424" vertical-scroll-proportion="0.30097088" vertical-offset="6371" max-vertical-offset="7110">
-          <folding>
-            <element signature="e#16#41#0" expanded="true" />
-          </folding>
+        <state line="564" column="8" selection-start="27792" selection-end="27792" vertical-scroll-proportion="0.7029412" vertical-offset="9674" max-vertical-offset="10404">
+          <folding />
         </state>
       </provider>
     </entry>
