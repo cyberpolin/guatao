@@ -1,0 +1,145 @@
+{% extends "web/base_web.html" %}
+
+
+
+{% block contenido %}
+
+
+
+    <article id="post-7821" class="post-7821 ait-dir-item type-ait-dir-item status-publish hentry">
+        <header class="entry-header">
+            <h1 class="entry-title">
+                <a href="#" title="{{ persona.nombre | upper }}" rel="bookmark">{{ persona.nombre | title }} {{ persona.apellido_paterno | title }} {{ persona.apellido_materno | title }}</a>
+            </h1>
+
+            <div class="category-breadcrumb clearfix">
+                <span class="home"><a href="/">Inicio</a>&nbsp;&nbsp;&gt;</span>
+                <span class="name"><a href="/perfil_socio/{{ persona.usuario.id }}">Perfil</a>&nbsp;&nbsp;&gt;</span>
+                <span class="name"><a href="#">{{ persona.nombre }} {{ persona.apellido_paterno }} {{ persona.apellido_materno }}</a></span>
+            </div>
+        </header>
+
+        <div class="entry-content clearfix">
+            <form method="POST" enctype="multipart/form-data" id="commentform" class="comment-form"">
+                {% csrf_token %}
+               {{ formulario.non_field_errors }}
+                <div class="item-image">
+
+                    <img src="{{ MEDIA_URL }}{{ persona.imagen }}" style="height:200px;width: 140px; " alt="Item image">
+
+                    <a id="contact-owner-button" class="contact-owner button" style="background-color: #ff0000;" href="/perfil_socio/{{ persona.usuario.id }}">Cancelar</a>
+                    <a id="contact-owner-button" class="contact-owner button" href="/cambio_password/chpasswd/{{user.id}}">Cambiar Contraseña</a>
+                </div>
+                <dl class="item-address">
+                <dt class="title"><h4>Datos Personales</h4></dt>
+                <dd class="nombre">
+                    <dt class="nombre">Nombre</dt>
+                    <p class="comment-form-author">
+                        <label for="nombre">
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+                        {{formulario.nombre}}
+                    </p>
+                    {{formulario.nombre.errors}}
+                    <dt class="apellido_paterno">Apellido Paterno</dt>
+                    <p class="comment-form-author">
+                        <label for="apellido_paterno">
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+                        {{formulario.apellido_paterno}}
+                    </p>
+                    {{formulario.apellido_paterno.errors}}
+                </dd>
+                <br><br>
+                <dd class="apellido_materno">
+                    <dt class="apellido_materno">Apellido Materno</dt>
+                    <p class="comment-form-author">
+                        <label for="apellido_materno">
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+                        {{formulario.apellido_materno}}
+                    </p>
+                    {{formulario.apellido_materno.errors}}
+                    <dt class="fecha_nacimiento">Fec. de Nacimiento</dt>
+                    <p class="comment-form-author">
+                        <label for="fecha_nacimiento">
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+                        {{formulario.fecha_nacimiento}}
+                    </p>
+                    {{formulario.fecha_nacimiento.errors}}
+                </dd>
+                <br><br>
+                <dd class="correo">
+                    <dt class="correo">Correo</dt>
+                    <p class="comment-form-author">
+                        <label for="correo">
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+                        {{formulario.correo}}
+                    </p>
+                    {{formulario.correo.errors}}
+                    <dt class="telefono">Telefono</dt>
+                    <p class="comment-form-author">
+                        <label for="telefono">
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+                        {{formulario.telefono}}
+                    </p>
+                    {{formulario.telefono.errors}}
+                </dd>
+                <br><br>
+                <dd class="telefono">
+                    <dt class="celular">Celular</dt>
+                    <p class="comment-form-author">
+                        <label for="celular">
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+                        {{formulario.celular}}
+                    </p>
+                    <dt class=""></dt>
+                    {{formulario.celular.errors}}
+                    <p class="form-submit">
+                        <input name="submit" class="contact-owner button" type="submit" id="submit" value="Guardar" />
+                    </p>
+                    {{formulario.tipo_usuario}}
+                </dd>
+
+                {% if messages %}
+                    <div class="alert alert-success" style="margin-left: 5%">
+                        {% for message in messages %}
+                            <div{% if message.tags %}   class=" {{ message.tags }}"{% endif %}><strong style="color: #910e1a">{{ message }}</strong></div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </dl>
+            </form>
+        </div>
+
+
+    </article><!-- /#post-7821 -->
+
+
+
+
+
+{% endblock contenido %}
+{% block scripts %}
+
+
+{% endblock scripts %}

@@ -15,25 +15,26 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
 	categorias = cat_categorias_espacios.objects.all()
+
 	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
 	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
 	total_espacios = espacio.objects.all().count()
 	espacios_mas_visto = espacio.objects.filter(status__status = 'A').order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+	espacios_recomendados = recomendaciones.objects.filter( espacio__status__status = 'A').order_by('calificacion')[:3]
 
 	contexto = {'espacios_recomendados':espacios_recomendados,'categorias':categorias,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip, 'total_espacios':total_espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/index.html', contexto, context_instance = RequestContext( request ))
 
 def resultado( request, buscar, categoria, ubicacion ):
-	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
-	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
-	espacios_mas_visto = espacio.objects.filter().order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto = espacio.objects.filter( status__status = 'A').order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 	espacios = None
 
 	filtrado = 5
 	if (buscar != '0' and ubicacion == '0' and categoria == '0'):
-		espacios = espacio.objects.filter(nombre__icontains = buscar ).order_by('-num_visitas')
+		espacios = espacio.objects.filter(nombre__icontains = buscar, status__status = 'A' ).order_by('-num_visitas')
 		if 'filtrado' in request.GET:
 			filtrado = request.GET.get('filtrado')
 		paginator = Paginator(espacios, filtrado) # Muestra de 2 en 2
@@ -51,7 +52,7 @@ def resultado( request, buscar, categoria, ubicacion ):
 
 	elif (buscar == '0' and ubicacion == '0' and categoria != '0'):
 
-		espacios = espacio.objects.filter( categorias__categoria__icontains = categoria ).order_by('-num_visitas')
+		espacios = espacio.objects.filter( categorias__categoria__icontains = categoria, status__status = 'A' ).order_by('-num_visitas')
 
 		if 'filtrado' in request.GET:
 			filtrado = request.GET.get('filtrado')
@@ -71,7 +72,7 @@ def resultado( request, buscar, categoria, ubicacion ):
 	elif (buscar != '0' and ubicacion != '0' and categoria == '0'):
 		espacios = []
 
-		esp = espacio.objects.filter( direccion__localidad__nombre__icontains = ubicacion, nombre__icontains = buscar ).order_by('-num_visitas')
+		esp = espacio.objects.filter( direccion__localidad__nombre__icontains = ubicacion, nombre__icontains = buscar, status__status = 'A' ).order_by('-num_visitas')
 		for e in esp:
 			espacios.append(e)
 		if 'filtrado' in request.GET:
@@ -94,7 +95,7 @@ def resultado( request, buscar, categoria, ubicacion ):
 		espacios = []
 
 		for localidad in tabasco.cat_localidad_set.all():
-			esp = espacio.objects.filter( direccion__localidad__nombre__icontains=localidad.nombre, nombre__icontains = buscar, categorias__categoria__icontains = categoria ).order_by('-num_visitas')
+			esp = espacio.objects.filter( direccion__localidad__nombre__icontains=localidad.nombre, nombre__icontains = buscar, categorias__categoria__icontains = categoria, status__status = 'A' ).order_by('-num_visitas')
 			for e in esp:
 				espacios.append(e)
 
@@ -117,24 +118,24 @@ def resultado( request, buscar, categoria, ubicacion ):
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 def busqueda_socio_vip( request, nombre):
-	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
-	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
-	espacios_mas_visto  = espacio.objects.filter().order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto  = espacio.objects.filter( status__status = 'A' ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 
-	espacios = espacio.objects.filter(nombre__icontains = nombre ).order_by('-num_visitas')
+	espacios = espacio.objects.filter(nombre__icontains = nombre, status__status = 'A' ).order_by('-num_visitas')
 
 	contexto = {'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 
 def categoria( request, categoria_id):
-	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
-	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
-	espacios_mas_visto  = espacio.objects.filter().order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto  = espacio.objects.filter( status__status = 'A').order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 
-	espacios = espacio.objects.filter( categorias__id = categoria_id ).order_by('-num_visitas')
+	espacios = espacio.objects.filter( categorias__id = categoria_id, status__status = 'A' ).order_by('-num_visitas')
 	categoria = cat_categorias_espacios.objects.get( pk = categoria_id)
 
 	filtrado = 5 # Show 10 contacts per page
@@ -158,11 +159,11 @@ def categoria( request, categoria_id):
 
 def detalle( request, espacio_id, categoria, direccion):
 
-	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
-	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
-	detalleEspacio = espacio.objects.get( pk = espacio_id )
-	espacios_mas_visto  = espacio.objects.filter().order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	detalleEspacio = espacio.objects.get( pk = espacio_id, status__status = 'A' )
+	espacios_mas_visto  = espacio.objects.filter(status__status = 'A').order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 	try:
 		categoria_ = cat_categorias_espacios.objects.get( categoria = categoria )
 	except cat_categorias_espacios.DoesNotExist:
@@ -305,24 +306,38 @@ def contactar_socio( request, espacio_id ):
 
 @login_required(login_url='/login_')
 def mis_espacios_web( request, socio_id ):
-	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
-	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
-	espacios_mas_visto  = espacio.objects.filter( ).order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto  = espacio.objects.filter( status__status = 'A' ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 
 
 
-	espacios = espacio.objects.filter( propietario__usuario__id = socio_id ).order_by('-num_visitas')
+	espacios = espacio.objects.filter( propietario__usuario__id = socio_id, status__status = 'A' ).order_by('-num_visitas')
+	filtrado = 5 # Show 10 contacts per page
+	if 'filtrado' in request.GET:
+		filtrado = request.GET.get('filtrado')
+	paginator = Paginator(espacios, filtrado) # Muestra de 2 en 2
+	page = request.GET.get('page')
 
-	contexto = {'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
+	try:
+		espacios = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		espacios = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		espacios = paginator.page(paginator.num_pages)
+
+	contexto = {'filtrado':filtrado,'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 @login_required(login_url='/login_')
 def mensajes(request, socio_id):
-	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
-	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
-	espacios_mas_visto  = espacio.objects.filter( ).order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto  = espacio.objects.filter( status__status = 'A' ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 
 	persona = cat_persona.objects.get( usuario = socio_id)
 	mensajes = contactame.objects.filter( socio_contactar = persona).order_by('fecha_mensaje')
@@ -334,10 +349,10 @@ def mensajes(request, socio_id):
 
 @login_required(login_url='/login_')
 def detalle_mensaje(request, mensaje_id):
-	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
-	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
-	espacios_mas_visto  = espacio.objects.filter( ).order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto  = espacio.objects.filter( status__status = 'A' ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 
 	mensaje = contactame.objects.get( pk = mensaje_id)
 	mensaje.leido = True
@@ -348,10 +363,10 @@ def detalle_mensaje(request, mensaje_id):
 
 @login_required(login_url='/login_')
 def perfil_socio( request, socio_id ):
-	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
-	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
-	espacios_mas_visto  = espacio.objects.filter( ).order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto  = espacio.objects.filter( status__status = 'A' ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 
 	persona = cat_persona.objects.get( usuario__id = socio_id )
 
@@ -359,13 +374,52 @@ def perfil_socio( request, socio_id ):
 	contexto = {'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'persona':persona,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/perfil.html',contexto, context_instance = RequestContext( request ))
 
-def localidades_cercanas( request, colonia):
-	nuevos_socios = espacio.objects.all().order_by('-id')[:2]
-	socios_vip = espacio.objects.filter( socio_vip = True ).order_by('-id')[:4]
-	espacios_mas_visto  = espacio.objects.filter().order_by('-num_visitas')[:4]
-	espacios_recomendados = recomendaciones.objects.filter().order_by('calificacion')[:3]
+@login_required(login_url='/login_')
+def editar_perfil( request, socio_id):
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto  = espacio.objects.filter( status__status = 'A' ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter( espacio__status__status = 'A' ).order_by('calificacion')[:3]
+	socio = cat_persona.objects.get( id = socio_id )
 
-	espacios = espacio.objects.filter( direccion__colonia = colonia ).order_by('-num_visitas')
+	#usuario_red = usr_redes_sociales.objects.get( usuario__id=socio_id)
+	if request.method == 'GET':
+		formulario = regitro_socio_web_form( instance = socio )
+	elif request.method == 'POST':
+		formulario = regitro_socio_web_form(request.POST, request.FILES, instance = socio)
+		if formulario.is_valid():
+			usuario = User.objects.get( pk = socio.usuario.id)
+			usuario.first_name = request.POST.get('nombre')
+			usuario.last_name = request.POST.get('apellido_paterno')+' '+request.POST.get('apellido_materno')
+			usuario.email = request.POST.get('correo')
+			formulario.save()
+			usuario.save()
+
+			msj = 'EL perfil se edito correctamente'
+			messages.success(request, msj)
+			return HttpResponseRedirect('/perfil_socio/'+str(int(socio.usuario.id)))
+
+		else:
+			msj = 'Error'
+			messages.success( request, msj)
+
+
+
+	else:
+		formulario = regitro_socio_web_form()
+
+
+	contexto = {'formulario':formulario,'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'persona':socio,'espacios_mas_visto':espacios_mas_visto}
+	return render_to_response('web/editar_perfil.html',contexto, context_instance = RequestContext( request ))
+
+
+def localidades_cercanas( request, colonia):
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto  = espacio.objects.filter( status__status = 'A' ).order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
+
+	espacios = espacio.objects.filter( direccion__colonia = colonia, status__status = 'A' ).order_by('-num_visitas')
 
 	filtrado = 5 # Show 10 contacts per page
 	if 'filtrado' in request.GET:
@@ -384,6 +438,8 @@ def localidades_cercanas( request, colonia):
 
 	contexto = {'espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'categoria':categoria,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
+
+
 
 
 

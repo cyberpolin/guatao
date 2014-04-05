@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^detalle_mensaje/(?P<mensaje_id>\d+)', detalle_mensaje),
     url(r'^perfil_socio/(?P<socio_id>\d+)', perfil_socio),
     url(r'^localidades_cercanas/(?P<colonia>.+)/', localidades_cercanas),
-
+    url(r'^editar_perfil/(?P<socio_id>\d+)', editar_perfil),
 
 
     url(r'^cambio_password/chpasswd/done/?',
