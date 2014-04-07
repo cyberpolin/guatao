@@ -428,6 +428,22 @@ $(document).ajaxSend(function(event, xhr, settings) {
 
           </script>
 
+        <script type="text/javascript">
+          function desactivar(id){
+              if (confirm("¿Seguro que desea desactivar al Socio y sus espacios")) {
+              // Respuesta afirmativa...
+                    window.location.href = '/bloquear_socio/'+id;
+                                    }
+                                }
+
+            function activar(id){
+              if (confirm("¿Seguro que desea activar al Socio y sus espacios")) {
+              // Respuesta afirmativa...
+                    window.location.href = '/activar_socio/'+id;
+                                    }
+                                }
+        </script>
+
     {% endblock extrahead %}
 
     {% block maincontent %}
@@ -601,8 +617,11 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                                 <th>Nombre</th>
                                                 <th>Correo</th>
                                                 <th>Telefono</th>
+                                                <th>Status</th>
                                                 <th>Agregar<br> Espacio</th>
                                                 <th>Editar</th>
+                                                <th>Activar</th>
+                                                <th>Desactivar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -620,13 +639,19 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                                 <td>{{p.nombre}} {{p.apellido_paterno}} {{p.apellido_materno}}</td>
                                                 <td>{{p.correo}}</td>
                                                 <td>{{p.telefono}}</td>
-                                                <td><a href="#" onclick="window.open('/alta_espacio_socio/{{p.id}}','mywindow', 'location=no,status=1,scrollbars=1,width=750,height=700'); return false;"><i class="icon-plus"></i></a></td>
-                                                <td><a href="/editar_socio/{{p.id}}"><i class="icon-edit"></i></a></td>                                             
+                                                <td>{% if p.status.status == "A"%} <span class="label label-success">Activo</span> {% elif p.status.status == "P"%} <span class="label label-info">Pagado</span> {% elif p.status.status == "I" %} <span class="label label-important">Desactivo</span> {% endif %}</td>
+                                                <td>{% if p.status.status == "A" %}<a href="#" onclick="window.open('/alta_espacio_socio/{{p.id}}','mywindow', 'location=no,status=1,scrollbars=1,width=750,height=700'); return false;"><i class="icon-plus"></i></a>{% endif %} </td>
+                                                <td><a href="/editar_socio/{{p.id}}"><i class="icon-edit"></i></a></td>
+                                                <td>{% if p.status.status == "A" %}<a onclick="desactivar({{p.id}})" href="#"><i class="icon-remove">s{% endif %}</i></a></td>
+                                                <td>{% if p.status.status == "I" %}<a onclick="activar({{p.id}})" href="#"><i class="icon-ok">{% endif %}</i></a></td>
                                             </tr>
                                             {% endfor %}
                                             {% else %}
                                             <tr>
                                                 <td><h3>Sin Socios</h3></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>

@@ -20,6 +20,8 @@ urlpatterns = patterns('',
 	
 	url(r'^bloquear_agente/(?P<id_agente>\d+)', bloquear_agente),
 	url(r'^activar_agente/(?P<id_agente>\d+)', activar_agente),
+    url(r'^bloquear_socio/(?P<id_socio>\d+)', bloquear_socio),
+	url(r'^activar_socio/(?P<id_socio>\d+)', activar_socio),
 	url(r'^ventas_agente/', ventas_agente),
 	
 	url(r'^borrar_espacio/(?P<id_espacio>\d+) and (?P<id_socio>\d+)', borrar_espacio),

@@ -305,6 +305,7 @@ def alta_persona_socio(request):
             celular = formulario_persona_espacio_socio.cleaned_data['celular']
             tipo_usuario = formulario_persona_espacio_socio.cleaned_data['tipo_usuario']
 
+
             #Guarda el usuario y lo inserta a su respectivo grupo#
             usuario_ = formulario_socio.save()
             grupo = Group.objects.get(name='Socio')
@@ -327,6 +328,7 @@ def alta_persona_socio(request):
             persona.telefono = telefono
             persona.celular = celular
             persona.tipo_usuario = tipo_usuario
+            persona.status_id = 1
             persona.usuario = usuario_
             persona.agente_venta = request.user
             persona.save()
@@ -659,6 +661,34 @@ def activar_agente(request, id_agente):
     agente.save()
 
     return  HttpResponseRedirect( '/principal/' )
+
+@login_required(login_url='/login_')
+@permission_required('inTabasco.delete_agente_ventas', raise_exception=True)
+def bloquear_socio(request, id_socio):
+
+    socio = cat_persona.objects.get( pk = id_socio )
+    socio.status = cat_status.objects.all().get( status = 'I')
+    socio.save()
+
+    usuario = User.objects.get(pk = socio.usuario.id)
+    usuario.is_active = False
+    usuario.save()
+
+    return  HttpResponseRedirect( '/alta_persona_socio/' )
+
+@login_required(login_url='/login_')
+@permission_required('inTabasco.delete_agente_ventas', raise_exception=True)
+def activar_socio(request, id_socio):
+
+    socio = cat_persona.objects.get( pk = id_socio )
+    socio.status = cat_status.objects.all().get( status = 'A')
+    socio.save()
+    usuario = User.objects.get(pk = socio.usuario.id)
+    usuario.is_active = True
+    usuario.save()
+
+
+    return  HttpResponseRedirect( '/alta_persona_socio/' )
 
 
 
