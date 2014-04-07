@@ -1,7 +1,13 @@
 from inTabasco_.apps.inTabasco.models import *
 from django.contrib import admin
 
-admin.site.register( cat_persona )
+
+class PersonAdmin(admin.ModelAdmin):
+    list_filter = ('tipo_usuario', 'nombre', 'apellido_paterno', 'fecha_registro')
+    list_display = ('nombre', 'apellido_paterno', 'fecha_registro', 'tipo_usuario')
+    #search_fields = ('nombre', 'apellido_paterno', 'apellido_materno', 'fecha_registro', 'tipo_usuario')
+
+admin.site.register( cat_persona, PersonAdmin )
 admin.site.register( cat_promociones )
 admin.site.register( cat_precios )
 admin.site.register( cat_productos )

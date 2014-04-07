@@ -18,7 +18,7 @@ urlpatterns = patterns('',
 
 
 	
-	url(r'^borrar_agente/(?P<id_agente>\d+)', borrar_agente),
+	url(r'^bloquear_agente/(?P<id_agente>\d+)', bloquear_agente),
 	url(r'^activar_agente/(?P<id_agente>\d+)', activar_agente),
 	url(r'^ventas_agente/', ventas_agente),
 	

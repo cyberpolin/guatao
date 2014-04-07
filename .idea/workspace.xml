@@ -27,10 +27,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/administrador/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="416" column="65" selection-start="19419" selection-end="19419" vertical-scroll-proportion="0.083451204" vertical-offset="7213" max-vertical-offset="7920">
+            <state line="708" column="45" selection-start="35821" selection-end="35821" vertical-scroll-proportion="-19.59649" vertical-offset="11627" max-vertical-offset="15210">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="270" column="12" selection-start="11750" selection-end="11764" vertical-scroll-proportion="0.8727016" vertical-offset="3739" max-vertical-offset="15498">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_agente.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/administrador/edit_agente.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="408" column="109" selection-start="15586" selection-end="15586" vertical-scroll-proportion="-10.0" vertical-offset="7074" max-vertical-offset="10998">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="45" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
               <folding />
             </state>
           </provider>
@@ -39,16 +66,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="308" column="11" selection-start="9821" selection-end="9828" vertical-scroll-proportion="0.0" vertical-offset="5184" max-vertical-offset="6228">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resultado.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/web/resultado.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="66" selection-start="623" selection-end="623" vertical-scroll-proportion="-5.6842103" vertical-offset="0" max-vertical-offset="2196">
+            <state line="36" column="61" selection-start="1093" selection-end="1093" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="6246">
               <folding />
             </state>
           </provider>
@@ -70,26 +88,19 @@
         <option value="$PROJECT_DIR$/templates/administrador/alta_espacio_socio.html" />
         <option value="$PROJECT_DIR$/templates/administrador/agregar_socio_espacio.html" />
         <option value="$PROJECT_DIR$/templates/web/prueba.html" />
-        <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/urls.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/autocompletable/views.py" />
         <option value="$PROJECT_DIR$/templates/no_found.html" />
         <option value="$PROJECT_DIR$/templates/mapa_preview.html" />
         <option value="$PROJECT_DIR$/templates/calificacion.html" />
         <option value="$PROJECT_DIR$/templates/administrador/base.html" />
         <option value="$PROJECT_DIR$/templates/web/contactar_socio.html" />
-        <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/forms.py" />
         <option value="$PROJECT_DIR$/templates/404.html" />
-        <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/views.py" />
         <option value="$PROJECT_DIR$/templates/web/espacios.html" />
         <option value="$PROJECT_DIR$/templates/registration/password_change_done.html" />
         <option value="$PROJECT_DIR$/templates/registration/password_change_form.html" />
-        <option value="$PROJECT_DIR$/inTabasco_/settings.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/Login/views.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/Login/urls.py" />
         <option value="$PROJECT_DIR$/inTabasco_/static/web/css/style.css" />
-        <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py" />
-        <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py" />
-        <option value="$PROJECT_DIR$/templates/web/index.html" />
         <option value="$PROJECT_DIR$/templates/web/detalle_mensaje.html" />
         <option value="$PROJECT_DIR$/templates/web/mensajes.html" />
         <option value="$PROJECT_DIR$/templates/web/resultado.html" />
@@ -102,6 +113,16 @@
         <option value="$PROJECT_DIR$/templates/web/base_web.html" />
         <option value="$PROJECT_DIR$/templates/web/perfil.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py" />
+        <option value="$PROJECT_DIR$/templates/web/index.html" />
+        <option value="$PROJECT_DIR$/inTabasco_/settings.py" />
+        <option value="$PROJECT_DIR$/templates/administrador/prueba.html" />
+        <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py" />
+        <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/urls.py" />
+        <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py" />
+        <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/forms.py" />
+        <option value="$PROJECT_DIR$/templates/administrador/index.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/edit_agente.html" />
+        <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/views.py" />
       </list>
     </option>
   </component>
@@ -198,6 +219,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="administrador" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inTabasco_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="inTabasco_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -260,7 +299,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="autocompletable" />
+              <option name="myItemId" value="administracion" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -382,27 +421,7 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="inTabasco_" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -428,7 +447,27 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="inTabasco_" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -564,7 +603,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946378" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2498618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22277501" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22553897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978564" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -573,11 +612,11 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="165" y="124" width="1657" height="885" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -596,9 +635,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2498618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22001106" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18113612" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18113612" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -620,21 +659,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="903" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/fixtures/initial_data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="402" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="863" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/static/web/autocompletable/jquery-ui.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="562" column="551" selection-start="0" selection-end="33913" vertical-scroll-proportion="14.207865" vertical-offset="0" max-vertical-offset="10224" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/apps/autocompletable/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="42" selection-start="316" selection-end="316" vertical-scroll-proportion="0.14896552" vertical-offset="0" max-vertical-offset="725" />
@@ -672,11 +696,6 @@
     <entry file="file://$PROJECT_DIR$/templates/administrador/agregar_socio_espacio.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="364" column="35" selection-start="15493" selection-end="15493" vertical-scroll-proportion="0.44084278" vertical-offset="6280" max-vertical-offset="13536" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="8" selection-start="435" selection-end="623" vertical-scroll-proportion="-3.6758509" vertical-offset="2484" max-vertical-offset="15138" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/static/administrador/assets/styles.css">
@@ -732,11 +751,6 @@
     <entry file="file://$PROJECT_DIR$/templates/administrador/detalle_socio.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="40" selection-start="484" selection-end="484" vertical-scroll-proportion="-1.1069365" vertical-offset="1072" max-vertical-offset="1872" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="59" selection-start="4758" selection-end="4758" vertical-scroll-proportion="0.75" vertical-offset="486" max-vertical-offset="1242" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/administrador/alta_espacio_socio.html">
@@ -802,18 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="31" selection-start="743" selection-end="743" vertical-scroll-proportion="0.46594006" vertical-offset="0" max-vertical-offset="734" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="50" selection-start="5831" selection-end="5831" vertical-scroll-proportion="3.5205882" vertical-offset="0" max-vertical-offset="3096">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/web/detalle_mensaje.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="54" selection-start="411" selection-end="411" vertical-scroll-proportion="0.36363637" vertical-offset="0" max-vertical-offset="3330">
@@ -821,30 +823,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="4" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.8" vertical-offset="0" max-vertical-offset="720">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="44" selection-start="1088" selection-end="1098" vertical-scroll-proportion="0.65" vertical-offset="0" max-vertical-offset="720">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="15" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.5" vertical-offset="468" max-vertical-offset="3132">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="409" column="45" selection-start="19436" selection-end="19436" vertical-scroll-proportion="0.38189533" vertical-offset="6588" max-vertical-offset="15156">
           <folding />
         </state>
       </provider>
@@ -897,18 +878,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="48" selection-start="2179" selection-end="2179" vertical-scroll-proportion="0.5235294" vertical-offset="436" max-vertical-offset="2700">
           <folding>
-            <element signature="e#1218#1253#0" expanded="true" />
-            <element signature="e#1351#1385#0" expanded="true" />
-            <element signature="e#5531#5554#0" expanded="true" />
-            <element signature="e#5713#5735#0" expanded="true" />
+            <element signature="e#1218#1253#0" expanded="false" />
+            <element signature="e#1351#1385#0" expanded="false" />
+            <element signature="e#5531#5554#0" expanded="false" />
+            <element signature="e#5713#5735#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="93" selection-start="9166" selection-end="9166" vertical-scroll-proportion="0.7323529" vertical-offset="3066" max-vertical-offset="10404">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,7 +890,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="41" column="17" selection-start="1933" selection-end="1933" vertical-scroll-proportion="1.0852941" vertical-offset="0" max-vertical-offset="1098">
           <folding>
-            <element signature="e#832#867#0" expanded="true" />
+            <element signature="e#832#867#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -928,23 +902,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="416" column="65" selection-start="19419" selection-end="19419" vertical-scroll-proportion="0.083451204" vertical-offset="7213" max-vertical-offset="7920">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/web/resultado.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="66" selection-start="623" selection-end="623" vertical-scroll-proportion="-5.6842103" vertical-offset="0" max-vertical-offset="2196">
+        <state line="18" column="66" selection-start="623" selection-end="623" vertical-scroll-proportion="0.49846154" vertical-offset="0" max-vertical-offset="2196">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="137" column="11" selection-start="5987" selection-end="5987" vertical-scroll-proportion="2.8574739" vertical-offset="0" max-vertical-offset="3096">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="42" selection-end="80" vertical-scroll-proportion="0.025" vertical-offset="0" max-vertical-offset="3132">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="28" selection-start="891" selection-end="891" vertical-scroll-proportion="0.5" vertical-offset="0" max-vertical-offset="720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="26" selection-start="737" selection-end="737" vertical-scroll-proportion="0.475" vertical-offset="0" max-vertical-offset="720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="294" column="67" selection-start="14538" selection-end="14538" vertical-scroll-proportion="0.25588235" vertical-offset="5118" max-vertical-offset="10404">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="308" column="11" selection-start="9821" selection-end="9828" vertical-scroll-proportion="0.0" vertical-offset="2970" max-vertical-offset="6228">
+        <state line="36" column="61" selection-start="1093" selection-end="1093" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="6246">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="416" column="65" selection-start="19419" selection-end="19419" vertical-scroll-proportion="0.083451204" vertical-offset="7213" max-vertical-offset="7920">
+        <state line="10" column="45" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="708" column="45" selection-start="35821" selection-end="35821" vertical-scroll-proportion="-19.59649" vertical-offset="11627" max-vertical-offset="15210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/edit_agente.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="408" column="109" selection-start="15586" selection-end="15586" vertical-scroll-proportion="-10.0" vertical-offset="7074" max-vertical-offset="10998">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="270" column="12" selection-start="11750" selection-end="11764" vertical-scroll-proportion="0.8727016" vertical-offset="3739" max-vertical-offset="15498">
           <folding />
         </state>
       </provider>

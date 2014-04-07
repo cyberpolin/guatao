@@ -7,8 +7,8 @@ from django.db.models import Q
 from django.forms import ModelForm
 
 class Registrar_Agente( forms.Form ):
-    padre = forms.ModelChoiceField(required =False, empty_label = 'Seleccione su Agente Padre', queryset = cat_persona.objects.all(), widget = forms.Select(attrs={'class':'chzn-select'}))
-    foto = forms.ImageField( required = True )
+    padre = forms.ModelChoiceField(required =False, empty_label = 'Seleccione su Agente Padre', queryset = cat_persona.objects.filter(tipo_usuario__tipo = 'Agente'), widget = forms.Select(attrs={'class':'chzn-select'}))
+    foto = forms.ImageField( required = False )
     nombre = forms.CharField(label="Nombre", max_length = 50 )
     apellido_paterno = forms.CharField(label="Apellido Paterno", max_length = 50 )
     apellido_materno = forms.CharField(label="Apellido Materno", max_length = 50 )
@@ -24,8 +24,8 @@ class Registrar_Agente( forms.Form ):
 
     latitud = forms.CharField(widget = forms.HiddenInput(), initial="18.000264246324", label="Latitud", max_length = "300")
     longitud = forms.CharField(widget = forms.HiddenInput(), initial="-92.94361710548401", label="Longitud", max_length = "300")
-    status = forms.ModelChoiceField(initial="1", queryset=cat_status.objects.all(), widget=forms.HiddenInput())
-    tipo_usuario = forms.ModelChoiceField(initial="2", queryset=cat_tipo_usuario.objects.all(), widget=forms.HiddenInput())
+    status = forms.ModelChoiceField(initial="1", queryset=cat_status.objects.all(), widget = forms.Select(attrs={'style':'display:none'}))
+    tipo_usuario = forms.ModelChoiceField(initial="2", queryset=cat_tipo_usuario.objects.all(), widget = forms.Select(attrs={'style':'display:none'}))
 
 
 class Registrar_Persona_Socio( forms.Form):

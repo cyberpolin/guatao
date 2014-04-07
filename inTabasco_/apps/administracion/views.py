@@ -84,6 +84,7 @@ def principal(request):
             persona.telefono = telefono
             persona.celular = celular
             persona.tipo_usuario = tipo_usuario
+            persona.status = status
             persona.usuario = usuario_
 
 
@@ -177,6 +178,8 @@ def editar_agente(request, id_agente, id_persona, id_direccion):
     consulta_persona = cat_persona.objects.get(pk = id_persona)
     consulta_direccion = cat_direcciones.objects.get(pk = id_direccion)
 
+    usuario = User.objects.get( pk = consulta_persona.usuario.id )
+
     #Cordenadas
     latit = consulta_agente.direccion.latitud
     longi = consulta_agente.direccion.longitud
@@ -207,6 +210,8 @@ def editar_agente(request, id_agente, id_persona, id_direccion):
     elif request.method == 'POST':
         formulario_agente = Registrar_Agente(request.POST, request.FILES )
 
+
+
         if formulario_agente.is_valid():
 
 
@@ -234,7 +239,8 @@ def editar_agente(request, id_agente, id_persona, id_direccion):
 
             consulta_agente.padre = padre
             consulta_agente.status = status
-            consulta_persona.imagen = foto
+            if foto:
+                consulta_persona.imagen = foto
             consulta_persona.nombre = nombre
             consulta_persona.apellido_paterno = apellido_paterno
             consulta_persona.apellido_materno = apellido_materno
@@ -243,6 +249,7 @@ def editar_agente(request, id_agente, id_persona, id_direccion):
             consulta_persona.telefono = telefono
             consulta_persona.celular = celular
             consulta_persona.tipo_usuario = tipo_usuario
+            consulta_persona.status = status
 
 
             consulta_direccion.localidad = localidad
@@ -252,11 +259,16 @@ def editar_agente(request, id_agente, id_persona, id_direccion):
             consulta_direccion.latitud = latitud
             consulta_direccion.longitud = longitud
 
+            usuario.first_name = nombre
+            usuario.last_name = apellido_paterno + apellido_materno
+            usuario.email = correo
+
 
 
             consulta_persona.save()
             consulta_direccion.save()
             consulta_agente.save()
+            usuario.save()
 
             msj = 'El contacto'+' '+ str(nombre.encode('utf-8')+' '+apellido_paterno.encode('utf-8')+' '+apellido_materno.encode('utf-8')) +' '+ 'se actualizo correctamente.'
             messages.success(request, msj)
@@ -268,7 +280,7 @@ def editar_agente(request, id_agente, id_persona, id_direccion):
     else:
         formulario_agente = Registrar_Agente()
 
-    contexto = {'principal':'active','formulario_agente': formulario_agente, 'latit':latit, 'longi':longi}
+    contexto = {'principal':'active','formulario_agente': formulario_agente, 'latit':latit, 'longi':longi, 'consulta_persona':consulta_persona}
     return render_to_response('administrador/edit_agente.html',contexto, context_instance = RequestContext(request))
 
 
@@ -618,9 +630,13 @@ def validar_usuario(request):
 
 @login_required(login_url='/login_')
 @permission_required('inTabasco.delete_agente_ventas', raise_exception=True)
-def borrar_agente(request, id_agente):	
+def bloquear_agente(request, id_agente):
     agente = agente_ventas.objects.all().get( pk = id_agente )
     agente.status = cat_status.objects.all().get( status = 'I')
+    persona_agente = cat_persona.objects.get( pk = agente.nombre.id )
+    persona_agente.status = cat_status.objects.all().get( status = 'I')
+    persona_agente.save()
+
     usuario = User.objects.get(pk = agente.usuario.id)
     usuario.is_active = False
     usuario.save()
@@ -634,6 +650,9 @@ def activar_agente(request, id_agente):
 
     agente = agente_ventas.objects.all().get( pk = id_agente )
     agente.status = cat_status.objects.all().get( status = 'A')
+    persona_agente = cat_persona.objects.get( pk = agente.nombre.id )
+    persona_agente.status = cat_status.objects.all().get( status = 'A')
+    persona_agente.save()
     usuario = User.objects.get(pk = agente.usuario.id)
     usuario.is_active = True
     usuario.save()

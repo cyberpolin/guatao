@@ -41,6 +41,7 @@ class cat_persona(models.Model):
     celular = models.CharField(max_length=15, blank=True, null=True)
     tipo_usuario = models.ForeignKey(cat_tipo_usuario)
     usuario = models.ForeignKey(User)
+    status = models.ForeignKey( cat_status )
     agente_venta = models.ForeignKey(User, related_name = 'agente', null = True, blank = True)
 
     def __unicode__(self):

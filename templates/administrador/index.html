@@ -29,8 +29,8 @@
                 /*==JQUERY STEPY==*/
                 
                 $('#stepy_form').stepy({
-                    backLabel: 'Back',
-                    nextLabel: 'Next',
+                    backLabel: 'Atras',
+                    nextLabel: 'Siguiente',
                     errorImage: true,
                     block: true,
                     description: true,
@@ -297,9 +297,9 @@ $(document).ajaxSend(function(event, xhr, settings) {
 
           <script type="text/javascript">
           function borrar(id){            
-              if (confirm("¿Seguro que desea eliminar al Agente de Ventas")) {
+              if (confirm("¿Seguro que desea desactivar al Agente de Ventas")) {
               // Respuesta afirmativa...
-                    window.location.href = '/borrar_agente/'+id;
+                    window.location.href = '/bloquear_agente/'+id;
                                     }
                                 }
 
@@ -671,7 +671,8 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                         <tr>
                                             <th>#</th>
                                             <th>Foto</th>
-                                            <th>Nombre</th>                                            
+                                            <th>Nombre</th>
+                                            <th>Tel.</th>
                                             <th>Numero Cel.</th>
                                             <th>Correo<th>
                                             <th>Status</th>
@@ -694,7 +695,8 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                                     </a>
                                                 
                                             </td>
-                                            <td>{{p.nombre}} {{p.nombre.apellido_paterno}} {{p.nombre.apellido_materno}}</td>                                            
+                                            <td>{{p.nombre.nombre}} {{p.nombre.apellido_paterno}} {{p.nombre.apellido_materno}}</td>
+                                            <td>{{p.nombre.telefono}}</td>
                                             <td>{{p.nombre.celular}}</td>
                                             <td>{{p.nombre.correo}}</td>
                                             <td></td>
@@ -718,6 +720,8 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
+
                                         </tr>
                                         {% endif %}
                                     </tbody>
