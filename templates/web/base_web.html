@@ -195,10 +195,16 @@
                     <div id="ait-login-tabs">
                         <div id="menu"><div class="barraMenu">
                         <ul>
-                            <li class="active"><a class="register various botonMenu" href="/mis_espacios_web/{{ user.id }}">Mis Espacios</a></li>
-                            <li class="active"><a class="register various botonMenu"  href="#">Agregar Espacios</a></li>
-                            <li class="active"><a class="register various botonMenu"  href="/mensajes/{{ user.id }}">Ver Mensajes</a></li>
-                            <li class="active"><a class="register various botonMenu" href="/perfil_socio/{{ user.id }}">Perfil</a></li>
+                            <li class="active"><a class="register various botonMenu" href="/principal/">Administracion</a></li>
+                            {% for group in user.groups.all %}
+                                {% if group.name != 'Administradores' %}
+                                    <li class="active"><a class="register various botonMenu" href="/mis_espacios_web/{{ user.id }}">Mis Espacios</a></li>
+                                    <li class="active"><a class="register various botonMenu"  href="#">Agregar Espacios</a></li>
+                                    <li class="active"><a class="register various botonMenu"  href="/mensajes/{{ user.id }}">Ver Mensajes</a></li>
+                                    <li class="active"><a class="register various botonMenu" href="/perfil_socio/{{ user.id }}">Perfil</a></li>
+                                {% endif %}
+                            {% endfor %}
+
 
                         </ul>
                         </div></div>
