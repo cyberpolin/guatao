@@ -32,7 +32,9 @@ def validar(request):
                 messages.success(request, msj)
                 return HttpResponseRedirect( '/' )
         else:
-            mensaje = mensaje + 'Cuenta desactivada'
+            mensaje = 'Cuenta desactivada comuniquese con el administrador.'
+            messages.success(request, mensaje)
+            return HttpResponseRedirect('/')
 
     else:
         mensaje = 'El usuario o contraseña son incorrectas.'
