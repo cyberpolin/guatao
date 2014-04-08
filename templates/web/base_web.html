@@ -197,13 +197,15 @@
                         <ul>
 
                             {% for group in user.groups.all %}
-                                {% if group.name != 'Administradores' %}
+                                {% if group.name == 'Administradores' %}
+                                    <li class="active"><a class="register various botonMenu" href="/principal/">Administracion</a></li>
+                                {% elif group.name == 'Agente de Ventas' %}
+                                <li class="active"><a class="register various botonMenu" href="/alta_persona_socio/">Agregar espacios</a></li>
+                                {% else %}
                                     <li class="active"><a class="register various botonMenu" href="/mis_espacios_web/{{ user.id }}">Mis Espacios</a></li>
                                     <li class="active"><a class="register various botonMenu"  href="#">Agregar Espacios</a></li>
                                     <li class="active"><a class="register various botonMenu"  href="/mensajes/{{ user.id }}">Ver Mensajes</a></li>
                                     <li class="active"><a class="register various botonMenu" href="/perfil_socio/{{ user.id }}">Perfil</a></li>
-                                {% else %}
-                                    <li class="active"><a class="register various botonMenu" href="/principal/">Administracion</a></li>
                                 {% endif %}
 
                             {% endfor %}

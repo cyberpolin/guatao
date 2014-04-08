@@ -45,18 +45,18 @@ def principal(request):
 
 
             foto = formulario_agente.cleaned_data['foto']
-            nombre = formulario_agente.cleaned_data['nombre'].upper()
-            apellido_paterno = formulario_agente.cleaned_data['apellido_paterno'].upper()
-            apellido_materno = formulario_agente.cleaned_data['apellido_materno'].upper()
+            nombre = formulario_agente.cleaned_data['nombre']
+            apellido_paterno = formulario_agente.cleaned_data['apellido_paterno']
+            apellido_materno = formulario_agente.cleaned_data['apellido_materno']
             fecha_nacimiento = formulario_agente.cleaned_data['fecha_nacimiento']
-            correo = formulario_agente.cleaned_data['correo'].upper()
+            correo = formulario_agente.cleaned_data['correo']
             telefono = formulario_agente.cleaned_data['telefono']
             celular = formulario_agente.cleaned_data['celular']
             tipo_usuario = formulario_agente.cleaned_data['tipo_usuario']
 
             localidad = formulario_agente.cleaned_data['localidad']
-            colonia = formulario_agente.cleaned_data['colonia'].upper()
-            calle = formulario_agente.cleaned_data['calle'].upper()
+            colonia = formulario_agente.cleaned_data['colonia']
+            calle = formulario_agente.cleaned_data['calle']
             numero = formulario_agente.cleaned_data['numero']
             codigo_postal = formulario_agente.cleaned_data['codigo_postal']
             latitud = formulario_agente.cleaned_data['latitud']
