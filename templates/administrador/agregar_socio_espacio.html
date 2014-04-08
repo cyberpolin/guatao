@@ -14,6 +14,25 @@
         <script src="{% static "administrador/vendors/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
         <script src="{% static "administrador/validate/jquery-1.10.2.min.js" %}"></script>
 
+        <script type="text/javascript" src="{% static "web/fancy/source/jquery.fancybox.js" %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static "web/fancy/source/jquery.fancybox.css" %}" media="screen" />
+
+        <script>
+            $(document).ready(function() {
+                $(".various").fancybox({
+                    maxWidth	: 1000,
+                    maxHeight	: 800,
+                    fitToView	: false,
+                    width		: '80%',
+                    height		: '100%',
+                    autoSize	: false,
+                    closeClick	: false,
+                    openEffect	: 'none',
+                    closeEffect	: 'none'
+                });
+            });
+        </script>
+
 
 <!--[if IE 7]>
             <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
@@ -640,7 +659,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                                 <td>{{p.correo}}</td>
                                                 <td>{{p.telefono}}</td>
                                                 <td>{% if p.status.status == "A"%} <span class="label label-success">Activo</span> {% elif p.status.status == "P"%} <span class="label label-info">Pagado</span> {% elif p.status.status == "I" %} <span class="label label-important">Desactivo</span> {% endif %}</td>
-                                                <td>{% if p.status.status == "A" %}<a href="#" onclick="window.open('/alta_espacio_socio/{{p.id}}','mywindow', 'location=no,status=1,scrollbars=1,width=750,height=700'); return false;"><i class="icon-plus"></i></a>{% endif %} </td>
+                                                <td>{% if p.status.status == "A" %}<a href="/alta_espacio_socio/{{p.id}}" class="register various"  data-fancybox-type="iframe" ><i class="icon-plus"></i></a>{% endif %} </td>
                                                 <td><a href="/editar_socio/{{p.id}}"><i class="icon-edit"></i></a></td>
                                                 <td>{% if p.status.status == "A" %}<a onclick="desactivar({{p.id}})" href="#"><i class="icon-remove">s{% endif %}</i></a></td>
                                                 <td>{% if p.status.status == "I" %}<a onclick="activar({{p.id}})" href="#"><i class="icon-ok">{% endif %}</i></a></td>
@@ -766,6 +785,8 @@ $(document).ajaxSend(function(event, xhr, settings) {
             });
         });
         </script>
+
+
         {% endblock extralibs %}
     
 
