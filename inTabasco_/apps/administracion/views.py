@@ -168,6 +168,7 @@ def consulta_detalle_agente(request):
             recipe_list_json = json.dumps(list) #VOLCAMOS LA LISTA COMO JSON
         
             print recipe_list_json
+            print(q)
     return HttpResponse(recipe_list_json,mimetype="application/javascript")
 
 @login_required(login_url='/login_')
@@ -303,6 +304,8 @@ def alta_persona_socio(request):
             correo = formulario_persona_espacio_socio.cleaned_data['correo']
             telefono = formulario_persona_espacio_socio.cleaned_data['telefono']
             celular = formulario_persona_espacio_socio.cleaned_data['celular']
+            red_social = formulario_persona_espacio_socio.cleaned_data['red_social']
+            usuario_red_social = formulario_persona_espacio_socio.cleaned_data['usuario_red_social']
             tipo_usuario = formulario_persona_espacio_socio.cleaned_data['tipo_usuario']
 
 
@@ -327,33 +330,13 @@ def alta_persona_socio(request):
             persona.correo = correo
             persona.telefono = telefono
             persona.celular = celular
+            persona.red_social = red_social
+            persona.nombre_red = usuario_red_social
             persona.tipo_usuario = tipo_usuario
             persona.status_id = 1
             persona.usuario = usuario_
             persona.agente_venta = request.user
             persona.save()
-
-
-
-
-
-            #Agregar datos a la tabla redes sociales
-            usuario_red_social = formulario_persona_espacio_socio.cleaned_data['usuario_red_social']
-            red_social = request.POST.get('red_social')
-
-            if red_social != '' and usuario_red_social != '':
-                consulta_red_social = None
-                if red_social != '':
-                    consulta_red_social = cat_redes_sociales.objects.all().get(id = red_social)
-                else:
-                    pass
-                usuario_red_social = usr_redes_sociales(usuario = persona,
-                                                        red_social = consulta_red_social,
-                                                        nombre_red = usuario_red_social
-                                                        )
-                usuario_red_social.save()
-            else:
-                pass
 
             msj = 'EL Socio se guardo correctamente'
             messages.success(request, msj)
@@ -377,7 +360,7 @@ def alta_persona_socio(request):
 @permission_required('inTabasco.add_espacio', raise_exception=True)
 def editar_socio(request, id_socio):
     socio = cat_persona.objects.get(pk=id_socio)
-    usuario_red = usr_redes_sociales.objects.get( usuario=id_socio)
+
     if request.method == 'GET':
 #		return HttpResponse(consulta_agente.nombre.imagen)
         formulario_persona_espacio_socio = Registrar_Persona_Socio( initial = {'foto':socio.imagen,
@@ -391,9 +374,8 @@ def editar_socio(request, id_socio):
 
                                                                                 'tipo_usuario':socio.tipo_usuario,
 
-                                                                                'red_social':usuario_red.red_social,
-                                                                                'usuario_red_social':usuario_red.nombre_red
-                                             })
+                                                                                'red_social':socio.red_social,
+                                                                                'usuario_red_social':socio.nombre_red})
     elif request.method == 'POST':
         formulario_persona_espacio_socio = Registrar_Persona_Socio(request.POST, request.FILES)
         if formulario_persona_espacio_socio.is_valid():
@@ -410,10 +392,10 @@ def editar_socio(request, id_socio):
 
 
             red_social = formulario_persona_espacio_socio.cleaned_data['red_social']
-            usuario_red_social = formulario_persona_espacio_socio.cleaned_data['usuario_red_social']
+            nombre_red = formulario_persona_espacio_socio.cleaned_data['usuario_red_social']
 
-
-            socio.imagen = foto
+            if foto:
+                socio.imagen = foto
             socio.nombre = nombre_propietario
             socio.apellido_paterno = apellido_paterno
             socio.apellido_materno = apellido_materno
@@ -421,15 +403,10 @@ def editar_socio(request, id_socio):
             socio.correo = correo
             socio.telefono = telefono
             socio.celular = celular
+            socio.red_social = red_social
+            socio.nombre_red = nombre_red
             socio.tipo_usuario = tipo_usuario
             socio.save()
-
-
-            usuario_red.red_social = red_social
-            usuario_red.nombre_red = usuario_red_social
-            usuario_red.save()
-
-
 
             msj = 'EL Socio se edito correctamente'
             messages.success(request, msj)
@@ -556,7 +533,6 @@ def consulta_socio_espacio(request):
 
             list=[]
             obj1 = cat_persona.objects.filter(id = q)
-            obj2 = usr_redes_sociales.objects.filter(usuario = q)
 
             for row in obj1:#RECORREMOS NUESTRA CONSULTA
                 list.append({#ADEFINIMOS EL O LOS CAMPOS QUE DESEAMOS Y LO AGREGAMOS A LA LISTA, ANTES CREADA

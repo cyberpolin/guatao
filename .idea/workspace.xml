@@ -26,37 +26,7 @@
     <favorites_list name="inTabasco_" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="690" column="54" selection-start="29988" selection-end="29988" vertical-scroll-proportion="0.0" vertical-offset="11368" max-vertical-offset="16038">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="agregar_socio_espacio.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/administrador/agregar_socio_espacio.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="619" column="48" selection-start="31424" selection-end="31439" vertical-scroll-proportion="0.43484625" vertical-offset="10845" max-vertical-offset="13986">
-              <folding>
-                <element signature="n#style#0;n#img#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/administrador/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="702" column="44" selection-start="34736" selection-end="34736" vertical-scroll-proportion="-8.925926" vertical-offset="12395" max-vertical-offset="15210">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -97,16 +67,18 @@
         <option value="$PROJECT_DIR$/templates/web/index.html" />
         <option value="$PROJECT_DIR$/inTabasco_/settings.py" />
         <option value="$PROJECT_DIR$/templates/administrador/prueba.html" />
-        <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py" />
-        <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/forms.py" />
-        <option value="$PROJECT_DIR$/templates/administrador/index.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/Login/views.py" />
         <option value="$PROJECT_DIR$/templates/administrador/edit_agente.html" />
         <option value="$PROJECT_DIR$/templates/web/base_web.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/urls.py" />
+        <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py" />
+        <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/fixtures/initial_data.json" />
+        <option value="$PROJECT_DIR$/templates/administrador/index.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/views.py" />
         <option value="$PROJECT_DIR$/templates/administrador/agregar_socio_espacio.html" />
+        <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py" />
+        <option value="$PROJECT_DIR$/templates/administrador/editar_socio.html" />
       </list>
     </option>
   </component>
@@ -580,14 +552,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-4" width="1857" height="1085" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946378" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2498618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22553897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22553897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978564" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -643,11 +615,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="0" selection-start="6120" selection-end="6120" vertical-scroll-proportion="0.33207548" vertical-offset="2020" max-vertical-offset="4824" />
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/23025c1c/3abc777d-8a7a-432b-b303-9021c66c46f9/inTabasco_.public.inTabasco_cat_categorias_espacios">
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100" />
@@ -734,13 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="44" selection-start="6862" selection-end="6863" vertical-scroll-proportion="0.45892352" vertical-offset="3402" max-vertical-offset="6768">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/mapa_preview.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1072" column="0" selection-start="46560" selection-end="46560" vertical-scroll-proportion="1.7128427" vertical-offset="18109" max-vertical-offset="19836" />
@@ -781,13 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/detalle_mensaje.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="54" selection-start="411" selection-end="411" vertical-scroll-proportion="0.36363637" vertical-offset="0" max-vertical-offset="3330">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="44" selection-start="1088" selection-end="1098" vertical-scroll-proportion="0.65" vertical-offset="0" max-vertical-offset="720">
@@ -809,13 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/detalle.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="53" selection-start="466" selection-end="466" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="7092">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/web/regitro_socio_web.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="152" column="63" selection-start="7585" selection-end="7612" vertical-scroll-proportion="0.36796537" vertical-offset="2481" max-vertical-offset="6246">
@@ -827,7 +773,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="27" selection-start="825" selection-end="825" vertical-scroll-proportion="0.33097595" vertical-offset="0" max-vertical-offset="810">
           <folding>
-            <element signature="e#16#36#0" expanded="true" />
+            <element signature="e#16#36#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -867,13 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="416" column="65" selection-start="19419" selection-end="19419" vertical-scroll-proportion="0.083451204" vertical-offset="7213" max-vertical-offset="7920">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/web/resultado.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="66" selection-start="623" selection-end="623" vertical-scroll-proportion="0.49846154" vertical-offset="0" max-vertical-offset="2196">
@@ -895,13 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="28" selection-start="891" selection-end="891" vertical-scroll-proportion="0.5" vertical-offset="0" max-vertical-offset="720">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
@@ -916,37 +848,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="61" selection-start="1093" selection-end="1093" vertical-scroll-proportion="0.4" vertical-offset="324" max-vertical-offset="6246">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/editar_socio.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11430">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/administrador/edit_agente.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="157" column="41" selection-start="5139" selection-end="5139" vertical-scroll-proportion="0.33766234" vertical-offset="2592" max-vertical-offset="10998">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="202" column="43" selection-start="9390" selection-end="9390" vertical-scroll-proportion="0.5735294" vertical-offset="3246" max-vertical-offset="10566">
           <folding />
         </state>
       </provider>
@@ -965,26 +869,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/views.py">
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="690" column="54" selection-start="29988" selection-end="29988" vertical-scroll-proportion="0.0" vertical-offset="11368" max-vertical-offset="16038">
+        <state line="416" column="65" selection-start="19419" selection-end="19419" vertical-scroll-proportion="1.3802817" vertical-offset="6292" max-vertical-offset="7920">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/detalle_mensaje.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="54" selection-start="411" selection-end="411" vertical-scroll-proportion="0.077586204" vertical-offset="198" max-vertical-offset="3330">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/detalle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="53" selection-start="466" selection-end="466" vertical-scroll-proportion="-8.879941" vertical-offset="6335" max-vertical-offset="7092">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="207" column="44" selection-start="6862" selection-end="6863" vertical-scroll-proportion="5.455344" vertical-offset="0" max-vertical-offset="6768">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="446" column="0" selection-start="22986" selection-end="22986" vertical-scroll-proportion="0.15080526" vertical-offset="7925" max-vertical-offset="10566">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="41" selection-start="784" selection-end="784" vertical-scroll-proportion="0.42323652" vertical-offset="0" max-vertical-offset="723">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/administrador/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="702" column="44" selection-start="34736" selection-end="34736" vertical-scroll-proportion="-8.925926" vertical-offset="12395" max-vertical-offset="15210">
+        <state line="323" column="38" selection-start="12471" selection-end="12494" vertical-scroll-proportion="0.41434845" vertical-offset="5531" max-vertical-offset="15228">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="406" column="41" selection-start="19194" selection-end="19194" vertical-scroll-proportion="0.69014084" vertical-offset="6314" max-vertical-offset="15606">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/administracion/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="141" column="54" selection-start="4606" selection-end="4613" vertical-scroll-proportion="0.84647304" vertical-offset="1890" max-vertical-offset="5922">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/administrador/agregar_socio_espacio.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="619" column="48" selection-start="31424" selection-end="31439" vertical-scroll-proportion="0.43484625" vertical-offset="10845" max-vertical-offset="13986">
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
+        <state line="608" column="113" selection-start="30683" selection-end="30683" vertical-scroll-proportion="0.36163983" vertical-offset="10697" max-vertical-offset="14364">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/editar_socio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="517" column="116" selection-start="25241" selection-end="25241" vertical-scroll-proportion="0.52562225" vertical-offset="8947" max-vertical-offset="11430">
+          <folding />
         </state>
       </provider>
     </entry>

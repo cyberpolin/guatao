@@ -28,6 +28,18 @@ class cat_tipo_usuario(models.Model):
         verbose_name_plural = 'Catalogo de Tipos de Usuarios'
         unique_together = ['tipo']
 
+class cat_redes_sociales(models.Model):
+    nombre = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return u'%s' % self.nombre
+
+
+    class Meta:
+        ordering = ['nombre']
+        verbose_name = 'Catalogo de Redes Sociales'
+        verbose_name_plural = 'Catalogo de Redes Sociales'
+
 
 class cat_persona(models.Model):
     imagen = models.ImageField(upload_to='imagenes_usuarios', blank=True, null=True)
@@ -39,6 +51,8 @@ class cat_persona(models.Model):
     correo = models.EmailField(max_length=100)
     telefono = models.CharField(max_length=15)
     celular = models.CharField(max_length=15, blank=True, null=True)
+    red_social = models.ForeignKey(cat_redes_sociales, blank = True, null=True)
+    nombre_red = models.CharField(max_length=50, blank = True, null=True)
     tipo_usuario = models.ForeignKey(cat_tipo_usuario)
     usuario = models.ForeignKey(User)
     status = models.ForeignKey( cat_status )
@@ -125,7 +139,7 @@ class cat_direcciones(models.Model):
     latitud = models.CharField(max_length=300, null=True, blank=True)
 
     def __unicode__(self):
-        return '%s - %s - %s' % (self.localidad, self.colonia, self.calle)
+        return '%s - %s - %s' % (self.localidad.nombre, self.colonia, self.calle)
 
 
     class Meta:
@@ -201,38 +215,6 @@ class espacio(models.Model):
         permissions = (
             ('consulta_espacio', 'Consultar a los espacios'),
         )
-
-
-class cat_redes_sociales(models.Model):
-    nombre = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=300)
-    reglas = models.CharField(max_length=300)
-
-    def __unicode__(self):
-        return u'%s' % self.nombre
-
-
-    class Meta:
-        ordering = ['nombre']
-        verbose_name = 'Catalogo de Redes Sociales'
-        verbose_name_plural = 'Catalogo de Redes Sociales'
-
-
-class usr_redes_sociales(models.Model):
-    usuario = models.ForeignKey(cat_persona)
-    red_social = models.ForeignKey(cat_redes_sociales)
-    nombre_red = models.CharField(max_length=50)
-
-    def __unicode__(self):
-        return u'%s' % self.nombre_red
-
-
-    class Meta:
-        ordering = ['nombre_red']
-        verbose_name = 'Usuarios de Redes Sociales'
-        verbose_name_plural = 'Usuarios de Redes Sociales'
-        unique_together = ['nombre_red']
-
 
 class cat_imagenes(models.Model):
     imagen = models.ImageField(upload_to='imagenes_usuarios')  #investigar el uso de carpetas dinamicas
