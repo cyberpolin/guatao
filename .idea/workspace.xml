@@ -27,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="base_web.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
+      <file leaf-file-name="alta_espacio_socio.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/administrador/alta_espacio_socio.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="212" column="0" selection-start="10123" selection-end="10123" vertical-scroll-proportion="0.704246" vertical-offset="3335" max-vertical-offset="10602">
+            <state line="165" column="56" selection-start="5365" selection-end="5365" vertical-scroll-proportion="0.31625184" vertical-offset="2754" max-vertical-offset="8316">
               <folding />
             </state>
           </provider>
@@ -49,13 +49,11 @@
         <option value="$PROJECT_DIR$/templates/web/respaldo_INDEX.HTML" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/autocompletable/urls.py" />
         <option value="$PROJECT_DIR$/static/web/css/style.css" />
-        <option value="$PROJECT_DIR$/templates/administrador/alta_espacio_socio.html" />
         <option value="$PROJECT_DIR$/templates/web/prueba.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/autocompletable/views.py" />
         <option value="$PROJECT_DIR$/templates/no_found.html" />
         <option value="$PROJECT_DIR$/templates/mapa_preview.html" />
         <option value="$PROJECT_DIR$/templates/calificacion.html" />
-        <option value="$PROJECT_DIR$/templates/administrador/base.html" />
         <option value="$PROJECT_DIR$/templates/web/contactar_socio.html" />
         <option value="$PROJECT_DIR$/templates/404.html" />
         <option value="$PROJECT_DIR$/templates/web/espacios.html" />
@@ -84,11 +82,13 @@
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/admin.py" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/fixtures/initial_data.json" />
         <option value="$PROJECT_DIR$/templates/administrador/index.html" />
-        <option value="$PROJECT_DIR$/templates/administrador/agregar_socio_espacio.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/inTabasco/models.py" />
         <option value="$PROJECT_DIR$/templates/administrador/editar_socio.html" />
         <option value="$PROJECT_DIR$/inTabasco_/apps/administracion/views.py" />
         <option value="$PROJECT_DIR$/templates/web/base_web.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/agregar_socio_espacio.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/base.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/alta_espacio_socio.html" />
       </list>
     </option>
   </component>
@@ -704,13 +704,6 @@
         <state line="17" column="40" selection-start="484" selection-end="484" vertical-scroll-proportion="-1.1069365" vertical-offset="1072" max-vertical-offset="1872" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/alta_espacio_socio.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="0" selection-start="5135" selection-end="5135" vertical-scroll-proportion="0.02020202" vertical-offset="2812" max-vertical-offset="8226">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/mapa_preview.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1072" column="0" selection-start="46560" selection-end="46560" vertical-scroll-proportion="1.7128427" vertical-offset="18109" max-vertical-offset="19836" />
@@ -886,23 +879,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/detalle_mensaje.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="54" selection-start="411" selection-end="411" vertical-scroll-proportion="0.077586204" vertical-offset="198" max-vertical-offset="3330">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/web/detalle.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="53" selection-start="466" selection-end="466" vertical-scroll-proportion="-8.879941" vertical-offset="6335" max-vertical-offset="7092">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="44" selection-start="6862" selection-end="6863" vertical-scroll-proportion="5.455344" vertical-offset="0" max-vertical-offset="6768">
           <folding />
         </state>
       </provider>
@@ -935,13 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/agregar_socio_espacio.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="608" column="113" selection-start="30683" selection-end="30683" vertical-scroll-proportion="0.36163983" vertical-offset="10697" max-vertical-offset="14364">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/administrador/editar_socio.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="517" column="116" selection-start="25241" selection-end="25241" vertical-scroll-proportion="0.52562225" vertical-offset="8947" max-vertical-offset="11430">
@@ -959,6 +931,34 @@
     <entry file="file://$PROJECT_DIR$/templates/web/base_web.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="212" column="0" selection-start="10123" selection-end="10123" vertical-scroll-proportion="0.704246" vertical-offset="3335" max-vertical-offset="10602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/detalle_mensaje.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="54" selection-start="411" selection-end="411" vertical-scroll-proportion="0.077586204" vertical-offset="198" max-vertical-offset="3330">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/agregar_socio_espacio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="465" column="28" selection-start="19294" selection-end="19294" vertical-scroll-proportion="0.4670571" vertical-offset="8051" max-vertical-offset="14364">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="300" column="8" selection-start="10637" selection-end="10658" vertical-scroll-proportion="0.89458275" vertical-offset="4789" max-vertical-offset="6840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/alta_espacio_socio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="165" column="56" selection-start="5365" selection-end="5365" vertical-scroll-proportion="0.31625184" vertical-offset="2754" max-vertical-offset="8316">
           <folding />
         </state>
       </provider>

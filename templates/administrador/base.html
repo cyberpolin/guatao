@@ -193,7 +193,7 @@ function updateMarker(location) {
 </head>
 <body onload="initialize()">
 
-
+{% block menu_superior %}
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
@@ -228,10 +228,12 @@ function updateMarker(location) {
     </div>
   </div>
 </div>
+{% endblock menu_superior %}
 
 <div class="container-fluid">
   <div class="row-fluid">
-    
+
+  {% block menu_lateral %}
     <div class="span3" id="sidebar">
         <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
             <li class="{{principal}}">
@@ -258,11 +260,12 @@ function updateMarker(location) {
             
         </ul>
     </div>
+  {% endblock menu_lateral %}
 
 
 
       <div class="span9" id="content">
-                  
+         {% block dinero %}
           <div class="row-fluid">
               {% if messages %}
                 <div class="alert alert-success">
@@ -295,6 +298,7 @@ function updateMarker(location) {
               </div>
               {% endif %}
           </div>
+        {% endblock dinero %}
 
           <div id="myModalventahoy" class="modal hide">
             <div class="modal-header">
