@@ -6,13 +6,13 @@ from django.forms import ModelForm
 from django import forms
 class regitro_socio_web_form( ModelForm ):
 	red_social = forms.ModelChoiceField(required = False, label = "Red Social" , empty_label = "Seleccione la red social", queryset=cat_redes_sociales.objects.all())
-	usuario_red_social = forms.CharField(required = False, label = "Usuario de la Red Social", max_length = 50)
+	nombre_red = forms.CharField(required = False, label = "Usuario de la Red Social", max_length = 50)
 	tipo_usuario = forms.ModelChoiceField(queryset=cat_tipo_usuario.objects.all(), initial="3", widget=forms.HiddenInput())
 	fecha_nacimiento = forms.DateField(label = "Fecha de Nacimiento ", widget = forms.TextInput(attrs={'class':'datepicker'}))
 	imagen = forms.ImageField(label=('Foto'),required = False)
 	class Meta:
 		model = cat_persona
-		fields = ('imagen','nombre','apellido_paterno','apellido_materno','fecha_nacimiento','correo','telefono','celular','tipo_usuario')
+		fields = ('imagen','nombre','apellido_paterno','apellido_materno','fecha_nacimiento','correo','telefono','celular','red_social','nombre_red','tipo_usuario')
 
 	def clean(self):
 		return self.cleaned_data

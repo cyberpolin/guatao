@@ -243,18 +243,10 @@ def regitro_socio_web( request ):
 			grupo = Group.objects.get(name='Socio')
 			grupo.user_set.add(usuario)
 			socio = formulario.save( commit = False )
+			socio.status_id = 1
 			socio.usuario = usuario
 			socio.save()
 
-			red = request.POST.get('red_social')
-			usuario_red_social = request.POST.get('usuario_red_social')
-			if red != '' and usuario_red_social != '':
-				red_social_ = cat_redes_sociales.objects.get(id = red)
-				usr_red_social = usr_redes_sociales( )
-				usr_red_social.usuario = socio
-				usr_red_social.red_social = red_social_
-				usr_red_social.nombre_red = usuario_red_social
-				usr_red_social.save()
 			msj = 'EL REGISTRO DEL SOCIO SE REALIZO CORRECTAMENTE'
 			messages.success(request, msj)
 			return HttpResponseRedirect('/regitro_socio_web/')

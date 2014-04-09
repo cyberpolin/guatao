@@ -101,20 +101,44 @@
                     {{formulario.telefono.errors}}
                 </dd>
                 <br><br>
-                <dd class="telefono">
-                    <dt class="celular">Celular</dt>
+
+                <dd class="correo">
+                    <dt class="correo">Red Social</dt>
                     <p class="comment-form-author">
-                        <label for="celular">
+                        <label for="correo">
                             <span class="required">
                                 *
                             </span>
                         </label>
-                        {{formulario.celular}}
+                        {{formulario.red_social}}
+                    </p>
+                    {{formulario.red_social.errors}}
+                    <dt class="telefono"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</dt>
+                    <p class="comment-form-author">
+                        <label for="telefono">
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+                        {{formulario.nombre_red}}
+                    </p>
+                    {{formulario.nombre_red.errors}}
+                </dd>
+                <br><br>
+                <dd class="telefono">
+                    <dt class="celular">Celular</dt>
+                    <p class="comment-form-author">
+                    <label for="celular">
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+                    {{formulario.celular}}
                     </p>
                     <dt class=""></dt>
                     {{formulario.celular.errors}}
                     <p class="form-submit">
-                        <input name="submit" class="contact-owner button" type="submit" id="submit" value="Guardar" />
+                    <input name="submit" class="contact-owner button" type="submit" id="submit" value="Guardar" />
                     </p>
                     {{formulario.tipo_usuario}}
                 </dd>
