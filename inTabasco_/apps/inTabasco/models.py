@@ -201,6 +201,7 @@ class espacio(models.Model):
     socio_vip = models.BooleanField( default=False )
     dias_laborales = models.CharField( max_length=500 )
     horario_atencion = models.CharField( max_length=100 )
+    producto = models.ForeignKey(cat_productos)
     num_visitas = models.IntegerField(default=0)
     usuario = models.ForeignKey(User)
     status = models.ForeignKey(cat_status)
@@ -232,9 +233,8 @@ class cat_imagenes(models.Model):
 class venta(models.Model):
     agente = models.ForeignKey(User)
     fecha_venta = models.DateField(default=datetime.now())
-    propietario = models.ForeignKey(cat_persona)
     espacio = models.ForeignKey(espacio)
-    producto = models.ForeignKey(cat_productos)
+
 
     def __unicode__(self):
         return u'%s' % self.espacio

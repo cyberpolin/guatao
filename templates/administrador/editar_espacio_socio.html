@@ -1,0 +1,557 @@
+{% extends "administrador/base.html" %}
+{% load staticfiles %}
+{% block title %}
+Alta Espacio - Socio
+{% endblock title %}
+
+<!--################### M A P A ##########################-->
+    {% block mapa %}
+
+     <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!--http://telegolf.org/pruebas/mapas/mapas_marcador.php#B#-->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    html { height: 100% }
+    body { height: 100%; margin: 0; padding: 0 }
+    #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key=
+AIzaSyCtc_RTXcpowT-00JCY8C9jihXnvEPCNcw&sensor=true">
+    </script>
+    <script type="text/javascript">
+    function initialize() {
+        latLng = new google.maps.LatLng({{edi_espacio.direccion.latitud}}, {{edi_espacio.direccion.longitud}})
+
+        var mapOptions = {
+            center: latLng,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+
+        // CREACION DEL MARCADOR
+    marker = new google.maps.Marker({
+    position: latLng,
+    title: 'Arrastra el marcador si quieres moverlo',
+    map: map,
+    draggable: true
+  });
+
+google.maps.event.addListener(map, 'click', function(event) {
+     updateMarker(event.latLng);
+   });
+
+geocodePosition(latLng);
+
+ // Permito los eventos drag/drop sobre el marcador
+  google.maps.event.addListener(marker, 'dragstart', function() {
+    updateMarkerAddress('Arrastrando...');
+  });
+
+  google.maps.event.addListener(marker, 'drag', function() {
+    updateMarkerStatus('Arrastrando...');
+    updateMarkerPosition(marker.getPosition());
+  });
+
+  google.maps.event.addListener(marker, 'dragend', function() {
+    updateMarkerStatus('Arrastre finalizado');
+    geocodePosition(marker.getPosition());
+  });
+
+    }
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+// ESTA FUNCION OBTIENE LA DIRECCION A PARTIR DE LAS COORDENADAS POS
+function geocodePosition(pos) {
+  geocoder.geocode({
+    latLng: pos
+  }, function(responses) {
+    if (responses && responses.length > 0) {
+      updateMarkerAddress(responses[0].formatted_address);
+    } else {
+      updateMarkerAddress('No puedo encontrar esta direccion.');
+    }
+  });
+}
+
+// OBTIENE LA DIRECCION A PARTIR DEL LAT y LON DEL FORMULARIO
+function codeLatLon() {
+      str= document.form_mapa.longitud.value+" , "+document.form_mapa.latitud.value;
+      latLng2 = new google.maps.LatLng(document.form_mapa.latitud.value ,document.form_mapa.longitud.value);
+      marker.setPosition(latLng2);
+      map.setCenter(latLng2);
+      geocodePosition (latLng2);
+      // document.form_mapa.direccion.value = str+" OK";
+}
+
+// RECUPERO LOS DATOS LON LAT Y DIRECCION Y LOS PONGO EN EL FORMULARIO
+function updateMarkerPosition (latLng) {
+  document.form_mapa.longitud.value =latLng.lng();
+  document.form_mapa.latitud.value = latLng.lat();
+}
+// ACTUALIZO LA POSICION DEL MARCADOR
+function updateMarker(location) {
+        marker.setPosition(location);
+        updateMarkerPosition(location);
+        geocodePosition(location);
+      }
+
+    </script>
+
+{% endblock mapa %}
+
+{% block extrahead %}
+
+        <link href="{% static "administrador/vendors/easypiechart/jquery.easy-pie-chart.css" %}" rel="stylesheet" media="screen">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="{% static "administrador/vendors/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+        <script src="{% static "administrador/validate/jquery-1.10.2.min.js" %}"></script>
+
+
+<!--[if IE 7]>
+            <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
+        <![endif]-->
+
+        <link href="{% static "administrador/wizard/css/styles.css" %}" rel="stylesheet">
+        <!--============j avascript===========-->
+        <script src="{% static "administrador/wizard/js/jquery.validate.js" %}"></script>
+        <script src="{% static "administrador/wizard/js/stepy.jquery.js" %}"></script>
+
+ <script type="text/javascript">
+        $().ready(function(){
+            $('#formulario1').validate({
+            rules : {
+
+              nombre_establecimiento : {
+                required : true
+              },
+              descripcion_corta : {
+                required : true
+              },
+              descripcion_larga : {
+                required : true
+              },
+              localidad : {
+                required : true
+              },
+              colonia : {
+                required : true
+              },
+              calle : {
+                required : true
+              },
+              numero :{
+                required : true
+              },
+              codigo_postal : {
+                required : true
+              },
+              categorias : {
+                  required : true
+              },
+              producto : {
+                required : true
+              },
+              dias_laborales : {
+                required : true
+              },
+              horario_atencion : {
+                required : true
+              }
+            },
+            messages : {
+              nombre_establecimiento : {
+                required : "El nombre del establecimiento es requerido!"
+              },
+              descripcion_corta : {
+                required : "La descripción corta es requerida!"
+              },
+              descripcion_larga : {
+                required : "La descripción larga es requerida!"
+              },
+              localidad : {
+                required : "La localidad es requira!"
+              },
+              colonia : {
+                required : "La colonia es requerida!"
+              },
+              calle : {
+                required : "La calle es requerida!"
+              },
+              numero : {
+                required : "El numero es requiredo!"
+              },
+              codigo_postal : {
+                required : "El codigo postal es requerido!"
+              },
+              categorias : {
+                required : "Elija por lo menos una categoria!"
+              },
+              producto : {
+                required : "Elija un producto!"
+              },
+              dias_laborales : {
+                required : "Escriba los dias que laboran en la empresa"
+              },
+              horario_atencion : {
+                required : "Escriba el horario de atencion en la empresa"
+              }
+
+
+            },
+          });
+
+          $('#formulario2').validate({
+            rules :{
+              localidad_direccion : {
+                    required : true //para validar campo vacio
+                  }
+
+                },
+
+                messages : {
+                  localidad_direccion : {
+                    required : "La localidad es requerida!",
+
+                  }
+
+                },
+                //TEMINA VALIDACIONES
+
+                //VENTANA MODAL PARA GUARDAR LOCALIDADES VIA AJAX
+                submitHandler: function(form) {
+                  $.ajax({
+                   type: "POST",
+                   url: "/agregar_localidad/",
+               data: $("#formulario2").serialize(), // serializes the form's elements.
+               success: function(response)
+               {
+                if(response.estatus=="True"){
+                  document.getElementById("formulario2").reset();
+                  $("#myModal").modal("hide");
+                  document.getElementById('id_localidad').options[0]=new Option(response.nombre,response.id_localidad,"0");
+                  $('#id_localidad_chzn').find('span').html(response.nombre);
+                  location.reload();
+
+                }
+              }
+            });
+                }
+              });
+          });
+        </script>
+
+
+{% endblock extrahead %}
+
+{% block menu_superior %}
+{% endblock menu_superior %}
+{% block menu_lateral %}
+{% endblock menu_lateral %}
+{% block dinero %}
+{% endblock dinero %}
+{% block maincontent %}
+
+ <div class="span12" id="content" style="margin-left: 20%;padding-top: 0px;">
+<div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Agregar espacio a {{socio.nombre}} {{socio.apellido_paterno}}</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                                    <form id="formulario1" class="form-horizontal" method="POST" name="form_mapa" enctype="multipart/form-data">
+                                    <input type="hidden" id="espacio" name="espacio" value="espacio">
+                                    {% csrf_token %}
+                                    {{ formulario_espacio.non_field_errors }}
+                                    <fieldset>
+                                    	<legend>
+                                    		Mapa del Lugar
+                                    	</legend>
+                                    	<div class="control-group">
+                                    		<div id="map_canvas" style="width:850px!important; height:250px!important;"></div>
+
+                                    	</div>
+                                    </fieldset>
+                                      <fieldset>
+                                        <legend>Datos del Espacio</legend>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.imagen.label_tag}} </label>
+                                          <div class="controls">
+                                            {{formulario_espacio.imagen}}
+                                          </div>
+                                          {{formulario_espacio.imagen.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.rfc.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.rfc}}
+                                          </div>
+                                          {{formulario_espacio.rfc.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.nombre_establecimiento.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.nombre_establecimiento}}
+                                          </div>
+                                          {{formulario_espacio.nombre_establecimiento.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.descripcion_corta.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.descripcion_corta}}
+                                          </div>
+                                          {{formulario_espacio.descripcion_corta.errors}}
+                                        </div>
+
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.descripcion_larga.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.descripcion_larga}}
+                                          </div>
+                                          {{formulario_espacio.descripcion_larga.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.categorias.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.categorias}}
+                                          </div>
+                                          {{formulario_espacio.categorias.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.socio_vip.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.socio_vip}}
+                                          </div>
+                                          {{formulario_espacio.socio_vip.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.localidad.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.localidad}}<a href="#myModal" data-toggle="modal"><i class="icon-plus"></i></a>
+                                          </div>
+                                          {{formulario_espacio.localidad.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.colonia.label_tag}} </label>
+                                          <div class="controls">
+                                            {{formulario_espacio.colonia}}
+                                          </div>
+                                          {{formulario_espacio.colonia.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.calle.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.calle}}
+                                          </div>
+                                          {{formulario_espacio.calle.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.numero.label_tag}} </label>
+                                          <div class="controls">
+                                            {{formulario_espacio.numero}}
+                                          </div>
+                                          {{formulario_espacio.numero.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.codigo_postal.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.codigo_postal}}
+                                          </div>
+                                          {{formulario_espacio.codigo_postal.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.dias_laborales.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.dias_laborales}}
+                                          </div>
+                                          {{formulario_espacio.dias_laborales.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.horario_atencion.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.horario_atencion}}
+                                          </div>
+                                          {{formulario_espacio.horario_atencion.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <!--<label class="control-label" for="typeahead">{{formulario_espacio.latitud.label_tag}}</label>-->
+                                          <div class="controls">
+                                            {{formulario_espacio.latitud}}
+                                          </div>
+                                          {{formulario_espacio.latitud.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <!--<label class="control-label" for="typeahead">{{formulario_espacio.longitud.label_tag}}</label>-->
+                                          <div class="controls">
+                                            {{formulario_espacio.longitud}}
+                                          </div>
+                                          {{formulario_espacio.longitud.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.url.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.url}}
+                                          </div>
+                                          {{formulario_espacio.url.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">{{formulario_espacio.producto.label_tag}}</label>
+                                          <div class="controls">
+                                            {{formulario_espacio.producto}}
+                                          </div>
+                                          {{formulario_espacio.producto.errors}}
+                                        </div>
+
+                                        <div class="control-group">
+                                          <!--<label class="control-label" for="typeahead">{{formulario_espacio.status.label_tag}}</label>-->
+                                          <div class="controls">
+                                            {{formulario_espacio.status}}
+                                          </div>
+                                          {{formulario_espacio.status.errors}}
+                                        </div>
+
+                                        <div class="form-actions">
+                                          <button type="submit" class="btn btn-primary">Guardar</button>
+                                          <button onclick = "window.opener.location.href = window.opener.location.href; window.close();" type="button" class="btn">Cancel</button>
+                                        </div>
+                                      </fieldset>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                </div>
+
+                <div id="myModal" class="modal hide">
+                      <div class="modal-header">
+                        <button data-dismiss="modal" class="close" type="button">&times;</button>
+                        <h3>Agregar Localidad</h3>
+                      </div>
+                      <div class="modal-body">
+                        <form id="formulario2"  method="POST" action="">
+                          <input type="hidden" id="local" name="local" value="localidad">
+                          {% csrf_token%}
+                          <fieldset title="">
+                            <div class="control-group">
+                              <label class="control-label">Pertenece A</label>
+                              <div class="controls">
+                                <select id="padre" name="padre">
+                                  <option value="0">Elija una Opcion</option>
+                                  {% for p in localidades %}
+                                  <option value="{{p.id}}">{{p.nombre}}</option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label">Localidad</label>
+                              <div class="controls">
+                               <input class="input-xlarge focused" id="localidad_direccion" name="localidad_direccion" type="text">
+                                          </div>
+                             </div>
+
+                           </div>
+                         </fieldset>
+                         <input type="submit" id="guardar" class="btn btn-primary" value="Enviar" />
+                       </form>
+                     </div>
+                   </div>
+
+
+
+
+
+
+
+
+
+
+	 {% endblock maincontent %}
+
+	 {% block extralibs %}
+
+
+		<link href="{% static "administrador/vendors/datepicker.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "administrador/vendors/uniform.default.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "administrador/vendors/chosen.min.css" %}" rel="stylesheet" media="screen">
+
+        <link href="{% static "administrador/vendors/wysiwyg/bootstrap-wysihtml5.css" %}" rel="stylesheet" media="screen">
+
+        <!--<script src="{% static "administrador/vendors/jquery-1.9.1.js" %}"></script>-->
+        <script src="{% static "administrador/bootstrap/js/bootstrap.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/jquery.uniform.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/chosen.jquery.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/bootstrap-datepicker.js" %}"></script>
+
+        <script src="{% static "administrador/vendors/wysiwyg/wysihtml5-0.3.0.js" %}"></script>
+        <script src="{% static "administrador/vendors/wysiwyg/bootstrap-wysihtml5.js" %}"></script>
+
+        <script src="{% static "administrador/vendors/wizard/jquery.bootstrap.wizard.min.js" %}"></script>
+
+
+        <script src="{% static "administrador/assets/scripts.js" %}"></script>
+        <!--Aqui empiza el nuevo-->
+
+        <script>
+        $(function() {
+            $(".datepicker").datepicker();
+            $(".uniform_on").uniform();
+            $(".chzn-select").chosen();
+            $('.textarea').wysihtml5();
+
+            $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+                var $total = navigation.find('li').length;
+                var $current = index+1;
+                var $percent = ($current/$total) * 100;
+                $('#rootwizard').find('.bar').css({width:$percent+'%'});
+                // If it's the last tab then hide the last button and show the finish instead
+                if($current >= $total) {
+                    $('#rootwizard').find('.pager .next').hide();
+                    $('#rootwizard').find('.pager .finish').show();
+                    $('#rootwizard').find('.pager .finish').removeClass('disabled');
+                } else {
+                    $('#rootwizard').find('.pager .next').show();
+                    $('#rootwizard').find('.pager .finish').hide();
+                }
+            }});
+            $('#rootwizard .finish').click(function() {
+                alert('Finished!, Starting over!');
+                $('#rootwizard').find("a[href*='tab1']").trigger('click');
+            });
+        });
+        </script>
+
+    {% endblock extralibs %}

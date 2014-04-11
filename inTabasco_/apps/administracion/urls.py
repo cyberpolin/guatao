@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	url(r'^detalle_socio/(?P<id_socio>\d+)', detalle_socio),
 	
 	url(r'^alta_espacio_socio/(?P<id_socio>\d+)', alta_espacio_socio),
+    url(r'^editar_espacio_socio/(?P<id_espacio>\d+)', editar_espacio_socio),
 	url(r'^editar_agente/(?P<id_agente>\d+) and (?P<id_persona>\d+) and (?P<id_direccion>\d+)/', editar_agente),
 
 

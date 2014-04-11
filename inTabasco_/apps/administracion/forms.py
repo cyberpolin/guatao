@@ -43,7 +43,7 @@ class Registrar_Persona_Socio( forms.Form):
     tipo_usuario = forms.ModelChoiceField(queryset=cat_tipo_usuario.objects.all(), initial="3", widget=forms.HiddenInput())
 
 class Registrar_Espacio_Socio( forms.Form):
-    imagen = forms.ImageField(label = "Imagen del Establecimiento",widget = forms.FileInput(attrs={'class':'input-file uniform_on'}))
+    imagen = forms.ImageField(label = "Imagen del Establecimiento", required = False)
     rfc = forms.CharField(label = "RFC del Establecimiento", max_length = "20", required = False)
     nombre_establecimiento = forms.CharField(label = "Nombre del Establecimiento ", max_length = 200)
 
@@ -59,8 +59,8 @@ class Registrar_Espacio_Socio( forms.Form):
     codigo_postal = forms.CharField(label="Codigo Postal", max_length = "10")
     dias_laborales = forms.CharField(label="Dias de Atencion", max_length = "500")
     horario_atencion = forms.CharField(label="Horario de Atencion", max_length = "100")
-    latitud = forms.CharField(initial="18.000264246324", label="Latitud", max_length = "300")
-    longitud = forms.CharField(initial="-92.94361710548401", label="Longitud", max_length = "300")
+    latitud = forms.CharField(initial="18.000264246324", label="Latitud", max_length = "300", widget = forms.HiddenInput())
+    longitud = forms.CharField(initial="-92.94361710548401", label="Longitud", max_length = "300", widget = forms.HiddenInput())
 
     url = forms.URLField(label ='Pagina Web', max_length = 150, required = False)
     producto = forms.ModelChoiceField(  empty_label = "Seleccione el producto", queryset=cat_productos.objects.all(), widget = forms.Select(attrs={'class':'chzn-select'}))
