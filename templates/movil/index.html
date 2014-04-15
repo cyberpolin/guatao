@@ -3,12 +3,12 @@
     <div class="ventana">
         <div class="ventanaHeader">
         ¿Cuanto quieres ganar hoy?
-            <i onclick="window.location.href = '{% url 'inTabasco_.apps.movil.views.nuevo_socio' 0 %}';" class="right fa fa-plus fa-2x"></i>
+            <a href="{% url 'inTabasco_.apps.movil.views.nuevo_socio' 0 %}" class="right fa fa-plus fa-2x"></a>
         </div>
         <div class="ventanaBody">
             {% if socios %}
                 {% for socio in socios %}
-                    <div class="socio" onclick="window.location.href = '{% url 'inTabasco_.apps.movil.views.lista_espacios' socio.pk %}';"><img src="/media/{{ socio.imagen }}" width="50" height="50" /><span> {{ socio.nombre }} {{ socio.apellido_paterno }} {{ socio.apellido_materno }}</span>
+                    <div class="socio" onclick="window.location.href = '{% url "inTabasco_.apps.movil.views.lista_espacios" socio.pk %}';"><img src="/media/{{ socio.imagen }}" width="50" height="50" /><span> {{ socio.nombre }} {{ socio.apellido_paterno }} {{ socio.apellido_materno }}</span>
                         <a href = "{% url 'inTabasco_.apps.movil.views.nuevo_socio' socio.pk %}" class="right fa fa-plus-circle fa-3x"></a>
                         <a href="{% url 'inTabasco_.apps.movil.views.reset_pasword' socio.pk %}" class="right fa fa-user-md fa-3x"></a>
                     </div>
