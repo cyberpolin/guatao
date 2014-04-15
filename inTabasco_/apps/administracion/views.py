@@ -462,6 +462,7 @@ def alta_espacio_socio(request, id_socio):
             descripcion_larga = formulario.cleaned_data['descripcion_larga']
             url = formulario.cleaned_data['url']
             socio_vip = formulario.cleaned_data['socio_vip']
+            producto = formulario.cleaned_data['producto']
 
             status = formulario.cleaned_data['status']
 
@@ -478,15 +479,14 @@ def alta_espacio_socio(request, id_socio):
                                     dias_laborales = dias_laborales,
                                     horario_atencion = horario_atencion,
                                     usuario = request.user,
-                                    status = status
+                                    status = status,
+                                    producto = producto
                                     )
             espacio_socio.save()
             categorias = request.POST.getlist( 'categorias' )
             for p in categorias:
                 espacio_socio.categorias.add(p)
                 espacio_socio.save()
-
-            categorias = request.POST.getlist( 'categorias' )
 
                         #Agrega la imagen del negocio ala tabla Cat_imagenes#
             imagen = formulario.cleaned_data['imagen']
@@ -495,14 +495,10 @@ def alta_espacio_socio(request, id_socio):
             imagen_espacio.save()
 
             #Se guarda la tabla de venta#
-            producto = request.POST.get('producto')
-            consulta_producto = cat_productos.objects.all().get(id = producto)
-
             ventas = venta(agente = request.user,
                             fecha_venta = datetime.now(),
-                            propietario = persona,
                             espacio = espacio_socio,
-                            producto = consulta_producto
+
                             )
             ventas.save()
 
@@ -520,6 +516,118 @@ def alta_espacio_socio(request, id_socio):
 
     contexto = {'localidades':localidades,'socio':socio,'formulario_espacio':formulario}
     return render_to_response('administrador/alta_espacio_socio.html', contexto, context_instance = RequestContext(request))
+
+
+@login_required(login_url='/login_')
+@permission_required('inTabasco.add_espacio', raise_exception=True)
+def editar_espacio_socio(request, id_espacio):
+
+
+    imagen_espacio = cat_imagenes.objects.get( espacio = id_espacio )
+    edi_espacio = espacio.objects.get( pk = id_espacio )
+    direccion = cat_direcciones.objects.get( pk = edi_espacio.direccion.id )
+    #return HttpResponse(imagen_espacio.imagen)
+    if request.method == 'GET':
+        formulario = Registrar_Espacio_Socio( initial = {
+                                                        'imagen':imagen_espacio.imagen,
+                                                        'rfc':edi_espacio.rfc,
+                                                        'nombre_establecimiento':edi_espacio.nombre,
+                                                        'descripcion_corta':edi_espacio.descripcion_corta,
+                                                        'descripcion_larga':edi_espacio.descripcion_larga,
+                                                        'categorias':edi_espacio.categorias.all(),
+                                                        'socio_vip':edi_espacio.socio_vip,
+                                                        'localidad':direccion.localidad,
+                                                        'colonia':direccion.colonia,
+                                                        'calle':direccion.calle,
+                                                        'numero':direccion.numero,
+                                                        'codigo_postal':direccion.codigo_postal,
+                                                        'latitud':direccion.latitud,
+                                                        'longitud':direccion.longitud,
+                                                        'dias_laborales':edi_espacio.dias_laborales,
+                                                        'horario_atencion':edi_espacio.horario_atencion,
+                                                        'status':edi_espacio.status,
+                                                        'url':edi_espacio.url,
+                                                        'producto':edi_espacio.producto,
+                                                        })
+    elif 'espacio' in request.POST:
+
+        formulario = Registrar_Espacio_Socio(request.POST, request.FILES)
+
+        if formulario.is_valid():
+                        #Agrega Direccion#
+            localidad = formulario.cleaned_data['localidad']
+            colonia = formulario.cleaned_data['colonia']
+            calle = formulario.cleaned_data['calle']
+            numero = formulario.cleaned_data['numero']
+            codigo_postal = formulario.cleaned_data['codigo_postal']
+            dias_laborales = formulario.cleaned_data['dias_laborales']
+            horario_atencion = formulario.cleaned_data['horario_atencion']
+            latitud = formulario.cleaned_data['latitud']
+            longitud = formulario.cleaned_data['longitud']
+
+
+            direccion.localidad = localidad
+            direccion.colonia = colonia
+            direccion.calle = calle
+            direccion.numero = numero
+            direccion.codigo_postal = codigo_postal
+            direccion.latitud = latitud
+            direccion.longitud = longitud
+
+            direccion.save()
+
+            #Agregar datos a la tabla espacio#
+            rfc = formulario.cleaned_data['rfc']
+            nombre_establecimiento = formulario.cleaned_data['nombre_establecimiento']
+            descripcion_corta = formulario.cleaned_data['descripcion_corta']
+            descripcion_larga = formulario.cleaned_data['descripcion_larga']
+            url = formulario.cleaned_data['url']
+            socio_vip = formulario.cleaned_data['socio_vip']
+
+
+            edi_espacio.rfc = rfc
+            edi_espacio.nombre = nombre_establecimiento
+            edi_espacio.descripcion_corta = descripcion_corta
+            edi_espacio.descripcion_larga = descripcion_larga
+            edi_espacio.url = url
+            edi_espacio.socio_vip = socio_vip
+            edi_espacio.dias_laborales = dias_laborales
+            edi_espacio.horario_atencion = horario_atencion
+            edi_espacio.save()
+
+
+            categorias = edi_espacio.categorias.all()
+            for categoria in categorias:
+                edi_espacio.categorias.remove(categoria.id)
+
+            categorias = request.POST.getlist( 'categorias' )
+            for p in categorias:
+                edi_espacio.categorias.add(p)
+                edi_espacio.save()
+
+
+
+                        #Agrega la imagen del negocio ala tabla Cat_imagenes#
+            imagen = formulario.cleaned_data['imagen']
+            if imagen:
+                imagen_espacio.imagen = imagen
+                imagen_espacio.save()
+
+
+            msj = 'EL espacio se guardo correctamente'
+            messages.success(request, msj)
+            return HttpResponse('Editado correctamente')
+
+
+        else:
+            msj = 'Error'
+            messages.success(request, msj)
+
+    else:
+        formulario = Registrar_Espacio_Socio()
+
+    contexto = {'formulario_espacio':formulario,'edi_espacio':edi_espacio}
+    return render_to_response('administrador/editar_espacio_socio.html', contexto, context_instance = RequestContext(request))
 
 
 @csrf_exempt

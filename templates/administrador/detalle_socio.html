@@ -21,6 +21,27 @@ function activar(id, socio_id){
       }
 </script>
 
+        <script src="{% static "administrador/validate/jquery-1.10.2.min.js" %}"></script>
+
+        <script type="text/javascript" src="{% static "web/fancy/source/jquery.fancybox.js" %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static "web/fancy/source/jquery.fancybox.css" %}" media="screen" />
+
+        <script>
+            $(document).ready(function() {
+                $(".various").fancybox({
+                    maxWidth	: 1000,
+                    maxHeight	: 800,
+                    fitToView	: false,
+                    width		: '80%',
+                    height		: '100%',
+                    autoSize	: false,
+                    closeClick	: false,
+                    openEffect	: 'none',
+                    closeEffect	: 'none'
+                });
+            });
+        </script>
+
 {% endblock extrahead %}
 
 {% block maincontent %}
@@ -46,8 +67,8 @@ function activar(id, socio_id){
                                             <th>Direccion<th>
                                             <th>Agente de Ventas</th>
                                            	<th>Status</th>
-                                            
-                                            <th>Borrar</th>
+                                            <th>Editar</th>
+                                            <th>Desactivar</th>
                                             <th>Activar<th>
                                             
                                         </tr>
@@ -68,7 +89,8 @@ function activar(id, socio_id){
                                             <td></td>
                                             <td>{{p.usuario}}</td>
                                             <td>{% if p.status.status == "A" %} <span class="label label-success">Activo</span> {% elif p.status.status == "I" %} <span class="label label-important">Desactivo</span> {% endif %}</td>
-                                            
+
+                                            <td><a href="/editar_espacio_socio/{{p.id}}" class="register various"  data-fancybox-type="iframe"><i class="icon-edit"></i></a></td>
                                            
                                             <td>{% if p.status.status == "A" %}<a onclick="borrar({{p.id}}, {{socio.id}})" href="#"><i class="icon-remove"></i></a>{% endif %}</td>
                                             <td>{% if p.status.status == "I" %}<a onclick="activar({{p.id}}, {{socio.id}})" href="#"><i class="icon-ok"></i></a>{% endif %}</td>

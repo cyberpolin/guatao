@@ -1,0 +1,8 @@
+Hacer un formulario para el usuaerio, y no tener que editar y agregar en 2 tiempos 	(movil/views.py,
+											administracion/views.py)
+Hacer funcion o clase que regrese la lista de socios filtrados por agente		(administracion/views.py,
+											movil/views.py)
+Libreria para redimesionar imagenes de acuerdo a los tamaños requeridos.
+Enviar correo de cambio de password en HTML
+prueva
+

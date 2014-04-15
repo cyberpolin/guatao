@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicia Sesión</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <link rel='stylesheet' href='{% static "movil/style.css"%}' type='text/css' media='all' />
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='{% static "movil/font-awesome.min.css"%}' type='text/css' media='all' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+        //---------------------
+
+$(document).ready(function(){
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+
+  });
+}
+}
+    $('#id_latitud').val(lat);
+    $('#id_longitud').val(lng);
+    $( ".upload" ).wrap( "<div class='upload-div'></div>" );
+    $('input').each(function(){
+        index = $('.upload').get();
+        label = $('label').index(index);
+        $('.upload-div').index(index).after(label);
+    });
+});
+
+</script>
+</head>
+<body>
+    <header>
+        <a href="{% url 'inTabasco_.apps.movil.views.index' %}"><img src="{% static 'web/img/logo.png' %}"></a>
+    </header>
+
+    {% block contenido %}{% endblock %}
+</body>
+</html>
