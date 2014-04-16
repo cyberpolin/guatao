@@ -10,7 +10,7 @@
         <title>Guatao.com.mx .:. El que busca encuentra...</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
         {% block staticos %}
         <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static "web/css/normalize.min.css"%}">
@@ -95,7 +95,7 @@
 <header id="branding" role="banner">
     <div class="defaultContentWidth clearfix">
         <div id="logo" class="left">
-                <a class="trademark" href="http://preview.ait-themes.com/directory/wp1/">
+                <a class="trademark" href="{% url 'inTabasco_.apps.inTabasco.urls.index' %}">
                     <img src="{% static "web/img/logo.png"%}" alt="logo" />
                 </a>
         </div>

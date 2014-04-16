@@ -348,7 +348,7 @@ function updateMarker(location) {
                                         <div class="control-group">
                                           <label class="control-label" for="typeahead">{{formulario_espacio.localidad.label_tag}}</label>
                                           <div class="controls">
-                                            {{formulario_espacio.localidad}}<!--<a href="#myModal" data-toggle="modal"><i class="icon-plus"></i></a>-->
+                                            {{formulario_espacio.localidad}}<a href="#myModal" data-toggle="modal"><i class="icon-plus"></i></a>
                                           </div>
                                           {{formulario_espacio.localidad.errors}}
                                         </div>
@@ -443,6 +443,7 @@ function updateMarker(location) {
 
                                         <div class="form-actions">
                                           <button type="submit" class="btn btn-primary">Guardar</button>
+                                          <button onclick = "window.opener.location.href = window.opener.location.href; window.close();" type="button" class="btn">Cancel</button>
                                         </div>
                                       </fieldset>
                                     </form>
@@ -553,8 +554,11 @@ function updateMarker(location) {
         });
         </script>
 
+<<<<<<< HEAD
     <script src="{% static "administrador/select_multiple/select2.js" %}"></script>
     <link rel="stylesheet" href="{% static "administrador/select_multiple/select2.css" %}" media="screen">
     <script src="{% static "administrador/select_multiple/demo.form.js" %}"></script>
 
+=======
+>>>>>>> refs/remotes/origin/master
     {% endblock extralibs %}

@@ -1,0 +1,19 @@
+{% extends "movil/base.html" %}
+{% block contenido %}
+    <div class="ventana">
+        <div class="ventanaHeader">
+        Debes Logearte antes de Vender!
+        </div>
+        <div class="ventanaBody">
+            <form action="{% url 'inTabasco_.apps.movil.views.loginView' %}" method="POST">
+                {% csrf_token %}
+                {% if messages %}
+                 <p>mensajes</p>
+                {% endif %}
+                <input type="text" name="username" placeholder="Usuario">
+                <input type="password" name="password" placeholder="Contraseña">
+                <button type="submit">A Vender !</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

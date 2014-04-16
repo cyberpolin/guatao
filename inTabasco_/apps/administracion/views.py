@@ -518,7 +518,7 @@ def alta_espacio_socio(request, id_socio):
 
 
 @login_required(login_url='/login_')
-#@permission_required('inTabasco.add_espacio', raise_exception=True)
+@permission_required('inTabasco.add_espacio', raise_exception=True)
 def editar_espacio_socio(request, id_espacio):
 
 
