@@ -3,12 +3,15 @@
     <div class="ventana">
         <div class="ventanaHeader">
         ¿Cuanto quieres ganar hoy?
-            <i onclick="window.location.href = '{% url 'inTabasco_.apps.movil.views.nuevo_socio' 0 %}';" class="right fa fa-plus fa-2x"></i>
+            <i onclick="window.location.href = '{% url 'inTabasco_.apps.movil.views.nuevo_socio'    %}';" class="right fa fa-plus fa-2x"></i>
         </div>
         <div class="ventanaBody">
             <form id="formulario1" class="form-horizontal" method="POST" name="form_mapa" enctype="multipart/form-data">
                 <input type="hidden" id="espacio" name="espacio" value="espacio">
                 {% csrf_token %}
+                {{ formulario_socio.non_field_errors }}
+                {{ formulario_persona_espacio.errors }}
+                {{ formulario_espacio_socio.errors }}
                 {{ formulario_socio }}
                 {{ formulario_persona_espacio_socio }}
                 {{ formulario_espacio_socio }}

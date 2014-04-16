@@ -10,21 +10,18 @@
     <link rel='stylesheet' href='{% static "movil/font-awesome.min.css"%}' type='text/css' media='all' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-        //---------------------
+if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
+        $('#id_latitud').val(lat);
+        $('#id_longitud').val(lng);
 
+      });
+    }
 $(document).ready(function(){
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    lat = position.coords.latitude;
-    lng = position.coords.longitude;
-
-  });
-}
-
-    $('#id_latitud').val(lat);
-    $('#id_longitud').val(lng);
-    $( ".upload" ).wrap( "<div class='upload-div'></div>" );
+    //$( ".upload" ).wrap( "<div class='upload-div'></div>" );
     $('input').each(function(){
         index = $('.upload').get();
         label = $('label').index(index);
