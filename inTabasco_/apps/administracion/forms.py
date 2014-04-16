@@ -50,7 +50,7 @@ class Registrar_Espacio_Socio( forms.Form):
 
     descripcion_corta = forms.CharField(label = "Descripcion Corta del Establecimiento", max_length = 250 )
     descripcion_larga = forms.CharField(widget=forms.Textarea(attrs={'class':'input-xlarge textarea','style':'width: 330px; height: 200px'}), label = "Descripcion Larga del Establecimiento" )
-    categorias = forms.ModelMultipleChoiceField(queryset=cat_categorias_espacios.objects.all(), widget=forms.Select(attrs={'class':'select2-select span8','multiple':'multiple'}))
+    categorias = forms.ModelMultipleChoiceField(queryset=cat_categorias_espacios.objects.all(), widget=forms.SelectMultiple(attrs={'class':'select2-select span8','multiple':'multiple'}))
     socio_vip = forms.BooleanField(initial=False, required=False)
     localidad = forms.ModelChoiceField(empty_label = "Seleccione la localidad",queryset=cat_localidad.objects.all().exclude(padre_id =  None), widget = forms.Select(attrs={'class':'chzn-select'}))
     colonia = forms.CharField(label = "Colonia", max_length = "30" )

@@ -61,6 +61,11 @@
                         {% for espacio in espacios %}
                         <ul class="items">
                             {% if forloop.counter == 1 %}
+                                {% if editar_espacio %}
+                                    <div class="item-image">
+                                    <a id="contact-owner-button" data-fancybox-type="iframe" class="contact-owner button register various" href="/editar_espacio_socio/{{espacio.id}}">Editar</a>
+                                    </div>
+                                {% endif %}
                                 <li class="item clear administrator featured">
                                     <div class="thumbnail">
                                         {% for imagen in espacio.cat_imagenes_set.all %}
@@ -78,6 +83,11 @@
                                     </div>
                                 </li>
                             {% else %}
+                                {% if editar_espacio %}
+                                    <div class="item-image">
+                                    <a id="contact-owner-button" data-fancybox-type="iframe" class="contact-owner button register various" href="/editar_espacio_socio/{{espacio.id}}">Editar</a>
+                                    </div>
+                                {% endif %}
                                 <li class="item clear administrator">
                                     <div class="thumbnail">
                                         {% for imagen in espacio.cat_imagenes_set.all %}
