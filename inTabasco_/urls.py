@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^', include('inTabasco_.apps.correos.urls')),
     url(r'^', include('inTabasco_.apps.administracion.urls')),
     url(r'^', include('inTabasco_.apps.autocompletable.urls')),
+    url(r'^', include('inTabasco_.apps.movil.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
 )

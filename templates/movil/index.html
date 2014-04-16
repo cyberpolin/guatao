@@ -1,0 +1,34 @@
+{% extends "movil/base.html" %}
+{% block contenido %}
+    <div class="ventana">
+        <div class="ventanaHeader">
+        ¿Cuanto quieres ganar hoy?
+            <a href="{% url 'inTabasco_.apps.movil.views.nuevo_socio'%}" class="right fa fa-plus fa-2x"></a>
+        </div>
+        <div class="ventanaBody">
+            {% if socios %}
+                {% for socio in socios %}
+                    <div class="socio" onclick="window.location.href = '{% url "inTabasco_.apps.movil.views.lista_espacios" socio.pk %}';"><img src="/media/{{ socio.imagen }}" width="50" height="50" /><span> {{ socio.nombre }} {{ socio.apellido_paterno }} {{ socio.apellido_materno }}</span>
+                        <a href = "{% url 'inTabasco_.apps.movil.views.nuevo_socio_pk' socio.pk %}" class="right fa fa-plus-circle fa-3x"></a>
+                        <a href="{% url 'inTabasco_.apps.movil.views.reset_pasword' socio.pk %}" class="right fa fa-user-md fa-3x"></a>
+                    </div>
+
+                {% endfor %}
+            {% elif espacios %}
+                {% for espacio in espacios %}
+                    <div class="socio" onclick="window.location.href = '{% url 'inTabasco_.apps.movil.views.lista_espacios' espacio.pk %}';">
+                        {% for imagen in espacio.cat_imagenes_set.all %}
+                            <img src="/media/{{ imagen.imagen }}" width="50" height="50" />
+                        {% endfor %}
+                        <span> {{ espacio.nombre }}</span>
+ <!--
+                        <i class="right fa fa-plus-circle fa-3x"></i>
+                        <i class="right fa fa-edit fa-3x"></i>
+                        <i class="right fa fa-user-md fa-3x"></i>
+-->
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

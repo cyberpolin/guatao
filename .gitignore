@@ -1,4 +1,11 @@
 *.pyc
 *.pyo
+*.xml
 /inTabasco_/settings.py
 /inTabasco_/wsgi.py
+manage.py
+inTabasc
+.idea/*
+.idea/dataSources.xml
+.idea/workspace.xml
+
