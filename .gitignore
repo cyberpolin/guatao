@@ -1,5 +1,4 @@
 *.pyc
-*.pyo
 *.xml
 /inTabasco_/settings.py
 /inTabasco_/wsgi.py
