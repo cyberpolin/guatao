@@ -35,7 +35,14 @@ header img{
     padding: 8px 15px;
 }
 .ventana .upload-div{
-    background: url('/static/movil/img/insert_image.png') 10px no-repeat;
+    background: url('/static/movil/img/insert_image.png') 10px 10px no-repeat;
+    height: 57px;
+    width: 57px;
+    ovelflow: hidden;
+    float: left;
+}
+.ventana .upload-div-ok{
+    background: url('/static/movil/img/insert_image.png') 10px -46px no-repeat;
     height: 57px;
     width: 57px;
     ovelflow: hidden;

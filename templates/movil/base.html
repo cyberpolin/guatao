@@ -21,12 +21,20 @@ if (navigator.geolocation) {
     }
 $(document).ready(function(){
 
-    //$( ".upload" ).wrap( "<div class='upload-div'></div>" );
+var change = function(index){
+
+}
+
+    $('.upload').attr('onchange', '$(".upload-div").eq($(this).index()).attr("class", "upload-div-ok")')
+    $( ".upload" ).wrap( "<div class='upload-div'></div>" );
     $('input').each(function(){
         index = $('.upload').get();
         label = $('label').index(index);
         $('.upload-div').index(index).after(label);
+
     });
+
+
 });
 
 </script>

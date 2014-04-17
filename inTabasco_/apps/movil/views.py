@@ -20,7 +20,7 @@ from django.shortcuts import render_to_response, redirect
 from inTabasco_.apps.inTabasco.models import *
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-import string, random
+import random
 
 
 @login_required(login_url='/movil/login/')
@@ -310,7 +310,7 @@ def lista_espacios(request, pk):
     return render_to_response('movil/index.html', espacios)
 
 def reset_pasword(request, pk):
-    base=string.ascii + string.digits
+    base="""0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;?"""
     password = ''.join(random.choice(base) for _ in range(8))
     usuario = cat_persona.objects.get(pk= pk).usuario_id
     socio = User.objects.get(pk=usuario)
