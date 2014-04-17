@@ -4,6 +4,4 @@ Hacer funcion o clase que regrese la lista de socios filtrados por agente		(admi
 											movil/views.py)
 Libreria para redimesionar imagenes de acuerdo a los tamaños requeridos.
 Enviar correo de cambio de password en HTML
-prueva
 
-otra
