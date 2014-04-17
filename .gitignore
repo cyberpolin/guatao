@@ -1,10 +1,8 @@
 *.pyc
 *.xml
-/inTabasco_/settings.py
-/inTabasco_/wsgi.py
 manage.py
 inTabasc
 .idea/*
-.idea/dataSources.xml
-.idea/workspace.xml
+/inTabasco_/settings.py
+/inTabasco_/wsgi.py
 
