@@ -431,9 +431,8 @@ def alta_espacio_socio(request, id_socio):
     if 'espacio' in request.POST:
 
         formulario = Registrar_Espacio_Socio(request.POST, request.FILES)
-
         if formulario.is_valid():
-                        #Agrega Direccion#
+
             localidad = formulario.cleaned_data['localidad']
             colonia = formulario.cleaned_data['colonia']
             calle = formulario.cleaned_data['calle']

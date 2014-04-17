@@ -321,7 +321,7 @@ def mis_espacios_web( request, socio_id ):
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		espacios = paginator.page(paginator.num_pages)
 
-	contexto = {'filtrado':filtrado,'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'filtrado':filtrado,'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto,'editar_espacio':'editar_espacio'}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 @login_required(login_url='/login_')
