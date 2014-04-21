@@ -807,12 +807,12 @@ def control_dinero(request):
         d = date.today()
         if fecha == 'dia' :
             ventas_dia = venta.objects.filter( fecha_venta = d )
-            total_ventas_dia = venta.objects.filter( fecha_venta = d ).count()
+            total_ventas_dia = ventas_dia.count()
 
             total_precio_dia = 0
             list = []
             for ventas in ventas_dia:
-                total_precio_dia = (Decimal(str(total_precio_dia))) + (Decimal(str(ventas.producto.precio)))
+                total_precio_dia = (Decimal(str(total_precio_dia))) + ((Decimal(str(ventas.espacio.producto.precio)) - 200))
 
             list.append({
                         'total_ventas_dia':total_ventas_dia,
@@ -824,13 +824,13 @@ def control_dinero(request):
         if fecha == 'mes':
             mes = d.month
             ventas_mes = venta.objects.filter( fecha_venta__month = mes )
-            total_ventas_mes = venta.objects.filter( fecha_venta__month = mes ).count()
+            total_ventas_mes = ventas_mes.count()
 
 
             total_precio_mes = 0
             list = []
             for ventas in ventas_mes:
-                total_precio_mes = (Decimal(str(total_precio_mes))) + (Decimal(str(ventas.producto.precio)))
+                total_precio_mes = (Decimal(str(total_precio_mes))) + ((Decimal(str(ventas.espacio.producto.precio)) - 200 ))
 
             list.append({
                         'total_ventas_mes':total_ventas_mes,
@@ -842,13 +842,13 @@ def control_dinero(request):
         if fecha == 'ano':
             ano = d.year
             ventas_ano = venta.objects.filter( fecha_venta__year = ano )
-            total_ventas_ano = venta.objects.filter( fecha_venta__year = ano ).count()
+            total_ventas_ano = ventas_ano.count()
 
 
             total_precio_ano = 0
             list = []
             for ventas in ventas_ano:
-                total_precio_ano = (Decimal(str(total_precio_ano))) + (Decimal(str(ventas.producto.precio)))
+                total_precio_ano = (Decimal(str(total_precio_ano))) + ((Decimal(str(ventas.espacio.producto.precio)) - 200 ))
 
             list.append({
                         'total_ventas_ano':total_ventas_ano,
@@ -860,13 +860,13 @@ def control_dinero(request):
         if fecha == 'total':
 
             ventas = venta.objects.filter( )
-            total_ventas = venta.objects.filter().count()
+            total_ventas = ventas.count()
 
 
             total_precio = 0
             list = []
             for ventas in ventas:
-                total_precio = (Decimal(str(total_precio))) + (Decimal(str(ventas.producto.precio)))
+                total_precio = (Decimal(str(total_precio))) + ((Decimal(str(ventas.espacio.producto.precio)) - 200 ))
 
             list.append({
                         'total_ventas':total_ventas,

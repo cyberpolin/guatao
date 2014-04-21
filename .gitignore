@@ -1,8 +1,11 @@
 *.pyc
 *.xml
-manage.py
+*.pyo
 inTabasc
 .idea/*
 /inTabasco_/settings.py
 /inTabasco_/wsgi.py
 d.b/
+.idea/*
+manage.py
+.idea
