@@ -892,17 +892,12 @@ def ventas_agente(request):
 
     precio = 0
     for p in ventas:
-        precio = p.producto.precio
+        precio = p.espacio.producto.precio
 
-    if contador >=1 and contador <=3 :
-        pago_inTabasco = (Decimal(str(precio)) - 150) * contador
-        pago_agente_ventas = (Decimal(str(precio)) - 350) * contador
-    elif contador >3 and contador <=5:
-        pago_inTabasco = (Decimal(str(precio)) - 200) * contador
-        pago_agente_ventas = (Decimal(str(precio)) - 300) * contador
-    else:
-        pago_inTabasco = (Decimal(str(precio)) - 250) * contador
-        pago_agente_ventas = (Decimal(str(precio)) - 250) * contador
+
+    pago_inTabasco = ((Decimal(str(precio)) - 200)) * contador
+    pago_agente_ventas = (Decimal(str(precio)) - 300) * contador
+
 
     total = Decimal(str(precio)) * contador
 
@@ -916,7 +911,6 @@ def ventas_agente(request):
                 })
 
     recipe_list_json = json.dumps(list)
-    print recipe_list_json
     return HttpResponse(recipe_list_json, mimetype="application/javascript")
 
 
