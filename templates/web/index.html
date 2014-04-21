@@ -33,7 +33,7 @@
                                 </div>
                                     <h3><a href="/categoria/{{ categorias.id }}">{{ categorias.categoria | title  }}</a></h3>
                                     <ul style="padding: 0 45px;">
-                                        {% for espacios in categorias.espacio_set.all %}
+                                        {% for espacios in categorias.espacio_set.all|dictsortreversed:"num_visitas" %}
                                             {% if forloop.counter >= 1  and forloop.counter <= 5 %}
                                                 {% if espacios.status.status == 'A' %}
                                                     <li><a href="/detalle/{{ espacios.direccion.localidad.nombre }}/{{ categorias.categoria }}/{{ espacios.id }}/">{{ espacios.nombre | title  }} </a></li>
