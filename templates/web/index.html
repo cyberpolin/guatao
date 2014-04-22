@@ -29,20 +29,18 @@
                         <div class="category-wrap-table">
                             <div class="category-wrap-row">
                                 <div style="display: inline-block;float: left;">
-                                <img style="margin: -10px 5px;padding: 0px;" src="{{ MEDIA_URL }}{{ categorias.icono }} ">
+                                    <img style="margin: -10px 5px;padding: 0px;" src="{{ MEDIA_URL }}{{ categorias.icono }} ">
                                 </div>
-                                    <h3><a href="/categoria/{{ categorias.id }}">{{ categorias.categoria | title  }}</a></h3>
-                                    <ul style="padding: 0 45px;">
-                                        {% for espacios in categorias.espacio_set.all|dictsortreversed:"num_visitas" %}
-                                            {% if forloop.counter >= 1  and forloop.counter <= 5 %}
-                                                {% if espacios.status.status == 'A' %}
-                                                    <li><a href="/detalle/{{ espacios.direccion.localidad.nombre }}/{{ categorias.categoria }}/{{ espacios.id }}/">{{ espacios.nombre | title  }} </a></li>
-                                                {% endif %}
+                                <h3><a href="/categoria/{{ categorias.id }}">{{ categorias.categoria | title  }}</a></h3>
+                                <ul style="padding: 0 45px;">
+                                    {% for espacios in categorias.espacio_set.all|dictsortreversed:"num_visitas" %}
+                                        {% if forloop.counter >= 1  and forloop.counter <= 5 %}
+                                            {% if espacios.status.status == 'A' %}
+                                                <li><a href="/detalle/{{ espacios.direccion.localidad.nombre }}/{{ categorias.categoria }}/{{ espacios.id }}/">{{ espacios.nombre | title  }} </a></li>
                                             {% endif %}
-                                        {% endfor %}
-                                        <li><a href="#"></a></li>
-                                    </ul>
-
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
                     </li>
