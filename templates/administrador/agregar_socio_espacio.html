@@ -421,11 +421,10 @@ $(document).ajaxSend(function(event, xhr, settings) {
                   var fecha_nacimiento = "Fecha de nacimiento: " + data[i]['fecha_nacimiento'];
                   var correo = "Correo: " + data[i]['correo'];
                   var telefono = "Telefono: " + data[i]['telefono'];
-                  var celular = "Celular" + data[i]['celular'];
+                  var celular = "Celular: " + data[i]['celular'];
                   //var red_social = "Red social: " + data[i]['nombre_red'];
                   var id =data[i]['id'];
                   var idis ="<a href='/detalle_socio/"+id+"'>"+"Ver Espacios"+"</a>";
-                
                 }
                 $('<img />', { 'src': 'http://localhost:8000/media/'+imagen, 'id': 'miImagen', 'data-src':'holder.js/260x180', 'alt':'260x180', 'style':'width: 80px; height: 50px;float:right;' }).appendTo('#imagen');
                 $('#nombre').html(nombre);
@@ -442,7 +441,8 @@ $(document).ajaxSend(function(event, xhr, settings) {
           }
 
           function cerrar_detalle(){
-                location.reload(); 
+              $("#imagen").html("");
+                //location.reload();
             }
 
           </script>
