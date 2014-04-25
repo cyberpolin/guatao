@@ -821,6 +821,7 @@ def activar_espacio(request, id_espacio, id_socio):
 
 @login_required(login_url='/login_')
 def agentes_eliminados( request ):
+    
 	eliminados = agente_ventas.objects.filter( status__status = 'I')
 	filtrado = 5 # Show 10 contacts per page
 	if 'filtrado' in request.GET:
