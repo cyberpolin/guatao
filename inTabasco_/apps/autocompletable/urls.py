@@ -6,4 +6,5 @@ urlpatterns = patterns('',
     url(r'^ajaxaubicacion', ajaxaubicacion),
     url(r'^ajaxacategoria', ajaxacategoria),
     url(r'^ajax_socio_vip', ajax_socio_vip),
+    url(r'^ajax_busqueda_personas', ajax_busqueda_personas),
 	)
