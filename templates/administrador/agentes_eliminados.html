@@ -428,7 +428,16 @@ $(document).ajaxSend(function(event, xhr, settings) {
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">Agentes de Ventas</div>
-                                <div class="pull-right"><a href="#" onClick="corte_general()">Corte General</a>&nbsp &nbsp &nbsp &nbsp <span class="badge badge-info">{{agentes.count}}</span>
+                                <div class="pull-right">
+                                    <select name="pagination" id="sorting-pagination" onchange = "window.location.href = '?filtrado=' + this.value">
+                                        <option value="5" >Seleccione</option>
+                                        <option value="5" {% if filtrado == '5'%}selected{% endif %}>5</option>
+                                        <option value="10" {% if filtrado == '10'%}selected{% endif %}>10</option>
+                                        <option value="20" {% if filtrado == '20'%}selected{% endif %}>20</option>
+                                        <option value="50" {% if filtrado == '50'%}selected{% endif %}>50</option>
+                                        <option value="100" {% if filtrado == '100'%}selected{% endif %}>100</option>
+                                    </select>
+                                    <span class="badge badge-info">{{agentes.count}}</span>
 
                                 </div>
                             </div>
@@ -494,6 +503,15 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                         {% endif %}
                                     </tbody>
                                 </table>
+                                {% if eliminados.has_previous %}
+                                    <a class="page-numbers prev" href="#" onClick="parent.location='?page={{ eliminados.previous_page_number }}&filtrado={{filtrado}}'" >Atras</a>
+                                {% endif %}
+                                <span class="current">
+                                    Pagina {{ eliminados.number }} de {{ eliminados.paginator.num_pages }}.
+                                </span>
+                                {% if eliminados.has_next %}
+                                    <a class="page-numbers next" href="#" onClick="parent.location='?page={{ eliminados.next_page_number }}&filtrado={{filtrado}}'">Siguiente</a>
+                                {% endif %}
                             </div>
                         </div>
                         <!-- /block -->

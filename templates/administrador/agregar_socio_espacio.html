@@ -624,7 +624,16 @@ $(document).ajaxSend(function(event, xhr, settings) {
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
                                     <div class="muted pull-left">Socios</div>
-                                    <div class="pull-right"><span class="badge badge-info">{{socios}} </span>
+                                    <div class="pull-right">
+                                        <select name="pagination" id="sorting-pagination" onchange = "window.location.href = '?filtrado=' + this.value">
+                                            <option value="5">Seleccione</option>
+                                            <option value="5" {% if filtrado == '5'%}selected{% endif %}>5</option>
+                                            <option value="10" {% if filtrado == '10'%}selected{% endif %}>10</option>
+                                            <option value="20" {% if filtrado == '20'%}selected{% endif %}>20</option>
+                                            <option value="50" {% if filtrado == '50'%}selected{% endif %}>50</option>
+                                            <option value="100" {% if filtrado == '100'%}selected{% endif %}>100</option>
+                                        </select>
+                                        <span class="badge badge-info">{{socios}} </span>
                                     </div>
                                 </div>
                                 <div class="block-content collapse in">
@@ -681,6 +690,15 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                             {% endif %}
                                         </tbody>
                                     </table>
+                                    {% if list_socios.has_previous %}
+                                        <a class="page-numbers prev" href="#" onClick="parent.location='?page={{ list_socios.previous_page_number }}&filtrado={{filtrado}}'" >Atras</a>
+                                    {% endif %}
+                                    <span class="current">
+                                        Pagina {{ list_socios.number }} de {{ list_socios.paginator.num_pages }}.
+                                    </span>
+                                    {% if list_socios.has_next %}
+                                        <a class="page-numbers next" href="#" onClick="parent.location='?page={{ list_socios.next_page_number }}&filtrado={{filtrado}}'">Siguiente</a>
+                                    {% endif %}
                                 </div>
                             </div>
                             <!-- /block -->
