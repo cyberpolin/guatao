@@ -236,12 +236,19 @@ function updateMarker(location) {
   {% block menu_lateral %}
     <div class="span3" id="sidebar">
         <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+            {% if perms.inTabasco.add_agente_ventas%}
             <li class="{{principal}}">
                 <a href="/principal/"><i class="icon-chevron-right"></i> Principal</a>
             </li>
+            {% endif %}
             <li class="{{alta_espacio}}">
                 <a href="/alta_persona_socio/"><i class="icon-chevron-right"></i> Registrar Socios y Espacios</a>
+            </li class="{{agentes_eliminados}}">
+            {% if perms.inTabasco.add_agente_ventas%}
+            <li>
+                <a href="/agentes_eliminados/"><i class="icon-chevron-right"></i> Agentes Eliminados</a>
             </li>
+            {% endif %}
             <!--
             <li>
                 <a href="stats.html"><i class="icon-chevron-right"></i> Statistics (Charts)</a>

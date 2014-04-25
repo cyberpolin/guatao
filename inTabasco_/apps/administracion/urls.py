@@ -16,8 +16,7 @@ urlpatterns = patterns('',
     url(r'^editar_espacio_socio/(?P<id_espacio>\d+)', editar_espacio_socio),
 	url(r'^editar_agente/(?P<id_agente>\d+) and (?P<id_persona>\d+) and (?P<id_direccion>\d+)/', editar_agente),
 
-
-
+    url(r'^agentes_eliminados/', agentes_eliminados),
 	
 	url(r'^bloquear_agente/(?P<id_agente>\d+)', bloquear_agente),
 	url(r'^activar_agente/(?P<id_agente>\d+)', activar_agente),
