@@ -5,15 +5,10 @@ from django.shortcuts import *
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from inTabasco_.apps.inTabasco.models import *
-
-
 import datetime
 from datetime import date
-
 from decimal import Decimal
-
 from inTabasco_.apps.administracion.forms import *
-
 from django.contrib import messages
 from inTabasco_.apps.inTabasco.forms import *
 from django.db import models
@@ -22,17 +17,17 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-
 import json
 from django.utils import simplejson
 from django.core import serializers
+from django.db.models import Q
 
 from django.views.decorators.csrf import csrf_exempt
 @login_required(login_url='/login_')
 def principal(request):	
 
     #Lista de Agentes Agente de Ventas
-    agentes = agente_ventas.objects.all()
+    agentes = agente_ventas.objects.filter(Q(status__status = 'A') | Q(status__status = 'P'))
 
     localidades = cat_localidad.objects.all()
     #AGREGA AGENTE DE VENTAS#
@@ -794,6 +789,12 @@ def activar_espacio(request, id_espacio, id_socio):
     espacio_.save()
 
     return  HttpResponseRedirect( '/detalle_socio/'+str(id_socio) )
+
+@login_required(login_url='/login_')
+def agentes_eliminados( request ):
+    eliminados = agente_ventas.objects.filter( status__status = 'I')
+    contexto = {'agentes_eliminados':'active','eliminados':eliminados}
+    return render_to_response('administrador/agentes_eliminados.html',contexto,context_instance = RequestContext(request))
 
 @csrf_exempt
 @login_required(login_url='/login_')
