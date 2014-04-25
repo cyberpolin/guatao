@@ -21,7 +21,9 @@
         <link href="{% static "administrador/wizard/css/styles.css" %}" rel="stylesheet">
         <!--============j avascript===========-->
         <script src="{% static "administrador/wizard/js/jquery.validate.js" %}"></script>
+
         <script src="{% static "administrador/wizard/js/stepy.jquery.js" %}"></script>
+
 
         <!-- WIZZARD -->
         <script type="text/javascript">
@@ -406,11 +408,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
               window.location.href = '/corte_general_agente/';
           }
       }
-</script>
-
-        </script>
-
-        
+    </script>
     {% endblock extrahead %}
 
     {% block maincontent %}
@@ -552,7 +550,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                   <div class="control-group">
                                     <label class="control-label">{{formulario_agente.localidad.label_tag}}</label>
                                     <div class="controls">
-                                      {{formulario_agente.localidad}}<a href="#myModal" data-toggle="modal"><i class="icon-plus"></i></a>
+                                      {{formulario_agente.localidad}}
                                     </div>
                                     {{formulario_agente.localidad.errors}}
                                   </div>
@@ -609,39 +607,22 @@ $(document).ajaxSend(function(event, xhr, settings) {
                           </div>
                         </div>
                       </div>
-                    </div>                    
+                    </div>
 
 
 
                     <div id="myModal" class="modal hide">
                         <div class="modal-header">
                             <button data-dismiss="modal" class="close" type="button">&times;</button>
-                            <h3>Agregar Localidad</h3>
+                            <h3>Buscar Agente</h3>
                         </div>
                         <div class="modal-body">
                             <form id="formulario1"  method="POST" action="">
                                 <input type="hidden" id="local" name="local" value="localidad">
-                                    {% csrf_token %}
-                                    <fieldset title="">                                  
-                                        <div class="control-group">
-                                            <label class="control-label" for="select01">Pertenece A</label>
-                                            <div class="controls">
-                                                <select id="padre" name="padre">
-                                                  <option value="0">Elija una Opcion</option>
-                                                  {% for p in localidades %}
-                                                  <option value="{{p.id}}">{{p.nombre}}</option>
-                                                  {% endfor %}
-                                                </select>
-                                            </div>                              
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">Localidad</label>
-                                            <div class="controls">
-                                                <input class="input-xlarge focused" id="localidad_direccion" name="localidad_direccion" type="text">
-                                            </div>
-                                        </div>
-                                    </fieldset>      
-                                <input type="submit" id="guardar" class="btn btn-primary" value="Enviar" />
+                                {% csrf_token %}
+                                <input type="text" value="" id="id_search" name="id_search" class="span12 " placeholder="Buscar Contacto ">
+
+                                <input type="submit" id="guardar" class="btn btn-primary" value="Buscar" />
                             </form>
                         </div>
                    </div>
@@ -661,7 +642,9 @@ $(document).ajaxSend(function(event, xhr, settings) {
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Agentes de Ventas</div>
+                                <div class="muted pull-left">Agentes de Ventas
+                                    <a href="#myModal" data-toggle="modal"><i class=" icon-search"></i>Buscar</a>
+                                </div>
 
                                 <div class="pull-right">
                                     <a href="#" onClick="corte_general()">Corte General</a>&nbsp &nbsp &nbsp &nbsp
@@ -795,16 +778,13 @@ $(document).ajaxSend(function(event, xhr, settings) {
                 </div>
 
                 {% endif %}
-                    
-                
+
           
             {% endblock maincontent %}
         
         
         {% block extralibs %}
         <!--/.fluid-container-->
-        
-        
         <script src="{% static "administrador/vendors/easypiechart/jquery.easy-pie-chart.js" %}"></script>
        
         <script src="{% static "administrador/vendors/bootstrap-datepicker.js"%}"></script>
@@ -819,7 +799,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
 
         <script src="{% static "administrador/bootstrap/js/bootstrap.js" %}"></script>
         <script src="{% static "administrador/vendors/jquery.uniform.min.js" %}"></script>
-        <script src="{% static "administrador/vendors/chosen.jquery.min.js" %}"></script>        
+        <script src="{% static "administrador/vendors/chosen.jquery.min.js" %}"></script>
         <script src="{% static "administrador/vendors/bootstrap-datepicker.js" %}"></script>
 
         <script src="{% static "administrador/vendors/wysiwyg/wysihtml5-0.3.0.js" %}"></script>
@@ -828,6 +808,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
         <script src="{% static "administrador/vendors/wizard/jquery.bootstrap.wizard.min.js" %}"></script>
 
         <script src="{% static "administrador/assets/scripts.js" %}"></script>
+
         <script>
         $(function() {
             $(".datepicker").datepicker();
@@ -856,6 +837,8 @@ $(document).ajaxSend(function(event, xhr, settings) {
             });
         });
         </script>
+
+
         {% endblock extralibs %}
     
 

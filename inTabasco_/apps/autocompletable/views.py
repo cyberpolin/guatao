@@ -81,3 +81,24 @@ def ajax_socio_vip(request):
 		data = 'fail'
 	mimetype = 'application/json'
 	return HttpResponse(data, mimetype)
+
+@csrf_exempt
+def ajax_busqueda_personas(request):
+	if request.is_ajax():
+		print("hola")
+		# recuperamos el campo
+		q = request.GET.get('term', '').lower()
+
+		drugs = cat_persona.objects.distinct('nombre','apellido_paterno','apellido_materno').extra(where=[" LOWER((trim(nombre) || ' ' || trim(apellido_paterno) || ' ' || trim(apellido_materno))) like %s "], params=['%'+q+'%'])
+		results = []
+		for drug in drugs:
+			drug_json = {}
+			drug_json['id'] = drug.id
+			drug_json['label'] = drug.nombre+' '+drug.apellido_paterno+' '+drug.apellido_materno
+			drug_json['value'] = drug.nombre+' '+drug.apellido_paterno+' '+drug.apellido_materno
+			results.append(drug_json)
+		data = json.dumps(results)
+	else:
+		data = 'fail'
+	mimetype = 'application/json'
+	return HttpResponse(data, mimetype)
