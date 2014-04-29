@@ -31,7 +31,9 @@ urlpatterns = patterns('',
 	url(r'^control_dinero/', control_dinero),
 	url(r'^corte_agente/(?P<id_agente>\d+)', corte_agente),
 	url(r'^corte_general_agente', corte_general_agente),
-	url(r'^registrar_caja', registrar_caja),	
+	url(r'^registrar_caja', registrar_caja),
+
+    url(r'^buscar_persona/(?P<persona>.+)/(?P<tipo_usuario>\w+)/(?P<status>\w+)', buscar_persona),
 
 	
 	)

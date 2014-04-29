@@ -285,16 +285,16 @@
         $(function(){
           $('#formulario1').validate({
             rules :{
-              localidad_direccion : {
-                    required : true //para validar campo vacio                    
+              id_search : {
+                    required : true //para validar campo vacio
                   }
 
                 },
 
                 messages : {
-                  localidad_direccion : {
-                    required : "La localidad es requerida!",
-                    
+                  id_search : {
+                    required : "Buscar por nombre, apellido paterno o materno!"
+
                   }
 
                 },
@@ -302,22 +302,12 @@
 
                 //VENTANA MODAL PARA GUARDAR LOCALIDADES VIA AJAX
                 submitHandler: function(form) {
-                  $.ajax({
-                   type: "POST",
-                   url: "/agregar_localidad/",
-               data: $("#formulario1").serialize(), // serializes the form's elements.
-               success: function(response)
-               {
-                if(response.estatus=="True"){
-                  document.getElementById("formulario1").reset();
-                  $("#myModal").modal("hide");
-                  document.getElementById('id_localidad').options[0]=new Option(response.nombre,response.id_localidad,"0");
-
+                    persona = document.getElementById("id_search").value;
+                    tipo_usuario = document.getElementById("tipo_usuario").value;
+                    status = document.getElementById("status").value;
+                    window.location = "/buscar_persona/"+persona+'/'+tipo_usuario+'/'+status;
                 }
-              }
-            });
-                }
-              });    
+              });
         });
         </script>
 
@@ -614,7 +604,24 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                     </div>
                                 </div>
 
-                   
+
+                    <div id="myModal" class="modal hide">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">&times;</button>
+                            <h3>Buscar Socio</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formulario1"  method="POST" action="">
+                                <input type="hidden" id="local" name="local" value="localidad">
+                                {% csrf_token %}
+                                <input type="text" value="" id="id_search" name="id_search" class="span12 " placeholder="Buscar por nombre, apellido paterno o materno">
+                                <input type="hidden" value="Socio" id="tipo_usuario" name="tipo_usuario" class="span12 ">
+                                <input type="hidden" value="A" id="status" name="status" class="span12 ">
+
+                                <input type="submit" id="guardar" class="btn btn-primary" value="Buscar""/>
+                            </form>
+                        </div>
+                   </div>
 
                 
 
@@ -623,7 +630,9 @@ $(document).ajaxSend(function(event, xhr, settings) {
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left">Socios</div>
+                                    <div class="muted pull-left">Socios
+                                        <a href="#myModal" data-toggle="modal"><i class=" icon-search"></i>Buscar</a>
+                                    </div>
                                     <div class="pull-right">
                                         <select name="pagination" id="sorting-pagination" onchange = "window.location.href = '?filtrado=' + this.value">
                                             <option value="5">Seleccione</option>

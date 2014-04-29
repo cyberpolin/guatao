@@ -821,7 +821,7 @@ def activar_espacio(request, id_espacio, id_socio):
 
 @login_required(login_url='/login_')
 def agentes_eliminados( request ):
-    
+
 	eliminados = agente_ventas.objects.filter( status__status = 'I')
 	filtrado = 5 # Show 10 contacts per page
 	if 'filtrado' in request.GET:
@@ -993,6 +993,7 @@ def corte_general_agente(request):
 
 	return  HttpResponseRedirect( '/principal/' )
 
+
 @login_required(login_url='/login_')
 @permission_required('inTabasco.add_caja', raise_exception = True )
 def registrar_caja(request):
@@ -1031,5 +1032,50 @@ def registrar_caja(request):
 	contexto = {'formulario':formulario}
 	return render_to_response('caja.html', contexto, context_instance = RequestContext(request))
 
+def buscar_persona(request, persona, tipo_usuario, status):
+	persona_socio = None
+	principal = None
+	alta_espacio = None
+	persona_agente = None
+	if (tipo_usuario == 'Agente'):
+		print "Agente"
+		principal = 'active'
+		persona_agente = agente_ventas.objects.filter((Q( nombre__nombre__icontains = persona) | Q( nombre__apellido_paterno__icontains = persona)| Q( nombre__apellido_materno__icontains = persona)), nombre__tipo_usuario__tipo = tipo_usuario, status__status = status)
+		filtrado = 5 # Show 10 contacts per page
+		if 'filtrado' in request.GET:
+			filtrado = request.GET.get('filtrado')
+		paginator = Paginator(persona_agente, filtrado) # Muestra de 2 en 2
+		page = request.GET.get('page')
 
+		try:
+			persona_agente = paginator.page(page)
+		except PageNotAnInteger:
+			# If page is not an integer, deliver first page.
+			persona_agente = paginator.page(1)
+		except EmptyPage:
+			# If page is out of range (e.g. 9999), deliver last page of results.
+			persona_agente = paginator.page(paginator.num_pages)
+
+
+	elif (tipo_usuario == "Socio"):
+		alta_espacio ='active'
+		print "Socio"
+		persona_socio = cat_persona.objects.filter((Q( nombre__icontains = persona) | Q( apellido_paterno__icontains = persona)| Q( apellido_materno__icontains = persona)), tipo_usuario__tipo = tipo_usuario, status__status = status)
+
+		filtrado = 5 # Show 10 contacts per page
+		if 'filtrado' in request.GET:
+			filtrado = request.GET.get('filtrado')
+		paginator = Paginator(persona_socio, filtrado) # Muestra de 2 en 2
+		page = request.GET.get('page')
+		try:
+			persona_socio = paginator.page(page)
+		except PageNotAnInteger:
+			# If page is not an integer, deliver first page.
+			persona_socio = paginator.page(1)
+		except EmptyPage:
+			# If page is out of range (e.g. 9999), deliver last page of results.
+			persona_socio = paginator.page(paginator.num_pages)
+
+	contexto = {'persona_agente':persona_agente,'persona_socio':persona_socio,'filtrado':filtrado,'principal':principal,'alta_espacio':alta_espacio}
+	return render_to_response('administrador/resultado_busqueda_persona.html',contexto, context_instance = RequestContext(request))
 
