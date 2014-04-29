@@ -29,7 +29,7 @@
         <script type="text/javascript">
             $(function () {
                 /*==JQUERY STEPY==*/
-                
+
                 $('#stepy_form').stepy({
                     backLabel: 'Atras',
                     nextLabel: 'Siguiente',
@@ -54,7 +54,7 @@
                         'password1': {
                                         required:true,
                                         minlength: 5
-                                      }, 
+                                      },
                         'password2': {
                                         required:true,
                                         minlength: 5,
@@ -75,8 +75,8 @@
                                       },
                         'fecha_nacimiento': 'required',
                         'correo' : {
-                                    required : true, 
-                                    email    : true  
+                                    required : true,
+                                    email    : true
                                     },
                         'telefono': {
                                     required : true,
@@ -106,13 +106,13 @@
                         'codigo_postal': {
                                     required : true,
                                     maxlength: 10
-                                        }        
-                        
+                                        }
+
                     },
                     messages: {
                         'username': {
                             required: 'El usuario es requerido!'
-                            
+
                         },
                         'password1': {
                             required: 'La contraseña es requerida!',
@@ -165,27 +165,29 @@
                         'codigo_postal': {
                             required: "El codigo postal es requerido"
                         }
-                        
+
                     }
                 });
 
-               
+
+
+
             });
         </script>
         <script type="text/javascript">
         $(function(){
           $('#formulario1').validate({
             rules :{
-              localidad_direccion : {
-                    required : true //para validar campo vacio                    
+              id_search : {
+                    required : true //para validar campo vacio
                   }
 
                 },
 
                 messages : {
-                  localidad_direccion : {
-                    required : "La localidad es requerida!",
-                    
+                  id_search : {
+                    required : "Buscar por nombre, apellido paterno o materno!"
+
                   }
 
                 },
@@ -193,22 +195,12 @@
 
                 //VENTANA MODAL PARA GUARDAR LOCALIDADES VIA AJAX
                 submitHandler: function(form) {
-                  $.ajax({
-                   type: "POST",
-                   url: "/agregar_localidad/",
-               data: $("#formulario1").serialize(), // serializes the form's elements.
-               success: function(response)
-               {
-                if(response.estatus=="True"){
-                  document.getElementById("formulario1").reset();
-                  $("#myModal").modal("hide");
-                  document.getElementById('id_localidad').options[0]=new Option(response.nombre,response.id_localidad,"0");
-
+                    persona = document.getElementById("id_search").value;
+                    tipo_usuario = document.getElementById("tipo_usuario").value;
+                    status = document.getElementById("status").value;
+                    window.location = "/buscar_persona/"+persona+'/'+tipo_usuario+'/'+status;
                 }
-              }
-            });
-                }
-              });    
+              });
         });
         </script>
 
@@ -262,17 +254,17 @@ $(document).ajaxSend(function(event, xhr, settings) {
     if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
         xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
     }
-}); 
+});
 
 
 
         $(document).ready(function() {
 
-          $("#id_username").blur(function(event){          
+          $("#id_username").blur(function(event){
            r=$('#id_username').val();
            if(r !=0){
-            $.post( 
-             "/validar_usuario/",  
+            $.post(
+             "/validar_usuario/",
              {q:$('#id_username').val()},
              function(data) {
               $('#results').html(data);
@@ -286,7 +278,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
 
 
           $( document ).ajaxStart( function() {
-            $( '#spinner' ).show();       
+            $( '#spinner' ).show();
           }).ajaxStop( function() {
             $( '#spinner' ).hide();
           });
@@ -418,8 +410,8 @@ $(document).ajaxSend(function(event, xhr, settings) {
                 
 
                     {% if perms.inTabasco.add_agente_ventas%}
-                    
-                        
+
+
                     <div class="row-fluid">
                       <div class="span12">
                         <div class="stepy-widget">
@@ -452,9 +444,9 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                   <div class="control-group">
                                     <label class="control-label">{{formulario.password1.label_tag}}</label>
                                     <div class="controls">
-                                      {{formulario.password1}}                                      
+                                      {{formulario.password1}}
                                     </div>
-                                    {{formulario.password1.errors}}   
+                                    {{formulario.password1.errors}}
                                   </div>
                                   <div class="control-group">
                                     <label class="control-label">{{formulario.password2.label_tag}}</label>
@@ -484,7 +476,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                     <label class="control-label">{{formulario_agente.nombre.label_tag}}</label>
                                     <div class="controls">
                                       {{formulario_agente.nombre}}
-                                    </div>                      
+                                    </div>
                                     {{formulario_agente.nombre.errors}}
                                   </div>
                                   <div class="control-group">
@@ -492,56 +484,56 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                     <div class="controls">
                                       {{formulario_agente.apellido_paterno}}
                                     </div>
-                                    {{formulario_agente.apellido_paterno.errors}}                      
+                                    {{formulario_agente.apellido_paterno.errors}}
                                   </div>
                                   <div class="control-group">
                                     <label class="control-label">{{formulario_agente.apellido_materno.label_tag}}</label>
                                     <div class="controls">
                                       {{formulario_agente.apellido_materno}}
-                                    </div> 
-                                    {{formulario_agente.apellido_materno.errors}}                     
+                                    </div>
+                                    {{formulario_agente.apellido_materno.errors}}
                                   </div>
                                   <div class="control-group">
                                     <label class="control-label">{{formulario_agente.fecha_nacimiento.label_tag}}</label>
                                     <div class="controls">
                                       {{formulario_agente.fecha_nacimiento}}
                                     </div>
-                                    {{formulario_agente.fecha_nacimiento.errors}}                      
+                                    {{formulario_agente.fecha_nacimiento.errors}}
                                   </div>
                                   <div class="control-group">
                                     <label class="control-label">{{formulario_agente.correo.label_tag}}</label>
                                     <div class="controls">
                                       {{formulario_agente.correo}}
                                     </div>
-                                    {{formulario_agente.correo.errors}}                      
+                                    {{formulario_agente.correo.errors}}
                                   </div>
                                   <div class="control-group">
                                     <label class="control-label">{{formulario_agente.telefono.label_tag}}</label>
                                     <div class="controls">
                                       {{formulario_agente.telefono}}
                                     </div>
-                                    {{formulario_agente.telefono.errors}}                    
+                                    {{formulario_agente.telefono.errors}}
                                   </div>
                                   <div class="control-group">
                                     <label class="control-label">{{formulario_agente.celular.label_tag}}</label>
                                     <div class="controls">
                                       {{formulario_agente.celular}}
                                     </div>
-                                    {{formulario_agente.celular.errors}}                      
+                                    {{formulario_agente.celular.errors}}
                                   </div>
                                   <div class="control-group">
                                     <!--<label class="control-label">{{formulario_agente.tipo_usuario.label_tag}}</label>-->
                                     <div class="controls">
                                       {{formulario_agente.tipo_usuario}}
                                     </div>
-                                    {{formulario_agente.tipo_usuario.errors}}                      
+                                    {{formulario_agente.tipo_usuario.errors}}
                                   </div>
                                   <div class="control-group">
                                     <!--<label class="control-label">{{formulario_agente.status.label_tag}}</label>-->
                                     <div class="controls">
                                       {{formulario_agente.status}}
                                     </div>
-                                    {{formulario_agente.status.errors}}                      
+                                    {{formulario_agente.status.errors}}
                                   </div>
 
                                 </fieldset>
@@ -590,14 +582,14 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                     <div class="controls">
                                       {{formulario_agente.latitud}}
                                     </div>
-                                    {{formulario_agente.latitud.errors}}                      
+                                    {{formulario_agente.latitud.errors}}
                                   </div>
                                   <div class="control-group">
                                     <label class="control-label"></label>
                                     <div class="controls">
                                      {{formulario_agente.longitud}}
                                     </div>
-                                    {{formulario_agente.longitud.errors}}                      
+                                    {{formulario_agente.longitud.errors}}
                                   </div>
                                   <div id="map_canvas" style="width:550px!important; height:250px!important;"></div>
                                 </fieldset>
@@ -620,22 +612,14 @@ $(document).ajaxSend(function(event, xhr, settings) {
                             <form id="formulario1"  method="POST" action="">
                                 <input type="hidden" id="local" name="local" value="localidad">
                                 {% csrf_token %}
-                                <input type="text" value="" id="id_search" name="id_search" class="span12 " placeholder="Buscar Contacto ">
+                                <input type="text" value="" id="id_search" name="id_search" class="span12 " placeholder="Buscar por nombre, apellido paterno o materno">
+                                <input type="hidden" value="Agente" id="tipo_usuario" name="tipo_usuario" class="span12 ">
+                                <input type="hidden" value="A" id="status" name="status" class="span12 ">
 
-                                <input type="submit" id="guardar" class="btn btn-primary" value="Buscar" />
+                                <input type="submit" id="guardar" class="btn btn-primary" value="Buscar""/>
                             </form>
                         </div>
                    </div>
-
-                   <!-- <div id="myModalMapa" class="modal hide" >
-                        <div class="modal-header">
-                            <button data-dismiss="modal" class="close" type="button">&times;</button>
-                            <h3>Mapa</h3>
-                        </div>
-                        <div class="modal-body">
-                            <div id="map_canvas" style="width:550px!important; height:250px!important;"></div>
-                        </div>
-                   </div>-->
 
                    <div class="row-fluid">
                     <div class="span12">
@@ -837,6 +821,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
             });
         });
         </script>
+
 
 
         {% endblock extralibs %}
