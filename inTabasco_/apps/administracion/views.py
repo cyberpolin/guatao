@@ -1077,5 +1077,5 @@ def buscar_persona(request, persona, tipo_usuario, status):
 			persona_socio = paginator.page(paginator.num_pages)
 
 	contexto = {'persona_agente':persona_agente,'persona_socio':persona_socio,'filtrado':filtrado,'principal':principal,'alta_espacio':alta_espacio}
-	return render_to_response('administrador/resultado_busqeuda_persona.html',contexto, context_instance = RequestContext(request))
+	return render_to_response('administrador/resultado_busqueda_persona.html',contexto, context_instance = RequestContext(request))
 
