@@ -1,0 +1,274 @@
+{% extends "administrador/base.html" %}
+
+{% load staticfiles %}
+
+    {% block extrahead %}
+
+
+        <link href="{% static "administrador/vendors/easypiechart/jquery.easy-pie-chart.css" %}" rel="stylesheet" media="screen">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="{% static "administrador/vendors/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+        <script src="{% static "administrador/validate/jquery-1.10.2.min.js" %}"></script>
+
+        <script src="{% static "administrador/validate/jquery-1.10.2.min.js" %}"></script>
+
+        <script type="text/javascript" src="{% static "web/fancy/source/jquery.fancybox.js" %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static "web/fancy/source/jquery.fancybox.css" %}" media="screen" />
+
+        <script>
+            $(document).ready(function() {
+                $(".various").fancybox({
+                    maxWidth	: 1000,
+                    maxHeight	: 800,
+                    fitToView	: false,
+                    width		: '80%',
+                    height		: '100%',
+                    autoSize	: false,
+                    closeClick	: false,
+                    openEffect	: 'none',
+                    closeEffect	: 'none'
+                });
+            });
+        </script>
+
+
+<!--[if IE 7]>
+            <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
+        <![endif]-->
+
+        <link href="{% static "administrador/wizard/css/styles.css" %}" rel="stylesheet">
+        <!--============j avascript===========-->
+        <script src="{% static "administrador/wizard/js/jquery.validate.js" %}"></script>
+        <script src="{% static "administrador/wizard/js/stepy.jquery.js" %}"></script>
+
+        <!-- WIZZARD -->
+
+        <script type="text/javascript">
+        $(function(){
+          $('#formulario1').validate({
+            rules :{
+              id_search : {
+                    required : true //para validar campo vacio
+                  }
+
+                },
+
+                messages : {
+                  id_search : {
+                    required : "Buscar por nombre"
+
+                  }
+
+                },
+                //TEMINA VALIDACIONES
+
+                //VENTANA MODAL PARA GUARDAR LOCALIDADES VIA AJAX
+                submitHandler: function(form) {
+                    nombre_espacio = document.getElementById("id_search").value;
+                    status = document.getElementById("status").value;
+                    window.location = "/buscar_espacio/"+nombre_espacio+'/'+status;
+                }
+              });
+        });
+        </script>
+
+        <script type="text/javascript">
+        function borrar(id){
+
+            if (confirm("¿Seguro que desea desactivar el espacio?")) {
+                      // Respuesta afirmativa...
+                      window.location.href = '/lista_borrar_espacio/'+id;
+                  }
+              }
+
+        function activar(id){
+
+            if (confirm("¿Seguro que desea activar el espacio?")) {
+                      // Respuesta afirmativa...
+                      window.location.href = '/lista_activar_espacio/'+id;
+                  }
+              }
+        </script>
+
+
+
+
+
+
+
+    {% endblock extrahead %}
+
+    {% block maincontent %}
+
+                <div id="myModal" class="modal hide">
+                    <div class="modal-header">
+                        <button data-dismiss="modal" class="close" type="button">&times;</button>
+                        <h3>Buscar Espacios</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formulario1"  method="POST" action="">
+                            {% csrf_token %}
+                            <input type="text" value="" id="id_search" name="id_search" class="span12 " placeholder="Buscar por nombre"/>
+                            <input type="hidden" value="A" id="status" name="status" class="span12 ">
+                            <input type="submit" id="guardar" class="btn btn-primary" value="Buscar"/>
+                        </form>
+                    </div>
+               </div>
+	            <div class="row-fluid">
+                    <div class="span12">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Espacios
+                                     <a href="#myModal" data-toggle="modal"><i class=" icon-search"></i>Buscar</a>
+                                </div>
+                                <div class="pull-right">
+                                    <select name="pagination" id="sorting-pagination" onchange = "window.location.href = '?filtrado=' + this.value">
+                                        <option value="5" >Seleccione</option>
+                                        <option value="5" {% if filtrado == '5'%}selected{% endif %}>5</option>
+                                        <option value="10" {% if filtrado == '10'%}selected{% endif %}>10</option>
+                                        <option value="20" {% if filtrado == '20'%}selected{% endif %}>20</option>
+                                        <option value="50" {% if filtrado == '50'%}selected{% endif %}>50</option>
+                                        <option value="100" {% if filtrado == '100'%}selected{% endif %}>100</option>
+                                    </select>
+                                    <span class="badge badge-info">{{cantidad_espacios}}</span>
+
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Foto</th>
+                                            <th>RFC</th>
+                                            <th>Nombre del Establecimiento</th>
+                                            <th>Direccion<th>
+                                            <th>Agente de Ventas</th>
+                                           	<th>Status</th>
+                                            <th>Editar</th>
+                                            <th>Desactivar</th>
+                                            <th>Activar<th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if list_espacios %}
+                                        {% for p in list_espacios %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>
+                                            	{% for foto in p.cat_imagenes_set.all%}
+                                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 80px; height: 50px;" src="{{ MEDIA_URL }}{{foto}}" alt="image">
+                                                {% endfor %}
+                                            </td>
+                                            <td>{{p.rfc}}</td>
+                                            <td>{{p.nombre}} </td>
+                                            <td>{{p.direccion.localidad}}-<br>Colonia {{p.direccion.colonia}} Num° {{p.direccion.numero}}</td>
+                                            <td></td>
+                                            <td>{{p.usuario}}</td>
+                                            <td>{% if p.status.status == "A" %} <span class="label label-success">Activo</span> {% elif p.status.status == "I" %} <span class="label label-important">Desactivo</span> {% endif %}</td>
+
+                                            <td><a href="/editar_espacio_socio/{{p.id}}" class="register various"  data-fancybox-type="iframe"><i class="icon-edit"></i></a></td>
+
+                                            <td>{% if p.status.status == "A" %}<a onclick="borrar({{p.id}})" href="#"><i class="icon-remove"></i></a>{% endif %}</td>
+                                            <td>{% if p.status.status == "I" %}<a onclick="activar({{p.id}})" href="#"><i class="icon-ok"></i></a>{% endif %}</td>
+
+                                        </tr>
+                                        {% endfor %}
+                                        {% else %}
+                                        <tr>
+                                            <td><h3>Sin Espacios</h3></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                                {% if list_espacios.has_previous %}
+                                    <a class="page-numbers prev" href="#" onClick="parent.location='?page={{ list_espacios.previous_page_number }}&filtrado={{filtrado}}'" >Atras</a>
+                                {% endif %}
+                                <span class="current">
+                                    Pagina {{ list_espacios.number }} de {{ list_espacios.paginator.num_pages }}.
+                                </span>
+                                {% if list_espacios.has_next %}
+                                    <a class="page-numbers next" href="#" onClick="parent.location='?page={{ list_espacios.next_page_number }}&filtrado={{filtrado}}'">Siguiente</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+
+                </div>
+
+
+
+{% endblock maincontent %}
+
+
+        {% block extralibs %}
+        <!--/.fluid-container-->
+
+
+        <script src="{% static "administrador/vendors/easypiechart/jquery.easy-pie-chart.js" %}"></script>
+
+        <script src="{% static "administrador/vendors/bootstrap-datepicker.js"%}"></script>
+
+
+         <!--/.fluid-container-->
+        <link href="{% static "administrador/vendors/datepicker.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "administrador/vendors/uniform.default.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "administrador/vendors/chosen.min.css" %}" rel="stylesheet" media="screen">
+        <!--<script src="{% static "administrador/vendors/jquery-1.9.1.js" %}"></script>-->
+        <link href="{% static "administrador/vendors/wysiwyg/bootstrap-wysihtml5.css" %}" rel="stylesheet" media="screen">
+
+        <script src="{% static "administrador/bootstrap/js/bootstrap.js" %}"></script>
+        <script src="{% static "administrador/vendors/jquery.uniform.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/chosen.jquery.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/bootstrap-datepicker.js" %}"></script>
+
+        <script src="{% static "administrador/vendors/wysiwyg/wysihtml5-0.3.0.js" %}"></script>
+        <script src="{% static "administrador/vendors/wysiwyg/bootstrap-wysihtml5.js" %}"></script>
+
+        <script src="{% static "administrador/vendors/wizard/jquery.bootstrap.wizard.min.js" %}"></script>
+
+        <script src="{% static "administrador/assets/scripts.js" %}"></script>
+        <script>
+        $(function() {
+            $(".datepicker").datepicker();
+            $(".uniform_on").uniform();
+            $(".chzn-select").chosen();
+            $('.textarea').wysihtml5();
+
+            $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+                var $total = navigation.find('li').length;
+                var $current = index+1;
+                var $percent = ($current/$total) * 100;
+                $('#rootwizard').find('.bar').css({width:$percent+'%'});
+                // If it's the last tab then hide the last button and show the finish instead
+                if($current >= $total) {
+                    $('#rootwizard').find('.pager .next').hide();
+                    $('#rootwizard').find('.pager .finish').show();
+                    $('#rootwizard').find('.pager .finish').removeClass('disabled');
+                } else {
+                    $('#rootwizard').find('.pager .next').show();
+                    $('#rootwizard').find('.pager .finish').hide();
+                }
+            }});
+            $('#rootwizard .finish').click(function() {
+                alert('Finished!, Starting over!');
+                $('#rootwizard').find("a[href*='tab1']").trigger('click');
+            });
+        });
+        </script>
+        {% endblock extralibs %}
+
+
