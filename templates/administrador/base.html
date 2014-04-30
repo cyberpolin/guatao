@@ -242,10 +242,16 @@ function updateMarker(location) {
             {% endif %}
             <li class="{{alta_espacio}}">
                 <a href="/alta_persona_socio/"><i class="icon-chevron-right"></i> Registrar Socios y Espacios</a>
-            </li class="{{agentes_eliminados}}">
+            </li>
             {% if perms.inTabasco.add_agente_ventas%}
-            <li>
+            <li class="{{ agentes_eliminados }}">
                 <a href="/agentes_eliminados/"><i class="icon-chevron-right"></i> Agentes Eliminados</a>
+            </li>
+            <li class="{{ lista_espacios }}">
+                <a href="/lista_espacios/"><i class="icon-chevron-right"></i> Lista de Espacios</a>
+            </li>
+            <li class="{{ espacios_eliminados }}">
+                <a href="/espacios_eliminados/"><i class="icon-chevron-right"></i> Espacios eliminados</a>
             </li>
             {% endif %}
             <!--

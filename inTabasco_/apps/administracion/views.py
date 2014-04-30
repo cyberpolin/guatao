@@ -823,6 +823,7 @@ def activar_espacio(request, id_espacio, id_socio):
 def agentes_eliminados( request ):
 
 	eliminados = agente_ventas.objects.filter( status__status = 'I')
+	cantidad_eliminados = eliminados.count
 	filtrado = 5 # Show 10 contacts per page
 	if 'filtrado' in request.GET:
 		filtrado = request.GET.get('filtrado')
@@ -837,7 +838,7 @@ def agentes_eliminados( request ):
 	except EmptyPage:
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		eliminados = paginator.page(paginator.num_pages)
-	contexto = {'filtrado':filtrado,'agentes_eliminados':'active','eliminados':eliminados}
+	contexto = {'filtrado':filtrado,'agentes_eliminados':'active','eliminados':eliminados,'cantidad_eliminados':cantidad_eliminados,'agentes_eliminados':'active'}
 	return render_to_response('administrador/agentes_eliminados.html',contexto,context_instance = RequestContext(request))
 
 @csrf_exempt
@@ -1032,14 +1033,20 @@ def registrar_caja(request):
 	contexto = {'formulario':formulario}
 	return render_to_response('caja.html', contexto, context_instance = RequestContext(request))
 
+@login_required(login_url='/login_')
 def buscar_persona(request, persona, tipo_usuario, status):
 	persona_socio = None
 	principal = None
+	agentes_eliminados = None
 	alta_espacio = None
 	persona_agente = None
 	if (tipo_usuario == 'Agente'):
-		print "Agente"
-		principal = 'active'
+
+		if status == 'A':
+			principal = 'active'
+		else:
+			agentes_eliminados = 'active'
+
 		persona_agente = agente_ventas.objects.filter((Q( nombre__nombre__icontains = persona) | Q( nombre__apellido_paterno__icontains = persona)| Q( nombre__apellido_materno__icontains = persona)), nombre__tipo_usuario__tipo = tipo_usuario, status__status = status)
 		filtrado = 5 # Show 10 contacts per page
 		if 'filtrado' in request.GET:
@@ -1059,7 +1066,7 @@ def buscar_persona(request, persona, tipo_usuario, status):
 
 	elif (tipo_usuario == "Socio"):
 		alta_espacio ='active'
-		print "Socio"
+
 		persona_socio = cat_persona.objects.filter((Q( nombre__icontains = persona) | Q( apellido_paterno__icontains = persona)| Q( apellido_materno__icontains = persona)), tipo_usuario__tipo = tipo_usuario, status__status = status)
 
 		filtrado = 5 # Show 10 contacts per page
@@ -1076,6 +1083,90 @@ def buscar_persona(request, persona, tipo_usuario, status):
 			# If page is out of range (e.g. 9999), deliver last page of results.
 			persona_socio = paginator.page(paginator.num_pages)
 
-	contexto = {'persona_agente':persona_agente,'persona_socio':persona_socio,'filtrado':filtrado,'principal':principal,'alta_espacio':alta_espacio}
+	contexto = {'persona_agente':persona_agente,'persona_socio':persona_socio,'filtrado':filtrado,'principal':principal,'alta_espacio':alta_espacio,'agentes_eliminados':agentes_eliminados}
 	return render_to_response('administrador/resultado_busqueda_persona.html',contexto, context_instance = RequestContext(request))
 
+@login_required(login_url='/login_')
+def lista_espacios( request ):
+    list_espacios = espacio.objects.filter( status__status = 'A')
+    cantidad_espacios = list_espacios.count()
+    filtrado = 5 # Show 10 contacts per page
+    if 'filtrado' in request.GET:
+        filtrado = request.GET.get('filtrado')
+    paginator = Paginator(list_espacios, filtrado) # Muestra de 2 en 2
+    page = request.GET.get('page')
+    try:
+        list_espacios = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        list_espacios = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        list_espacios = paginator.page(paginator.num_pages)
+    contexto = {'list_espacios':list_espacios,'lista_espacios':'active','cantidad_espacios':cantidad_espacios,'filtrado':filtrado}
+    return render_to_response('administrador/lista_espacios.html', contexto, context_instance = RequestContext(request))
+
+@login_required(login_url='/login_')
+@permission_required('inTabasco.delete_espacio', raise_exception = True )
+def lista_borrar_espacio(request, id_espacio):
+
+	espacio_ = espacio.objects.all().get( pk = id_espacio )
+	espacio_.status = cat_status.objects.all().get( status = 'I')
+	espacio_.save()
+
+	return  HttpResponseRedirect( '/lista_espacios/' )
+
+@login_required(login_url='/login_')
+@permission_required('inTabasco.delete_espacio', raise_exception = True )
+def lista_activar_espacio(request, id_espacio):
+
+	espacio_ = espacio.objects.all().get( pk = id_espacio )
+	espacio_.status = cat_status.objects.all().get( status = 'A')
+	espacio_.save()
+
+	return  HttpResponseRedirect( '/lista_espacios/')
+
+@login_required(login_url='/login_')
+def buscar_espacio(request, nombre_espacio, status):
+    lista_espacios = None
+    espacios_eliminados = None
+    if status == 'A':
+        lista_espacios='active'
+    else:
+        espacios_eliminados='active'
+    list_espacios = espacio.objects.filter( nombre__icontains = nombre_espacio, status__status = status)
+    filtrado = 5 # Show 10 contacts per page
+    if 'filtrado' in request.GET:
+        filtrado = request.GET.get('filtrado')
+    paginator = Paginator(list_espacios, filtrado) # Muestra de 2 en 2
+    page = request.GET.get('page')
+    try:
+        list_espacios = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        list_espacios = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        list_espacios = paginator.page(paginator.num_pages)
+    contexto = {'list_espacios':list_espacios,'lista_espacios':lista_espacios,'espacios_eliminados':espacios_eliminados,'filtrado':filtrado}
+    return render_to_response('administrador/resultado_busqueda_espacios.html',contexto, context_instance = RequestContext( request ))
+
+@login_required(login_url='/login_')
+def espacios_eliminados( request ):
+    list_espacios = espacio.objects.filter( status__status = 'I')
+    cantidad_espacios = list_espacios.count()
+    filtrado = 5 # Show 10 contacts per page
+    if 'filtrado' in request.GET:
+        filtrado = request.GET.get('filtrado')
+    paginator = Paginator(list_espacios, filtrado) # Muestra de 2 en 2
+    page = request.GET.get('page')
+    try:
+        list_espacios = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        list_espacios = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        list_espacios = paginator.page(paginator.num_pages)
+    contexto = {'list_espacios':list_espacios,'espacios_eliminados':'active','cantidad_espacios':cantidad_espacios,'filtrado':filtrado}
+    return render_to_response('administrador/espacios_eliminados.html', contexto, context_instance = RequestContext(request))

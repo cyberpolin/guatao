@@ -34,6 +34,11 @@ urlpatterns = patterns('',
 	url(r'^registrar_caja', registrar_caja),
 
     url(r'^buscar_persona/(?P<persona>.+)/(?P<tipo_usuario>\w+)/(?P<status>\w+)', buscar_persona),
+    url(r'^lista_espacios/', lista_espacios),
+    url(r'^espacios_eliminados/', espacios_eliminados),
+    url(r'^lista_borrar_espacio/(?P<id_espacio>\d+)', lista_borrar_espacio),
+	url(r'^lista_activar_espacio/(?P<id_espacio>\d+)', lista_activar_espacio),
+    url(r'^buscar_espacio/(?P<nombre_espacio>.+)/(?P<status>\w+)', buscar_espacio),
 
 	
 	)
