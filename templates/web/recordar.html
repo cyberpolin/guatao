@@ -1,0 +1,55 @@
+{% extends "web/base_web.html" %}
+
+
+
+{% block contenido %}
+
+<header class="entry-header">
+
+        <h1 class="entry-title">
+            <a href="http://preview.ait-themes.com/directory/wp1/" title="Permalink to Home" rel="bookmark">¿Por qué tienes problemas para iniciar sesión?</a>
+        </h1>
+
+    </header>
+
+
+<form action="">
+    <br><br>
+    <label class="checkbox-inline">
+      <input type="radio" name="radio" value="usuario"> Recordar Usuario<br><br>
+      <input type="radio" name="radio" value="contraseña"> Recordar Contraseña
+    </label>
+    <br><br>
+
+    <div class="item-image">
+        <a id="contact-owner-button" class="contact-owner button"  style="background-color: #ff0000;" href="/">Cancelar</a>
+    </div>
+    <div class="item-image">
+    <a id="contact-owner-button" class="contact-owner button" href="#" onclick="siguiente()">Siguiente</a>
+    </div>
+</form>
+
+
+{% endblock contenido %}
+{% block scripts %}
+<script>
+    function siguiente(){
+        var radios = document.getElementsByName('radio');
+
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                resultado = radios[i].value;
+                if (resultado == 'usuario'){
+                    window.location.href = '/recordar_usuario/';
+
+                }
+                else{
+                    window.location.href = '/recordar_contraseña/';
+                }
+                break;
+            }
+        }
+    }
+</script>
+
+{% endblock scripts %}

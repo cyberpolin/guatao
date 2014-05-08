@@ -431,6 +431,16 @@ def localidades_cercanas( request, colonia):
 	contexto = {'espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'categoria':categoria,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
+def recordar( request ):
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto = espacio.objects.filter( status__status = 'A').order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
+
+	contexto = {'espacios_mas_visto':espacios_mas_visto,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios_recomendados':espacios_recomendados}
+	return render_to_response('web/recordar.html',contexto, context_instance = RequestContext( request ))
+
+
 
 
 
