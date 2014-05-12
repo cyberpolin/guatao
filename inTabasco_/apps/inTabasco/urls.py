@@ -18,6 +18,10 @@ urlpatterns = patterns('',
     url(r'^localidades_cercanas/(?P<colonia>.+)/', localidades_cercanas),
     url(r'^editar_perfil/(?P<socio_id>\d+)', editar_perfil),
     url(r'^recordar/', recordar),
+    url(r'^recordar_usuario/', recordar_usuario),
+    url(r'^recordar_password/', recordar_password),
+
+
 
 
 

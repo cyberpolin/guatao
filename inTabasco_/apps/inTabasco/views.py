@@ -1,4 +1,6 @@
 #encoding:utf-8
+
+# -*- coding: utf-8 -*-
 from django.http import *
 from django.contrib.auth.decorators import * # Libreria para el login required
 from django.shortcuts import *
@@ -277,8 +279,8 @@ def contactar_socio( request, espacio_id ):
 
 			correo_socio = espacio_persona.propietario.correo
 			text_content = ''
-			msj = str('<p><strong>¡Buen dia!.</strong> Un usuario a solicitado informacion de su negocio. Para verlo haz click en el siguiente enlace: <a href="guatao.com.mx/mensajes/'+str(espacio_persona.propietario.usuario.id)+'">guatao.com.mx/mensajes/'+str(espacio_persona.propietario.usuario.id)+'</a></p>')
-			subject, from_email, to = 'Nuevo mensaje en guatao.com.mx', 'guatao.com.mx@gmail.com', str(correo_socio)
+			msj = str('<p><strong>¡Buen dia!.</strong> Un usuario a solicitado informacion de su negocio. Para verlo haz click en el siguiente enlace: <a href="guatao.mx/mensajes/'+str(espacio_persona.propietario.usuario.id)+'">guatao.com.mx/mensajes/'+str(espacio_persona.propietario.usuario.id)+'</a></p>')
+			subject, from_email, to = 'Nuevo mensaje en guatao.mx', 'info@guatao.mx', str(correo_socio)
 			msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 			msg.attach_alternative(msj, "text/html")
 			msg.send()
@@ -439,6 +441,61 @@ def recordar( request ):
 
 	contexto = {'espacios_mas_visto':espacios_mas_visto,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios_recomendados':espacios_recomendados}
 	return render_to_response('web/recordar.html',contexto, context_instance = RequestContext( request ))
+
+def recordar_usuario( request ):
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto = espacio.objects.filter( status__status = 'A').order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
+	correo = request.POST.get('correo')
+	try:
+		usuario = User.objects.get( email = correo )
+		correo = usuario.email
+		text_content = ''
+		msj = str('<p><strong>¡Buen dia!.</strong> Su usuario de guatao.mx es: <h2>'+str(usuario.username)+'</h2></p>')
+		subject, from_email, to = 'Nuevo mensaje en guatao.mx', 'info@guatao.mx', str(correo)
+		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+		msg.attach_alternative(msj, "text/html")
+		msg.send()
+		msj = 'Un correo a sido enviado con su usuario.'
+
+	except User.DoesNotExist:
+		msj = 'El correo no existe'
+
+
+	contexto = {'msj':msj,'correo':correo,'espacios_mas_visto':espacios_mas_visto,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios_recomendados':espacios_recomendados}
+	return render_to_response('web/recordar_usuario.html',contexto, context_instance = RequestContext( request ))
+
+def recordar_password( request ):
+	nuevos_socios = espacio.objects.filter( status__status = 'A' ).order_by('-id')[:2]
+	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
+	espacios_mas_visto = espacio.objects.filter( status__status = 'A').order_by('-num_visitas')[:4]
+	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
+	correo = request.POST.get('correo')
+	try:
+		usuario = User.objects.get( email = correo )
+		correo = usuario.email
+		new_password = User.objects.make_random_password(length=10)
+		usuario.set_password(new_password)
+		usuario.save()
+
+
+		text_content = ''
+		msj = str('<p><strong>¡Buen dia!.</strong> Su nueva contraseña de guatao.mx es: <strong>'+str(new_password)+ '</strong>. Por su seguridad se recomienda cambiarla.</p>')
+		subject, from_email, to = 'Nuevo mensaje en guatao.mx', 'info@guatao.mx', str(correo)
+		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+		msg.attach_alternative(msj, "text/html")
+		msg.send()
+		msj = 'Un correo a sido enviado con su contraseña.'
+
+	except User.DoesNotExist:
+		msj = 'El correo no existe'
+
+
+	contexto = {'msj':msj,'correo':correo,'espacios_mas_visto':espacios_mas_visto,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios_recomendados':espacios_recomendados}
+	return render_to_response('web/recordar_contraseña.html',contexto, context_instance = RequestContext( request ))
+
+
 
 
 
