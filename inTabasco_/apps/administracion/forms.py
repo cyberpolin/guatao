@@ -67,3 +67,9 @@ class Registrar_Espacio_Socio( forms.Form):
     producto = forms.ModelChoiceField(  empty_label = "Seleccione el producto", queryset=cat_productos.objects.all(), widget = forms.Select(attrs={'class':'chzn-select'}))
     status = forms.ModelChoiceField(queryset=cat_status.objects.all(), initial='1', widget = forms.HiddenInput())
 
+class Registrar_Categoria( ModelForm ):
+    class Meta:
+        model = cat_categorias_espacios
+
+    def clean(self):
+        return self.cleaned_data

@@ -39,6 +39,10 @@ urlpatterns = patterns('',
     url(r'^lista_borrar_espacio/(?P<id_espacio>\d+)', lista_borrar_espacio),
 	url(r'^lista_activar_espacio/(?P<id_espacio>\d+)', lista_activar_espacio),
     url(r'^buscar_espacio/(?P<nombre_espacio>.+)/(?P<status>\w+)', buscar_espacio),
+    url(r'^registrar_categoria/', registrar_categoria),
+    url(r'^borrar_categoria/(?P<id_categoria>\d+)', borrar_categoria),
+    url(r'^editar_categoria/(?P<id_categoria>\d+)', editar_categoria),
+
 
 	
 	)

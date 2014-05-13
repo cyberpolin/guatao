@@ -175,7 +175,7 @@ class agente_ventas(models.Model):
 
 
 class cat_categorias_espacios(models.Model):
-    clave = models.CharField(max_length=4)
+    descripcion = models.TextField()
     categoria = models.CharField(max_length=50)
     icono = models.ImageField(upload_to='imagenes_usuarios', blank=True, null=True)
 
@@ -186,7 +186,7 @@ class cat_categorias_espacios(models.Model):
         ordering = ['categoria']
         verbose_name = 'catalogo de categoria'
         verbose_name_plural = 'Catalogo de Categorias para Espacios'
-        unique_together = ['clave', 'categoria']
+        unique_together = [ 'categoria']
 
 
 class espacio(models.Model):

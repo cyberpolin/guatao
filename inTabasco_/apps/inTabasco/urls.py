@@ -25,6 +25,7 @@ urlpatterns = patterns('',
 
 
 
+
     url(r'^cambio_password/chpasswd/done/?',
     'django.contrib.auth.views.password_change_done',
     {'template_name':'registration/password_change_done.html'}),
