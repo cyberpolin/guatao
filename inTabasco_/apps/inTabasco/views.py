@@ -471,6 +471,7 @@ def recordar_password( request ):
 	socios_vip = espacio.objects.filter( socio_vip = True, status__status = 'A' ).order_by('-id')[:4]
 	espacios_mas_visto = espacio.objects.filter( status__status = 'A').order_by('-num_visitas')[:4]
 	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
+
 	correo = request.POST.get('correo')
 	try:
 		usuario = User.objects.get( email = correo )
@@ -488,12 +489,13 @@ def recordar_password( request ):
 		msg.send()
 		msj = 'Un correo a sido enviado con su contraseña.'
 
+
 	except User.DoesNotExist:
 		msj = 'El correo no existe'
 
 
 	contexto = {'msj':msj,'correo':correo,'espacios_mas_visto':espacios_mas_visto,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios_recomendados':espacios_recomendados}
-	return render_to_response('web/recordar_contraseña.html',contexto, context_instance = RequestContext( request ))
+	return render_to_response('web/recordar_contrasena.html',contexto, context_instance = RequestContext( request ))
 
 
 

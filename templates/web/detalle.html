@@ -59,7 +59,7 @@
             <dl class="item-address">
                 <dt class="title"><h4>Ubicación</h4></dt>
                 <dt class="address">Dirección:</dt>
-                <dd class="data">{{ espacio_.direccion.localidad.nombre | title }}, {{ espacio_.direccion.colonia | title }}, {{ espacio_.direccion.calle | title }} # {{ espacio_.direccion.codigo_postal }}.  </dd>
+                <dd class="data"> <strong>Mun. </strong>{{ espacio_.direccion.localidad.nombre | title }}, <strong>Col. </strong>{{ espacio_.direccion.colonia | title }}, <strong>Calle. </strong>{{ espacio_.direccion.calle | title }}, <strong>Num. </strong> {{ espacio_.direccion.numero }}, <strong>C.P. </strong> {{ espacio_.direccion.codigo_postal }}.  </dd>
                 <dt class="phone">Telefono(s):</dt>
                 <dd class="data"><a href="tel:{{ espacio_.propietario.telefono }}"> {{ espacio_.propietario.telefono }}</a> y <a href="tel:{{ espacio_.propietario.celular }}" >{{ espacio_.propietario.celular }}</a></dd>
                 <dt class="email">Correo: </dt>
