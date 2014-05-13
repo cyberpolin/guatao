@@ -1,0 +1,315 @@
+{% extends "administrador/base.html" %}
+{% block title %} Registrar categorias {{ block.super }} {% endblock title %}
+
+{% load staticfiles %}
+
+
+    {% block extrahead %}
+
+
+        <link href="{% static "administrador/vendors/easypiechart/jquery.easy-pie-chart.css" %}" rel="stylesheet" media="screen">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="{% static "administrador/vendors/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+        <script src="{% static "administrador/validate/jquery-1.10.2.min.js" %}"></script>
+
+
+
+
+<!--[if IE 7]>
+            <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
+        <![endif]-->
+
+        <link href="{% static "administrador/wizard/css/styles.css" %}" rel="stylesheet">
+        <!--============j avascript===========-->
+        <script src="{% static "administrador/wizard/js/jquery.validate.js" %}"></script>
+        <script src="{% static "administrador/wizard/js/stepy.jquery.js" %}"></script>
+
+        <!-- WIZZARD -->
+        <script type="text/javascript">
+            $(function () {
+                /*==JQUERY STEPY==*/
+                $('#stepy').stepy({
+                    backLabel: 'Atras',
+                    nextLabel: 'Siguiente',
+                    errorImage: true,
+                    block: true,
+                    description: true,
+                    legend: false,
+                    titleClick: true,
+                    titleTarget: '#stepy_tabby',
+                    validate: true
+                });
+                $('#stepy1').stepy({
+                    backLabel: 'Back',
+                    nextLabel: 'Next',
+                    block: true,
+                    description: true,
+                    legend: false,
+                    titleClick: true,
+                    titleTarget: '#stepy_tabby1'
+                });
+                $('#stepy_form').stepy({
+                    backLabel: 'Back',
+                    nextLabel: 'Next',
+                    errorImage: true,
+                    block: true,
+                    description: true,
+                    legend: false,
+                    titleClick: true,
+                    titleTarget: '#top_tabby',
+                    validate: true
+                });
+
+
+
+                //VALIDACIONES DEL WIZAR
+
+            });
+        </script>
+
+
+        <script type="text/javascript">
+          function desactivar(id){
+              if (confirm("¿Seguro que desea desactivar al Socio y sus espacios")) {
+              // Respuesta afirmativa...
+                    window.location.href = '/bloquear_socio/'+id;
+                                    }
+                                }
+
+            function activar(id){
+              if (confirm("¿Seguro que desea activar al Socio y sus espacios")) {
+              // Respuesta afirmativa...
+                    window.location.href = '/activar_socio/'+id;
+                                    }
+                                }
+        </script>
+
+    {% endblock extrahead %}
+
+    {% block maincontent %}
+
+
+                <!--/span-->
+
+
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="stepy-widget">
+                                    <div class="widget-head clearfix bondi-blue">
+                                        <div id="stepy_tabby" class="pull-right">
+                                        </div>
+                                        <h3>Registro de Categorias</h3>
+                                    </div>
+                                    <div class="widget-container gray ">
+                                        <div class="form-container">
+                                            <form id="stepy" method="POST" enctype="multipart/form-data" class=" form-horizontal left-align form-well">
+
+                                               {% csrf_token %}
+
+                                               {{ formulario.as_p }}
+
+                                                <button type="submit" class="finish btn btn-extend"> Guardar</button>
+                                                {% if categoria_editar %}<button type="button" onClick="parent.location='/registrar_categoria/'" style="background:#da4f49; color: #ffffff" class="finish btn btn-extend" class="btn btn-danger"> Cancelar</button>{% endif %}
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <div id="busqueda" class="modal hide">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">&times;</button>
+                            <h3>Buscar Categoria </h3>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formulario1"  method="POST" action="">
+                                <input type="hidden" id="local" name="local" value="localidad">
+                                {% csrf_token %}
+                                <input type="text" value="" id="id_search" name="id_search" class="span12 " placeholder="Buscar por nombre, apellido paterno o materno">
+                                <input type="hidden" value="Socio" id="tipo_usuario" name="tipo_usuario" class="span12 ">
+                                <input type="hidden" value="A" id="status" name="status" class="span12 ">
+
+                                <input type="submit" id="guardar" class="btn btn-primary" value="Buscar""/>
+                            </form>
+                        </div>
+                   </div>
+
+
+
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <!-- block -->
+                            <div class="block">
+                                <div class="navbar navbar-inner block-header">
+                                    <div class="muted pull-left">Categorias
+                                        <a href="#busqueda" data-toggle="modal"><i class=" icon-search"></i>Buscar</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <select name="pagination" id="sorting-pagination" onchange = "window.location.href = '?filtrado=' + this.value">
+                                            <option value="5">Seleccione</option>
+                                            <option value="5" {% if filtrado == '5'%}selected{% endif %}>5</option>
+                                            <option value="10" {% if filtrado == '10'%}selected{% endif %}>10</option>
+                                            <option value="20" {% if filtrado == '20'%}selected{% endif %}>20</option>
+                                            <option value="50" {% if filtrado == '50'%}selected{% endif %}>50</option>
+                                            <option value="100" {% if filtrado == '100'%}selected{% endif %}>100</option>
+                                        </select>
+                                        <span class="badge badge-info">{{categorias_count}} </span>
+                                    </div>
+                                </div>
+                                <div class="block-content collapse in">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Icono</th>
+                                                <th>Nombre</th>
+                                                <th>Editar</th>
+                                                <!--<th>Borrar</th>-->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if categorias %}
+                                            {% for p in categorias %}
+                                            <tr>
+                                                <td> {{ forloop.counter }}</td>
+                                                <td>
+
+                                                    <a href="#myModal" class="Modal" data-toggle="modal" >
+                                                        <img data-src="holder.js/260x180" alt="160x80" style="width: 40px; height: 25px;" src="{{ MEDIA_URL }}{{p.icono}}" alt="image">
+                                                    </a>
+
+                                                </td>
+                                                <td>{{p.categoria}}</td>
+
+                                                <td><a href="/editar_categoria/{{p.id}}"><i class="icon-edit"></i></a></td>
+                                                <!--<td><a href="/borrar_categoria/{{p.id}}"><i class="icon-remove"></i></a></td>-->
+                                            </tr>
+                                            {% endfor %}
+                                            {% else %}
+                                            <tr>
+                                                <td><h3>Sin Categorias</h3></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                    {% if categorias.has_previous %}
+                                        <a class="page-numbers prev" href="#" onClick="parent.location='?page={{ categorias.previous_page_number }}&filtrado={{filtrado}}'" >Atras</a>
+                                    {% endif %}
+                                    <span class="current">
+                                        Pagina {{ categorias.number }} de {{ categorias.paginator.num_pages }}.
+                                    </span>
+                                    {% if categorias.has_next %}
+                                        <a class="page-numbers next" href="#" onClick="parent.location='?page={{ categorias.next_page_number }}&filtrado={{filtrado}}'">Siguiente</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!-- /block -->
+                        </div>
+                    </div>
+
+                    <div id="myModal" class="modal hide">
+                      <div class="modal-header">
+                        <button data-dismiss="modal" class="close" onclick="cerrar_detalle()" type="button">&times;</button>
+                        <h3>Detalles del Socio</h3>
+                      </div>
+                      <div class="modal-body">
+                        <p><div id="imagen"></div></p>
+                        <p><div id="nombre"></div></p>
+                        <p><div id="fecha_registro"></div></p>
+                        <p><div id="fecha_nacimiento"></div></p>
+                        <p><div id="correo"></div></p>
+                        <p><div id="telefono"></div></p>
+                        <p><div id="celular"></div></p>
+                        <p><div id="red_social"></div></p>
+                        <p><div id="id"></div></p>
+                      </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            {% endblock maincontent %}
+
+
+        {% block extralibs %}
+        <!--/.fluid-container-->
+
+        <script src="{% static "administrador/bootstrap/js/bootstrap.js" %}"></script>
+        <script src="{% static "administrador/vendors/easypiechart/jquery.easy-pie-chart.js" %}"></script>
+        <script src="{% static "administrador/assets/scripts.js" %}"></script>
+        <script>
+        $(function() {
+            // Easy pie charts
+            $('.chart').easyPieChart({animate: 1000});
+        });
+        </script>
+
+
+
+        <script src="{% static "administrador/vendors/jquery.uniform.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/chosen.jquery.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/bootstrap-datepicker.js"%}"></script>
+
+        <script src="{% static "administrador/vendors/wysiwyg/bootstrap-wysihtml5.js" %}"></script>
+        <script src="{% static "administrador/vendors/wizard/jquery.bootstrap.wizard.min.js" %}"></script>
+
+        <link href="{% static "administrador/vendors/datepicker.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "administrador/vendors/uniform.default.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "administrador/vendors/chosen.min.css" %}" rel="stylesheet" media="screen">
+
+        <link href="{% static "administrador/vendors/wysiwyg/bootstrap-wysihtml5.css" %}" rel="stylesheet" media="screen">
+
+
+        <script src="{% static "administrador/vendors/jquery.uniform.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/chosen.jquery.min.js" %}"></script>
+        <script src="{% static "administrador/vendors/bootstrap-datepicker.js" %}"></script>
+
+        <script src="{% static "administrador/assets/scripts.js" %}"></script>
+        <script>
+        $(function() {
+            $(".datepicker").datepicker();
+            $(".uniform_on").uniform();
+            $(".chzn-select").chosen();
+            $('.textarea').wysihtml5();
+
+            $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+                var $total = navigation.find('li').length;
+                var $current = index+1;
+                var $percent = ($current/$total) * 100;
+                $('#rootwizard').find('.bar').css({width:$percent+'%'});
+                // If it's the last tab then hide the last button and show the finish instead
+                if($current >= $total) {
+                    $('#rootwizard').find('.pager .next').hide();
+                    $('#rootwizard').find('.pager .finish').show();
+                    $('#rootwizard').find('.pager .finish').removeClass('disabled');
+                } else {
+                    $('#rootwizard').find('.pager .next').show();
+                    $('#rootwizard').find('.pager .finish').hide();
+                }
+            }});
+            $('#rootwizard .finish').click(function() {
+                alert('Finished!, Starting over!');
+                $('#rootwizard').find("a[href*='tab1']").trigger('click');
+            });
+        });
+        </script>
+
+
+        {% endblock extralibs %}
+
+
