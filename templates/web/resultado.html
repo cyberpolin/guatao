@@ -1,6 +1,6 @@
 {% extends "web/base_web.html" %}
 
-
+{% block title %} {% if categoria %} {{ categoria.categoria }} {% else %}  {% endif %} {% endblock title %}
 {% block contenido %}
 
 
@@ -78,7 +78,7 @@
                                         <h3>
                                             <a href="/detalle/{{ espacio.direccion.localidad.nombre }}/{% if categoria %}{{ categoria.categoria }}{% else %}resultado{% endif %}/{{ espacio.id }}">{{ espacio.nombre | title }}</a>
                                         </h3>
-                                        <p>{{ espacio.descripcion_larga | title }}</p>
+                                        <p>{{ espacio.descripcion_larga }}</p>
 
                                     </div>
                                 </li>

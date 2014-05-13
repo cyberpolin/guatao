@@ -116,7 +116,7 @@ def resultado( request, buscar, categoria, ubicacion ):
 			espacios = paginator.page(paginator.num_pages)
 
 
-	contexto = {'espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios, 'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'resultado':'resultado','espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios, 'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 def busqueda_socio_vip( request, nombre):

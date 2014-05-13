@@ -7,7 +7,7 @@
         {% load staticfiles %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Guatao.com.mx .:. El que busca encuentra...</title>
+        <title>{% block title %} guatao.mx .:. El que busca encuentra...{%   endblock title %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
@@ -61,7 +61,7 @@
         {% endblock staticos %}
 
     </head>
-    <body class="single single-ait-dir-item postid-7821 ait-directory" data-themeurl="">
+    <body class="single single-ait-dir-item postid-7821 ait-directory" data-themeurl="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory">
 
     {% block redsocial %}
         <!--[if lt IE 7]>
@@ -140,9 +140,9 @@
                                 <div class="dir-holder-wrap">
                                 <input type="text" id="dir-searchinput-text" name="buscar" placeholder="Buscar..." class="dir-searchinput" />
 
-                                <div id="dir-searchinput-settings" class="dir-searchinput-settings">
+                                <!--<div id="dir-searchinput-settings" class="dir-searchinput-settings">
 
-                                </div>
+                                </div>-->
                                 <input type="hidden" name="geo-lat" id="dir-searchinput-geo-lat" value="" />
                                 <input type="hidden" name="geo-lng" id="dir-searchinput-geo-lng" value="" />
 
@@ -481,28 +481,27 @@
             $(function(){
                 $("#dir-searchinput-text").autocomplete({
                     source: "/ajaxautocompletable/",
-                    minLength: 2,
-
+                    minLength: 2
                     });
                 });
             $(function(){
                 $("#dir-searchinput-location").autocomplete({
                     source: "/ajaxaubicacion/",
-                    minLength: 2,
+                    minLength: 2
 
                     });
                 });
             $(function(){
                 $("#dir-searchinput-category").autocomplete({
                     source: "/ajaxacategoria/",
-                    minLength: 2,
+                    minLength: 2
 
                     });
                 });
             $(function(){
                 $("#s").autocomplete({
                     source: "/ajax_socio_vip/",
-                    minLength: 2,
+                    minLength: 2
                 });
             });
 
@@ -553,23 +552,23 @@
                 $('#login').validate({
                     rules :{
                         user_login : {
-                            required : true, //para validar campo vacio
+                            required : true //para validar campo vacio
                         },
                         user_pass : {
-                            required : true, //para validar campo vacio
-                        },
+                            required : true //para validar campo vacio
+                        }
 
                     },
 
                     messages : {
                         user_login : {
-                            required : "<label style='color:red;width: 157px;'>El usuario es requerido</label>",
+                            required : "<label style='color:red;width: 157px;'>El usuario es requerido</label>"
                         },
                         user_pass : {
-                            required : "<label style='color:red;width: 157px;'>La contraseña es requerida</label>",
-                        },
+                            required : "<label style='color:red;width: 157px;'>La contraseña es requerida</label>"
+                        }
 
-                      },
+                      }
                 });
             });
         </script>
