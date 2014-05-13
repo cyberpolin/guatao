@@ -23,12 +23,12 @@ def validar(request):
             login(request, user)
             persona = cat_persona.objects.get( usuario = user)
             if (persona.tipo_usuario.tipo =='Administradores') or (persona.tipo_usuario.tipo =='Agente'):
-                msj='Bienvenido ' + str(user) + ' a guatao.com.mx'
+                msj='Bienvenido ' + str(user) + ' a guatao.mx'
                 messages.success(request, msj)
                 return HttpResponseRedirect( '/principal/' )
             elif(persona.tipo_usuario.tipo =='Socio'):
                 login(request, user)
-                msj='Bienvenido ' + str(user) + ' a guatao.com.mx'
+                msj='Bienvenido ' + str(user) + ' a guatao.mx'
                 messages.success(request, msj)
                 return HttpResponseRedirect( '/' )
         else:
