@@ -493,7 +493,7 @@ def recordar_password( request ):
 
 
 	contexto = {'msj':msj,'correo':correo,'espacios_mas_visto':espacios_mas_visto,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios_recomendados':espacios_recomendados}
-	return render_to_response('web/recordar_contraseña.html',contexto, context_instance = RequestContext( request ))
+	return render_to_response('web/recordar_contrasena.html',contexto, context_instance = RequestContext( request ))
 
 
 
