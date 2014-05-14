@@ -1237,7 +1237,7 @@ def editar_categoria( request, id_categoria ):
 		formulario = Registrar_Categoria( instance = categoria_editar)
 
 	elif request.method == 'POST':
-		formulario = Registrar_Categoria( request.POST, instance = categoria_editar )
+		formulario = Registrar_Categoria( request.POST,request.FILES, instance = categoria_editar )
 		if formulario.is_valid():
 
 			formulario.save()
