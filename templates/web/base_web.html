@@ -106,7 +106,7 @@
 <nav class="mainmenu"><ul id="menu-main-menu" class="menu">
     <li id="menu-item-7648" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7 current_page_item menu-item-has-children menu-item-7648"><a href="/">Inicio</a>
     </li>
-    <li id="menu-item-8114" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8114"><a  href="#">¿Como ser socio?</a></li>
+    <!--<li id="menu-item-8114" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8114"><a  href="#">¿Como ser socio?</a></li>-->
     {% if user.is_authenticated %}
     <li id="menu-item-8114" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8114"><a  href="/logout_user/">Cerrar Sesión</a></li>
     {% endif %}
@@ -146,7 +146,7 @@
                                 <input type="hidden" name="geo-lat" id="dir-searchinput-geo-lat" value="" />
                                 <input type="hidden" name="geo-lng" id="dir-searchinput-geo-lng" value="" />
 
-                                <input type="text" name="categoria" id="dir-searchinput-category" placeholder="Categorias" />
+                                <input type="text" name="categoria" id="dir-searchinput-category" placeholder="Categorías" />
                                 <input type="text" id="dir-searchinput-category-id"  style="display: none;" />
 
                                 <input type="text" id="dir-searchinput-location" name="ubicacion" placeholder="Ubicación" />
@@ -219,7 +219,7 @@
             </aside>
             {% else %}
             <aside id="ait-directory-widget-2" class="widget widget_directory">
-                <h3 class="widget-title"><span>CONVIERTETE EN SOCIO HOY!</span></h3>
+                <h3 class="widget-title"><span>¡CONVIÉRTETE EN SOCIO HOY!</span></h3>
                 <div class="not-logged">
                     <div id="ait-login-tabs">
                         <ul>
@@ -320,7 +320,7 @@
                 </div>
             </aside>
             <aside id="text-9" class="widget widget_text">
-                <h3 class="widget-title"><span>Soicio VIP</span></h3>
+                <h3 class="widget-title"><span>Socio VIP</span></h3>
                 <div class="textwidget">
                     {% for vip in socios_vip %}
                         {% for imagen in vip.cat_imagenes_set.all %}
@@ -399,7 +399,7 @@
                                 <div class="title-decoration">
 
                                 </div>
-                                <h2 class="widget-title">Lo mas visto</h2>
+                                <h2 class="widget-title">Lo más visto</h2>
                             </div>
                         </div>
                         <ul>
@@ -419,11 +419,11 @@
                                 <div class="title-decoration">
 
                                 </div>
-                                <h2 class="widget-title">¿Que es un Socio?</h2>
+                                <h2 class="widget-title">¿Qué es un Socio?</h2>
                             </div>
                         </div>
                         <div class="textwidget">
-                            En guatao no tenemos clientes, todos son <strong>socios</strong> comerciales, al dar de alta tu empresa guatao se convertira en un aliado comercial, ayudandote a posicionarte en la web, asi llegaras a mas gente.
+                            En guatao no tenemos clientes, todos son <strong>socios</strong> comerciales. Al dar de alta tu empresa guatao se convertirá en un aliado comercial, ayudándote a posicionarte en la web. Así llegarás a más gente.
                         </div>
                     </div>
                 </div>
@@ -439,9 +439,11 @@
                         <li id="menu-item-7788" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7 current_page_item menu-item-7788">
                             <a href="/">Inicio</a>
                         </li>
+                        <!--
                         <li id="menu-item-7788" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7 current_page_item menu-item-7788">
                             <a href="#">¿Quieres ser Socio?</a>
                         </li>
+                        -->
                     </ul>
                 </nav>
             </div>
