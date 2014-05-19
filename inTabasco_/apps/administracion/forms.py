@@ -36,7 +36,7 @@ class Registrar_Persona_Socio( forms.Form):
     fecha_nacimiento = forms.DateField(label = "Fecha de Nacimiento ", widget = forms.TextInput(attrs={'class':'datepicker'}))
     correo = forms.EmailField(label = "Correo Electronico", max_length = 100)
     telefono = forms.CharField(label = "Telefono", max_length = 15)
-    celular = forms.CharField(label = "Celular", max_length = 15)
+    celular = forms.CharField(label = "Celular", max_length = 15, required = False)
     red_social = forms.ModelChoiceField(required = False, label = "Red Social" , empty_label = "Seleccione la red social", queryset=cat_redes_sociales.objects.all())
     usuario_red_social = forms.CharField(required = False, label = "Usuario de la Red Social", max_length = 50)
 
@@ -60,6 +60,8 @@ class Registrar_Espacio_Socio( forms.Form):
     codigo_postal = forms.CharField(label="Codigo Postal", max_length = "10")
     dias_laborales = forms.CharField(label="Dias de Atencion", max_length = "500")
     horario_atencion = forms.CharField(label="Horario de Atencion", max_length = "100")
+    correo = forms.EmailField(label = "Correo Electronico", max_length = 100, required = False)
+    telefono = forms.CharField(label = "Telefono", max_length = 15, required = False)
     latitud = forms.CharField(initial="18.000264246324", label="Latitud", max_length = "300", widget = forms.HiddenInput())
     longitud = forms.CharField(initial="-92.94361710548401", label="Longitud", max_length = "300", widget = forms.HiddenInput())
 

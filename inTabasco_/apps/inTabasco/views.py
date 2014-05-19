@@ -36,7 +36,8 @@ def resultado( request, buscar, categoria, ubicacion ):
 
 	filtrado = 5
 	if (buscar != '0' and ubicacion == '0' and categoria == '0'):
-		espacios = espacio.objects.filter(nombre__icontains = buscar, status__status = 'A' ).order_by('-num_visitas')
+		espacios = espacio.objects.filter(descripcion_corta__icontains = buscar, status__status = 'A' ).order_by('-num_visitas')
+		cantidad_resultado = espacios.count()
 		if 'filtrado' in request.GET:
 			filtrado = request.GET.get('filtrado')
 		paginator = Paginator(espacios, filtrado) # Muestra de 2 en 2
@@ -55,6 +56,7 @@ def resultado( request, buscar, categoria, ubicacion ):
 	elif (buscar == '0' and ubicacion == '0' and categoria != '0'):
 
 		espacios = espacio.objects.filter( categorias__categoria__icontains = categoria, status__status = 'A' ).order_by('-num_visitas')
+		cantidad_resultado = espacios.count()
 
 		if 'filtrado' in request.GET:
 			filtrado = request.GET.get('filtrado')
@@ -74,7 +76,9 @@ def resultado( request, buscar, categoria, ubicacion ):
 	elif (buscar != '0' and ubicacion != '0' and categoria == '0'):
 		espacios = []
 
-		esp = espacio.objects.filter( direccion__localidad__nombre__icontains = ubicacion, nombre__icontains = buscar, status__status = 'A' ).order_by('-num_visitas')
+		esp = espacio.objects.filter( direccion__localidad__nombre__icontains = ubicacion, descripcion_corta__icontains = buscar, status__status = 'A' ).order_by('-num_visitas')
+		cantidad_resultado = esp.count()
+
 		for e in esp:
 			espacios.append(e)
 		if 'filtrado' in request.GET:
@@ -93,13 +97,18 @@ def resultado( request, buscar, categoria, ubicacion ):
 		#return  HttpResponse(espacios)
 
 	elif (buscar != '0' and ubicacion != '0' and categoria != '0'):
-		tabasco = cat_localidad.objects.get(nombre__iexact=ubicacion)
+		#tabasco = cat_localidad.objects.get(nombre__iexact=ubicacion)
 		espacios = []
 
-		for localidad in tabasco.cat_localidad_set.all():
-			esp = espacio.objects.filter( direccion__localidad__nombre__icontains=localidad.nombre, nombre__icontains = buscar, categorias__categoria__icontains = categoria, status__status = 'A' ).order_by('-num_visitas')
-			for e in esp:
-				espacios.append(e)
+		#for localidad in tabasco.cat_localidad_set.all():
+		#	print localidad
+		esp = espacio.objects.filter( direccion__localidad__nombre__icontains=ubicacion, descripcion_corta__icontains = buscar, categorias__categoria__icontains = categoria, status__status = 'A' ).order_by('-num_visitas')
+		cantidad_resultado = esp.count()
+		print(esp)
+		for e in esp:
+			espacios.append(e)
+
+
 
 		if 'filtrado' in request.GET:
 			filtrado = request.GET.get('filtrado')
@@ -116,7 +125,7 @@ def resultado( request, buscar, categoria, ubicacion ):
 			espacios = paginator.page(paginator.num_pages)
 
 
-	contexto = {'resultado':'resultado','espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios, 'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'cantidad_resultado':cantidad_resultado,'resultado':'resultado','espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios, 'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 def busqueda_socio_vip( request, nombre):
@@ -126,8 +135,9 @@ def busqueda_socio_vip( request, nombre):
 	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 
 	espacios = espacio.objects.filter(nombre__icontains = nombre, status__status = 'A' ).order_by('-num_visitas')
+	cantidad_resultado = espacios.count()
 
-	contexto = {'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'cantidad_resultado':cantidad_resultado,'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 
@@ -138,6 +148,7 @@ def categoria( request, categoria_id):
 	espacios_recomendados = recomendaciones.objects.filter(espacio__status__status = 'A').order_by('calificacion')[:3]
 
 	espacios = espacio.objects.filter( categorias__id = categoria_id, status__status = 'A' ).order_by('-num_visitas')
+	cantidad_resultado = espacios.count()
 	categoria = cat_categorias_espacios.objects.get( pk = categoria_id)
 
 	filtrado = 5 # Show 10 contacts per page
@@ -155,7 +166,7 @@ def categoria( request, categoria_id):
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		espacios = paginator.page(paginator.num_pages)
 
-	contexto = {'espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'categoria':categoria,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
+	contexto = {'cantidad_resultado':cantidad_resultado,'espacios_recomendados':espacios_recomendados,'filtrado':filtrado,'categoria':categoria,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 
@@ -308,6 +319,7 @@ def mis_espacios_web( request, socio_id ):
 
 
 	espacios = espacio.objects.filter( propietario__usuario__id = socio_id, status__status = 'A' ).order_by('-num_visitas')
+	cantidad_resultado = espacios.count()
 	filtrado = 5 # Show 10 contacts per page
 	if 'filtrado' in request.GET:
 		filtrado = request.GET.get('filtrado')
@@ -323,7 +335,7 @@ def mis_espacios_web( request, socio_id ):
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		espacios = paginator.page(paginator.num_pages)
 
-	contexto = {'filtrado':filtrado,'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto,'editar_espacio':'editar_espacio'}
+	contexto = {'cantidad_resultado':cantidad_resultado,'filtrado':filtrado,'espacios_recomendados':espacios_recomendados,'nuebos_socios':nuevos_socios,'socios_vip':socios_vip,'espacios':espacios,'espacios_mas_visto':espacios_mas_visto,'editar_espacio':'editar_espacio'}
 	return render_to_response('web/resultado.html',contexto, context_instance = RequestContext( request ))
 
 @login_required(login_url='/login_')

@@ -384,6 +384,8 @@ def alta_persona_socio(request):
 @permission_required('inTabasco.add_espacio', raise_exception=True)
 def editar_socio(request, id_socio):
 	socio = cat_persona.objects.get(pk=id_socio)
+	usuario = User.objects.get( pk = socio.usuario.id)
+
 
 	if request.method == 'GET':
 #		return HttpResponse(consulta_agente.nombre.imagen)
@@ -432,6 +434,9 @@ def editar_socio(request, id_socio):
 			socio.tipo_usuario = tipo_usuario
 			socio.save()
 
+			usuario.email = correo
+			usuario.save()
+
 			msj = 'EL Socio se edito correctamente'
 			messages.success(request, msj)
 			return HttpResponseRedirect('/alta_persona_socio/')
@@ -464,6 +469,8 @@ def alta_espacio_socio(request, id_socio):
 			codigo_postal = formulario.cleaned_data['codigo_postal']
 			dias_laborales = formulario.cleaned_data['dias_laborales']
 			horario_atencion = formulario.cleaned_data['horario_atencion']
+			correo = formulario.cleaned_data['correo']
+			telefono = formulario.cleaned_data['telefono']
 			latitud = formulario.cleaned_data['latitud']
 			longitud = formulario.cleaned_data['longitud']
 
@@ -501,6 +508,8 @@ def alta_espacio_socio(request, id_socio):
 									socio_vip = socio_vip,
 									dias_laborales = dias_laborales,
 									horario_atencion = horario_atencion,
+									correo = correo,
+									telefono = telefono,
 									usuario = request.user,
 									status = status,
 									producto = producto
@@ -568,6 +577,8 @@ def editar_espacio_socio(request, id_espacio):
 														'longitud':direccion.longitud,
 														'dias_laborales':edi_espacio.dias_laborales,
 														'horario_atencion':edi_espacio.horario_atencion,
+														'correo':edi_espacio.correo,
+														'telefono':edi_espacio.telefono,
 														'status':edi_espacio.status,
 														'url':edi_espacio.url,
 														'producto':edi_espacio.producto,
@@ -585,6 +596,8 @@ def editar_espacio_socio(request, id_espacio):
 			codigo_postal = formulario.cleaned_data['codigo_postal']
 			dias_laborales = formulario.cleaned_data['dias_laborales']
 			horario_atencion = formulario.cleaned_data['horario_atencion']
+			correo = formulario.cleaned_data['correo']
+			telefono = formulario.cleaned_data['telefono']
 			latitud = formulario.cleaned_data['latitud']
 			longitud = formulario.cleaned_data['longitud']
 
@@ -616,6 +629,8 @@ def editar_espacio_socio(request, id_espacio):
 			edi_espacio.socio_vip = socio_vip
 			edi_espacio.dias_laborales = dias_laborales
 			edi_espacio.horario_atencion = horario_atencion
+			edi_espacio.correo = correo
+			edi_espacio.telefono = telefono
 			edi_espacio.save()
 
 
