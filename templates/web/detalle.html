@@ -65,9 +65,9 @@
                 <dt class="address">Dirección:</dt>
                 <dd class="data"> <strong>Mun. </strong>{{ espacio_.direccion.localidad.nombre | title }}, <strong>Col. </strong>{{ espacio_.direccion.colonia | title }}, <strong>Calle. </strong>{{ espacio_.direccion.calle | title }}, <strong>Num. </strong> {{ espacio_.direccion.numero }}, <strong>C.P. </strong> {{ espacio_.direccion.codigo_postal }}.  </dd>
                 <dt class="phone">Telefono(s):</dt>
-                <dd class="data"><a href="tel:{{ espacio_.propietario.telefono }}"> {{ espacio_.propietario.telefono }}</a> y <a href="tel:{{ espacio_.propietario.celular }}" >{{ espacio_.propietario.celular }}</a></dd>
+                <dd class="data"><a href="tel:{% if espacio_.telefono == '' %}{{ espacio_.propietario.telefono }}{% else %} {{ espacio_.telefono }}{% endif %}"> {% if espacio_.telefono == '' %}{{ espacio_.propietario.telefono }}{% else %} {{ espacio_.telefono }}{% endif %}</a> , <a href="tel:{{ espacio_.propietario.celular }}" >{{ espacio_.propietario.celular }}</a></dd>
                 <dt class="email">Correo: </dt>
-                <dd class="data"><a href="mailto:{{ espacio_.propietario.correo }}">{{ espacio_.propietario.correo }}</a></dd>
+                <dd class="data"><a href="mailto:{% if espacio_.correo == '' %}{{ espacio_.propietario.correo }}{{ espacio_.propietario.correo }}{% else %} {{ espacio_.correo }}{% endif %}">{% if espacio_.correo == '' %}{{ espacio_.propietario.correo }}{% else %} {{ espacio_.correo }}{% endif %}</a></dd>
                 <dt class="web">Pagina Web: </dt>
                 <dd class="data"><a href="{{ espacio_.url}}" target="_blank">{{ espacio_.url}}</a></dd>
             </dl>

@@ -201,6 +201,8 @@ class espacio(models.Model):
     socio_vip = models.BooleanField( default=False )
     dias_laborales = models.CharField( max_length=500 )
     horario_atencion = models.CharField( max_length=100 )
+    correo = models.EmailField(max_length=100, blank=True, null= True)
+    telefono = models.CharField(max_length=15, blank=True, null= True)
     producto = models.ForeignKey(cat_productos)
     num_visitas = models.IntegerField(default=0)
     usuario = models.ForeignKey(User)
