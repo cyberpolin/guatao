@@ -852,7 +852,7 @@ def control_dinero(request):
 
 		d = date.today()
 		if fecha == 'dia' :
-			ventas_dia = venta.objects.filter( fecha_venta = d )
+			ventas_dia = venta.objects.filter( fecha_venta = d ).exclude(espacio__producto__precio__pk = 2)
 			total_ventas_dia = ventas_dia.count()
 
 			total_precio_dia = 0
@@ -869,7 +869,7 @@ def control_dinero(request):
 
 		if fecha == 'mes':
 			mes = d.month
-			ventas_mes = venta.objects.filter( fecha_venta__month = mes )
+			ventas_mes = venta.objects.filter( fecha_venta__month = mes ).exclude(espacio__producto__precio__pk = 2)
 			total_ventas_mes = ventas_mes.count()
 
 
@@ -887,7 +887,7 @@ def control_dinero(request):
 
 		if fecha == 'ano':
 			ano = d.year
-			ventas_ano = venta.objects.filter( fecha_venta__year = ano )
+			ventas_ano = venta.objects.filter( fecha_venta__year = ano ).exclude(espacio__producto__precio__pk = 2)
 			total_ventas_ano = ventas_ano.count()
 
 
@@ -905,7 +905,7 @@ def control_dinero(request):
 
 		if fecha == 'total':
 
-			ventas = venta.objects.filter( )
+			ventas = venta.objects.filter( ).exclude(espacio__producto__precio__pk = 2)
 			total_ventas = ventas.count()
 
 

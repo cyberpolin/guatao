@@ -78,7 +78,7 @@
                                         <h3>
                                             <a href="/detalle/{{ espacio.direccion.localidad.nombre }}/{% if categoria %}{{ categoria.categoria }}{% else %}resultado{% endif %}/{{ espacio.id }}">{{ espacio.nombre | title }}</a>
                                         </h3>
-                                        <p>{{ espacio.descripcion_larga }}</p>
+                                        <p>{{ espacio.descripcion_corta }}</p>
 
                                     </div>
                                 </li>
@@ -100,7 +100,7 @@
                                         <h3>
                                             <a href="/detalle/{{ espacio.direccion.localidad.nombre }}/0/{{ espacio.id }}">{{ espacio.nombre | title }}</a>
                                         </h3>
-                                        <p>{{ espacio.descripcion_larga | title }}</p>
+                                        <p>{{ espacio.descripcion_corta }}</p>
 
                                     </div>
                                 </li>

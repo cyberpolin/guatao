@@ -130,10 +130,10 @@ class cat_localidad(models.Model):
 
 
 class cat_direcciones(models.Model):
-    calle = models.CharField(max_length=30)
+    calle = models.CharField(max_length=250)
     numero = models.CharField(max_length=10)
     codigo_postal = models.CharField(max_length=10)
-    colonia = models.CharField(max_length=30)
+    colonia = models.CharField(max_length=250)
     localidad = models.ForeignKey(cat_localidad)
     longitud = models.CharField(max_length=300, null=True, blank=True)
     latitud = models.CharField(max_length=300, null=True, blank=True)
