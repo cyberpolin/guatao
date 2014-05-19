@@ -5,6 +5,7 @@ from django.shortcuts import *
 
 from django.core.context_processors import csrf
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 
 import json
 
@@ -15,12 +16,12 @@ def ajaxautocompletable(request):
 	if request.is_ajax():
 		# recuperamos el campo
 		q = request.GET.get('term', '').lower()
-		drugs = espacio.objects.filter( nombre__icontains = q, status__status = 'A').distinct('nombre')
+		drugs = espacio.objects.filter( (Q(nombre__icontains = q ) | Q(descripcion_corta__icontains = q )), status__status = 'A').distinct('nombre')
 		print(drugs)
 		results = []
 		for drug in drugs:
 			drug_json = {}
-			drug_json['label'] = drug.nombre
+			drug_json['label'] = drug.descripcion_corta
 			results.append(drug_json)
 		data = json.dumps(results)
 	else:

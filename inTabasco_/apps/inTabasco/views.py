@@ -219,7 +219,7 @@ def colonias_cercanas( request ):
 
 		print(lat)
 		print(lon)
-		colonias = cat_direcciones.objects.filter( latitud__range = (lat_derecha,lat_izquierda), longitud__range = (lon_derecha, lon_izquierda))
+		colonias = cat_direcciones.objects.filter( latitud__range = (lat_derecha,lat_izquierda), longitud__range = (lon_derecha, lon_izquierda)).order_by('-id')[:4]
 		list = []
 		for p in colonias:
 			list.append({
