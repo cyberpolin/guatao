@@ -10,6 +10,11 @@
         <title>{% block title %} guatao.mx .:. El que busca encuentra...{%   endblock title %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+
+        {% block facebook %}
+
+        {% endblock facebook %}
+
         <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
         {% block staticos %}
         <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -73,9 +78,9 @@
                 <p class="left info">(993) 2 68.15.60</p>
     <ul class="social-icons right clearfix">
 
-        <li class="left"><a href="http://www.facebook.com/guataomx"><img src="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory/design/img/social-icons/facebook-ff.png" height="24" width="24" alt="Facebook" title="Facebook" /></a></li>
-        <li class="left"><a href="http://www.youtube.com/user/guataomx"><img src="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory/design/img/social-icons/youtube-ff.png" height="24" width="24" alt="Whatch us on Youtube." title="Whatch us on Youtube." /></a></li>
-        <li class="left"><a href="http://www.twitter.com/guataomx"><img src="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory/design/img/social-icons/twitter-ff.png" height="24" width="24" alt="Follow us on Twitter" title="Follow us on Twitter" /></a></li>
+        <li class="left"><a href="https://www.facebook.com/guataomx" target="_blank"><img src="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory/design/img/social-icons/facebook-ff.png" height="24" width="24" alt="Facebook" title="Facebook" /></a></li>
+        <li class="left"><a href="https://www.youtube.com/channel/UC5WT8xt5LgIRbWsa4kwwU-Q" target="_blank"><img src="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory/design/img/social-icons/youtube-ff.png" height="24" width="24" alt="Whatch us on Youtube." title="Whatch us on Youtube." /></a></li>
+        <li class="left"><a href="http://www.twitter.com/guataomx" target="_blank"><img src="http://preview.ait-themes.com/directory/wp1/wp-content/themes/directory/design/img/social-icons/twitter-ff.png" height="24" width="24" alt="Follow us on Twitter" title="Follow us on Twitter" /></a></li>
     </ul>
 <!-- WPML plugin required -->
                 <!-- <form method="get" id="searchform" action="http://preview.ait-themes.com/directory/wp1/">
@@ -224,7 +229,7 @@
                     <div id="ait-login-tabs">
                         <ul>
                             <li class="active"><a class="" href="">Soy Socio</a></li>
-                            <li ><a class="register various"  data-fancybox-type="iframe" href="/regitro_socio_web/">Registrarme</a></li>
+                            <!--<li ><a class="register various"  data-fancybox-type="iframe" href="/regitro_socio_web/">Registrarme</a></li>-->
                         </ul>
                         <!-- registro -->
                         {% if messages %}
@@ -538,16 +543,6 @@
                     window.location.href='/busqueda_socio_vip/'+nombre_socio_vip;
                 }
             }
-        </script>
-        <script>
-
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
         </script>
         <script type="text/javascript">
             $(function(){
