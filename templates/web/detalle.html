@@ -1,9 +1,19 @@
 {% extends "web/base_web.html" %}
 {% block title %} {{ espacio_.nombre | title }} - {{ espacio_.direccion.localidad.nombre | title }} - guatao.mx {% endblock title %}
+{% block facebook %}
+
+        <meta  property = "og:title"            content = " {{ espacio_.nombre }} "  />
+        <meta property="og:description" content="{{ espacio_.descripcion_larga }}" />
+        <meta  property = "og:image"            content = " {% for imagen in espacio_.cat_imagenes_set.all %}
+                http://guatao.mx{{ MEDIA_URL }}{{ imagen.imagen }}
+                {% endfor %} "  />
+        <meta  property = "og:image:width"  content = "100"  />
+        <meta  property = "og:image:height"  content = "100"  />
+
+{% endblock facebook %}
 
 
 {% block contenido %}
-
 
 
     <article id="post-7821" class="post-7821 ait-dir-item type-ait-dir-item status-publish hentry">
@@ -24,17 +34,27 @@
         <div class="entry-content clearfix">
             <div class="item-image">
                 {% for imagen in espacio_.cat_imagenes_set.all %}
-                <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" style="height:200px;width: 140px; " alt="Item image">
+                    <img src="{{ MEDIA_URL }}{{ imagen.imagen }}" style="width: 140px; " alt="Item image">
                 {% endfor %}
                 <a id="contact-owner-button" class="contact-owner button" data-fancybox-type="iframe" href="/contactar_socio/{{ espacio_.id }}">Contactanos</a>
             </div>
-            <p>{{ espacio_.descripcion_larga }}</p>
+            <p style="text-align: justify;">{{ espacio_.descripcion_larga }}</p>
         </div>
 
         <div class="item-share">
             <!-- facebook -->
             <div class="social-item fb">
-                <div class="fb-like" data-href="guatao.mx" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+                <!--<div class="fb-like" data-href="guatao.mx" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>-->
+                <div class="fb-share-button" data-type="button_count"></div>
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.0";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+
             </div>
         <!-- twitter -->
             <div class="social-item">
