@@ -443,6 +443,22 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                     }
                                 }
         </script>
+        <script>
+            var cuenta = false;
+            function checkSubmit() {
+                if (cuenta == 0)
+                    {
+                    cuenta++;
+                    return true;
+                    }
+                    else
+                    {
+                    document.getElementById("boton").disabled = true;
+                    //document.getElementById("boton").style.visibility  = 'hidden';
+                    return false;
+                    }
+            }
+        </script>
 
     {% endblock extrahead %}
 
@@ -462,7 +478,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
                                     </div>
                                     <div class="widget-container gray ">
                                         <div class="form-container">
-                                            <form id="stepy" method="POST" enctype="multipart/form-data" class=" form-horizontal left-align form-well">
+                                            <form id="stepy" method="POST" onsubmit="return checkSubmit();" enctype="multipart/form-data" class=" form-horizontal left-align form-well">
                                             <input type="hidden" id="socio" name="socio" value="socio">
                                                {% csrf_token %}
 
