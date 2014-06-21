@@ -152,6 +152,23 @@ Alta Espacio - Socio
           });
         </script>
 
+        <script>
+            var cuenta = false;
+            function checkSubmit() {
+                if (cuenta == 0)
+                    {
+                    cuenta++;
+                    return true;
+                    }
+                    else
+                    {
+                    document.getElementById("boton").disabled = true;
+                    //document.getElementById("boton").style.visibility  = 'hidden';
+                    return false;
+                    }
+            }
+        </script>
+
 
 {% endblock extrahead %}
 
@@ -172,7 +189,7 @@ Alta Espacio - Socio
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                    <form id="formulario1" class="form-horizontal" method="POST" name="form_mapa" enctype="multipart/form-data">
+                                    <form id="formulario1" onsubmit="return checkSubmit();" class="form-horizontal" method="POST" name="form_mapa" enctype="multipart/form-data">
                                     <input type="hidden" id="espacio" name="espacio" value="espacio"> 
                                     {% csrf_token %}
                                     {{ formulario_espacio.non_field_errors }}
@@ -358,8 +375,7 @@ Alta Espacio - Socio
                                         </div>
                                         
                                         <div class="form-actions">
-                                          <button type="submit" class="btn btn-primary">Guardar</button>
-                                          <button onclick = "window.opener.location.href = window.opener.location.href; window.close();" type="button" class="btn">Cancel</button>
+                                          <button type="submit" id="boton" class="btn btn-primary">Guardar</button>
                                         </div>
                                       </fieldset>
                                     </form>

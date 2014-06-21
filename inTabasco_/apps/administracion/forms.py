@@ -49,8 +49,8 @@ class Registrar_Espacio_Socio( forms.Form):
 
 
     descripcion_corta = forms.CharField(label = "Descripcion Corta del Establecimiento", max_length = 250 )
-    #descripcion_larga = forms.CharField(widget=forms.Textarea(attrs={'class':'input-xlarge textarea','style':'width: 330px; height: 200px'}), label = "Descripcion Larga del Establecimiento" )
-    descripcion_larga = forms.CharField(widget=forms.Textarea(attrs={'style':'width: 330px; height: 200px'}), label = "Descripcion Larga del Establecimiento" )
+    descripcion_larga = forms.CharField(widget=forms.Textarea(attrs={'class':'input-xlarge textarea','style':'width: 330px; height: 200px'}), label = "Descripcion Larga del Establecimiento" )
+    #descripcion_larga = forms.CharField(widget=forms.Textarea(attrs={'style':'width: 330px; height: 200px'}), label = "Descripcion Larga del Establecimiento" )
     categorias = forms.ModelMultipleChoiceField(queryset=cat_categorias_espacios.objects.all(), widget=forms.SelectMultiple(attrs={'class':'select2-select span8','multiple':'multiple'}))
     socio_vip = forms.BooleanField(initial=False, required=False)
     localidad = forms.ModelChoiceField(empty_label = "Seleccione la localidad",queryset=cat_localidad.objects.all().exclude(padre_id =  None), widget = forms.Select(attrs={'class':'chzn-select'}))
@@ -59,9 +59,9 @@ class Registrar_Espacio_Socio( forms.Form):
     numero = forms.CharField(label = "Numero", max_length = "10")
     codigo_postal = forms.CharField(label="Codigo Postal", max_length = "10")
     dias_laborales = forms.CharField(label="Dias de Atencion", max_length = "500")
-    horario_atencion = forms.CharField(label="Horario de Atencion", max_length = "100")
+    horario_atencion = forms.CharField(label="Horario de Atencion", max_length = "200")
     correo = forms.EmailField(label = "Correo Electronico", max_length = 100, required = False)
-    telefono = forms.CharField(label = "Telefono", max_length = 15, required = False)
+    telefono = forms.CharField(label = "Telefono", max_length = 30, required = False)
     latitud = forms.CharField(initial="18.000264246324", label="Latitud", max_length = "300", widget = forms.HiddenInput())
     longitud = forms.CharField(initial="-92.94361710548401", label="Longitud", max_length = "300", widget = forms.HiddenInput())
 

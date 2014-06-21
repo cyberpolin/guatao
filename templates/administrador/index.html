@@ -392,6 +392,22 @@ $(document).ajaxSend(function(event, xhr, settings) {
           }
       }
     </script>
+    <script>
+            var cuenta = false;
+            function checkSubmit() {
+                if (cuenta == 0)
+                    {
+                    cuenta++;
+                    return true;
+                    }
+                    else
+                    {
+                    document.getElementById("boton").disabled = true;
+                    //document.getElementById("boton").style.visibility  = 'hidden';
+                    return false;
+                    }
+            }
+        </script>
     {% endblock extrahead %}
 
     {% block maincontent %}
@@ -413,7 +429,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
                           </div>
                           <div class="widget-container gray ">
                             <div class="form-container">
-                              <form id="stepy_form"  method="POST" name="form_mapa" enctype="multipart/form-data" class=" form-horizontal">
+                              <form id="stepy_form" onsubmit="return checkSubmit();" method="POST" name="form_mapa" enctype="multipart/form-data" class=" form-horizontal">
                                 <input type="hidden" id="agente" name="agente" value="agente">
                                 {% csrf_token %}
 

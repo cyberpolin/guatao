@@ -3,7 +3,7 @@
 {% block facebook %}
 
         <meta  property = "og:title"            content = " {{ espacio_.nombre }} "  />
-        <meta property="og:description" content="{{ espacio_.descripcion_larga }}" />
+        <meta property="og:description" content="{{ espacio_.descripcion_larga|safe }}" />
         <meta  property = "og:image"            content = " {% for imagen in espacio_.cat_imagenes_set.all %}
                 http://guatao.mx{{ MEDIA_URL }}{{ imagen.imagen }}
                 {% endfor %} "  />
@@ -38,7 +38,9 @@
                 {% endfor %}
                 <a id="contact-owner-button" class="contact-owner button" data-fancybox-type="iframe" href="/contactar_socio/{{ espacio_.id }}">Contactanos</a>
             </div>
-            <p style="text-align: justify;">{{ espacio_.descripcion_larga }}</p>
+            <div style="display: inline-block; width: 73%;word-wrap: break-word;">
+            <p style="text-align: justify;">{{ espacio_.descripcion_larga|safe }}</p>
+            </div>
         </div>
 
         <div class="item-share">
