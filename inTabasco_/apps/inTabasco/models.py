@@ -207,6 +207,7 @@ class espacio(models.Model):
     num_visitas = models.IntegerField(default=0)
     usuario = models.ForeignKey(User)
     status = models.ForeignKey(cat_status)
+    fecha_registro = models.DateField(default=datetime.now())
 
     def __unicode__(self):
         return u'%s' % self.nombre
