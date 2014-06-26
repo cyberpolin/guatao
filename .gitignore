@@ -5,7 +5,11 @@ inTabasc
 .idea/*
 /inTabasco_/settings.py
 /inTabasco_/wsgi.py
+/guatao/settings.py
+/guatao/wsgi.py
 d.b/
 .idea/*
 manage.py
 .idea
+/media/*
+/guatao/static/*
